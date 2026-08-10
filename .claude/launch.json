@@ -1,0 +1,55 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "northframe-dev",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-Command",
+        "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User'); npm.cmd run dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "lumiere-dev",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-Command",
+        "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User'); Set-Location 'C:\\Users\\alenp\\lumiere-dental-studio'; npm.cmd run dev -- -p 3001"
+      ],
+      "port": 3001
+    },
+    {
+      "name": "aurelia-dev",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-Command",
+        "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User'); Set-Location 'C:\\Users\\alenp\\aurelia-restaurant'; npm.cmd run dev -- -p 3002"
+      ],
+      "port": 3002
+    },
+    {
+      "name": "nova-dev",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-Command",
+        "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User'); Set-Location 'C:\\Users\\alenp\\nova-performance'; npm.cmd run dev -- -p 3003"
+      ],
+      "port": 3003
+    },
+    {
+      "name": "vivelle-dev",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-Command",
+        "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User'); Set-Location 'C:\\Users\\alenp\\vivelle-beauty'; npm.cmd run dev -- -p 3004"
+      ],
+      "port": 3004
+    }
+  ]
+}
