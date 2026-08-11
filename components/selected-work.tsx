@@ -7,10 +7,10 @@ import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 
 // Set these once the respective sites are deployed — each card becomes
 // clickable (opens in a new tab) as soon as its URL is non-null.
-const LUMIERE_LIVE_URL: string | null = null;
-const AURELIA_LIVE_URL: string | null = null;
-const NOVA_LIVE_URL: string | null = null;
-const VIVELLE_LIVE_URL: string | null = null;
+const LUMIERE_LIVE_URL: string | null = "/lumiere-dental";
+const AURELIA_LIVE_URL: string | null = "/aurelia";
+const NOVA_LIVE_URL: string | null = "/nova-performance";
+const VIVELLE_LIVE_URL: string | null = "/vivelle-beauty";
 
 type Project = {
   index: string;
