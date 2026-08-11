@@ -46,12 +46,12 @@ export function Nav() {
       <nav className="container-px mx-auto flex max-w-content items-center justify-between py-4">
         <Logo />
 
-        <ul className="hidden md:flex items-center gap-9 text-sm text-ink-muted">
+        <ul className="hidden md:flex items-center gap-4 lg:gap-9 text-sm text-ink-muted">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="transition-colors hover:text-ink"
+                className="whitespace-nowrap transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -59,8 +59,13 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
-          <Button as="a" href="/#contact" variant="primary" className="text-xs">
+        <div className="hidden md:block shrink-0">
+          <Button
+            as="a"
+            href="/#contact"
+            variant="primary"
+            className="whitespace-nowrap text-xs md:px-4 md:py-2.5 lg:px-6 lg:py-3"
+          >
             Start a Project
           </Button>
         </div>
