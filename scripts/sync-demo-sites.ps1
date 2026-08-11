@@ -39,6 +39,15 @@ foreach ($demo in $demos) {
     Write-Host "==> Syncing output to $dest" -ForegroundColor Cyan
     Remove-Item -Recurse -Force $dest -ErrorAction SilentlyContinue
     Copy-Item -Recurse (Join-Path $demo.Path "out") $dest
+
+    # Rename index.html to a slug-unique filename and drop 404.html/index.txt.
+    # Vercel's static-asset route mapping treats any file literally named
+    # "index.html" under public/ as a candidate for the site root ("/"), so
+    # having 4 of them (one per demo) collides with North Frame's own
+    # homepage route. Renaming avoids the collision entirely.
+    Rename-Item (Join-Path $dest "index.html") (Join-Path $dest "$($demo.Slug).html")
+    Remove-Item (Join-Path $dest "404.html") -ErrorAction SilentlyContinue
+    Remove-Item (Join-Path $dest "index.txt") -ErrorAction SilentlyContinue
 }
 
 Write-Host "All demo sites synced." -ForegroundColor Green

@@ -4,10 +4,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async rewrites() {
     return [
-      { source: "/aurelia", destination: "/aurelia/index.html" },
-      { source: "/lumiere-dental", destination: "/lumiere-dental/index.html" },
-      { source: "/nova-performance", destination: "/nova-performance/index.html" },
-      { source: "/vivelle-beauty", destination: "/vivelle-beauty/index.html" },
+      { source: "/aurelia", destination: "/aurelia/aurelia.html" },
+      { source: "/lumiere-dental", destination: "/lumiere-dental/lumiere-dental.html" },
+      { source: "/nova-performance", destination: "/nova-performance/nova-performance.html" },
+      { source: "/vivelle-beauty", destination: "/vivelle-beauty/vivelle-beauty.html" },
     ];
   },
 };
