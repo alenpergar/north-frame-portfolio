@@ -19,10 +19,41 @@ const inputClasses =
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setError(null);
+
+    const formData = new FormData(event.currentTarget);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      projectType: formData.get("projectType"),
+      message: formData.get("message"),
+    };
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        setError(body?.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -129,9 +160,20 @@ export function Contact() {
                     </label>
                   </div>
 
-                  <Button type="submit" variant="primary" className="mt-8">
-                    Send Message
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="mt-8"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending…" : "Send Message"}
                   </Button>
+
+                  {error ? (
+                    <p role="alert" className="mt-4 text-sm text-accent">
+                      {error}
+                    </p>
+                  ) : null}
                 </form>
               )}
             </Reveal>
