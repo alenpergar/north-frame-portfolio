@@ -80,7 +80,7 @@ export function SelectedWork() {
                 </span>
               </>
             }
-            description="A look at the kind of work North Frame produces — representative concepts across web, landing, and AI creative, with real client case studies added as they ship."
+            description="A selection of self-initiated concepts created to showcase our approach to web design."
           />
         </div>
 
