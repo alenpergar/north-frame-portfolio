@@ -34,7 +34,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent"
           >
             <span className="h-px w-6 bg-accent" aria-hidden />
-            North Frame — Digital Design Studio
+            DRYPOINT — Digital Design Studio
           </motion.span>
 
           <motion.h1
@@ -58,7 +58,7 @@ export function Hero() {
             }}
             className="mt-6 max-w-xl text-base sm:text-lg text-ink-muted leading-relaxed"
           >
-            North Frame crafts high-end websites, landing pages, and
+            DRYPOINT crafts high-end websites, landing pages, and
             AI-powered creative experiences for brands that refuse to look
             ordinary — built with cinematic precision, from first frame to
             final pixel.

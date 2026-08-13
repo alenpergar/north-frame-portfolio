@@ -28,7 +28,7 @@ export function About() {
 
             <Reveal delay={0.1} className="mt-8 space-y-5 max-w-xl text-ink-muted leading-relaxed">
               <p>
-                North Frame exists because most &ldquo;creative&rdquo; work
+                DRYPOINT exists because most &ldquo;creative&rdquo; work
                 online looks the same — the same templates, the same stock
                 gradients, the same forgettable hero section. We started this
                 studio to do the opposite: treat every website like a film
@@ -56,8 +56,8 @@ export function About() {
           <Reveal delay={0.15} className="lg:col-span-5">
             <div className="grain relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-bg">
               <Image
-                src="/images/about-logo.png"
-                alt="North Frame"
+                src="/drypoint-logo-dark.png"
+                alt="DRYPOINT"
                 fill
                 className="object-contain p-12"
                 sizes="(min-width: 1024px) 40vw, 100vw"

@@ -42,7 +42,7 @@ export function Services() {
               </span>
             </>
           }
-          description="Everything North Frame builds sits somewhere between these three — strategy-led design work made for brands that need to look, and perform, at the top of their category."
+          description="Everything DRYPOINT builds sits somewhere between these three — strategy-led design work made for brands that need to look, and perform, at the top of their category."
         />
 
         <RevealGroup className="mt-16 divide-y divide-border border-t border-border" stagger={0.08}>

@@ -20,16 +20,16 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL("https://northframe.studio"),
   title: {
-    default: "North Frame — Premium Digital Design Studio",
-    template: "%s — North Frame",
+    default: "DRYPOINT — Premium Digital Design Studio",
+    template: "%s — DRYPOINT",
   },
   description:
-    "North Frame is a premium digital design studio crafting high-end websites, landing pages, and AI-powered creative experiences for brands that refuse to look ordinary.",
+    "DRYPOINT is a premium digital design studio crafting high-end websites, landing pages, and AI-powered creative experiences for brands that refuse to look ordinary.",
   openGraph: {
-    title: "North Frame — Premium Digital Design Studio",
+    title: "DRYPOINT — Premium Digital Design Studio",
     description:
       "High-end websites, landing pages, and AI-powered creative experiences.",
-    siteName: "North Frame",
+    siteName: "DRYPOINT",
     type: "website",
   },
 };

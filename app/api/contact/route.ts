@@ -4,7 +4,7 @@ import { Resend } from "resend";
 export const runtime = "nodejs";
 
 const TO_EMAIL = "alen.pergar466@gmail.com";
-const FROM_EMAIL = "North Frame <onboarding@resend.dev>";
+const FROM_EMAIL = "DRYPOINT <onboarding@resend.dev>";
 
 const PROJECT_TYPES = ["Web Design", "Landing Page", "AI Creative", "Not sure yet"];
 

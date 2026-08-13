@@ -14,8 +14,8 @@ const LINKS = [
 ];
 
 const SOCIALS = [
-  { href: "https://www.instagram.com/northframe_ai/", label: "Instagram", icon: InstagramLogo },
-  { href: "https://linkedin.com", label: "LinkedIn", icon: LinkedinLogo },
+  { href: "https://www.instagram.com/drypointcreative/", label: "Instagram", icon: InstagramLogo },
+  { href: "https://www.linkedin.com/in/alenpergar", label: "LinkedIn", icon: LinkedinLogo },
 ];
 
 export function Footer() {
@@ -67,7 +67,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col-reverse items-center gap-6 border-t border-border pt-8 sm:flex-row sm:justify-between">
           <p className="text-xs text-ink-muted">
-            &copy; {new Date().getFullYear()} North Frame. All rights
+            &copy; {new Date().getFullYear()} DRYPOINT. All rights
             reserved.
           </p>
 
