@@ -18,7 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://northframe.studio"),
+  metadataBase: new URL("https://www.drypointcreative.com"),
   title: {
     default: "DRYPOINT — Premium Digital Design Studio",
     template: "%s — DRYPOINT",
@@ -31,6 +31,21 @@ export const metadata: Metadata = {
       "High-end websites, landing pages, and AI-powered creative experiences.",
     siteName: "DRYPOINT",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DRYPOINT — Premium Digital Design Studio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DRYPOINT — Premium Digital Design Studio",
+    description:
+      "High-end websites, landing pages, and AI-powered creative experiences.",
+    images: ["/og-image.png"],
   },
 };
 
