@@ -87,11 +87,11 @@ export function Contact() {
 
             <Reveal delay={0.15} className="mt-8">
               <a
-                href="mailto:northframe.ai@outlook.com"
+                href="mailto:hello@drypointcreative.com"
                 className="inline-flex items-center gap-2 text-ink transition-colors hover:text-accent"
               >
                 <EnvelopeSimple size={20} />
-                northframe.ai@outlook.com
+                hello@drypointcreative.com
               </a>
             </Reveal>
           </div>
