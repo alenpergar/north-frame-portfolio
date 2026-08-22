@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://www.drypointcreative.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.drypointcreative.com/" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.drypointcreative.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.drypointcreative.com/" />
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.drypointcreative.com/sl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.drypointcreative.com/" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.drypointcreative.com/sl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.drypointcreative.com/" />
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.drypointcreative.com/work/hise-zilavec</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.drypointcreative.com/work/hise-zilavec" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.drypointcreative.com/sl/work/hise-zilavec" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.drypointcreative.com/work/hise-zilavec" />
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.drypointcreative.com/sl/work/hise-zilavec</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.drypointcreative.com/work/hise-zilavec" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.drypointcreative.com/sl/work/hise-zilavec" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.drypointcreative.com/work/hise-zilavec" />
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.drypointcreative.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.drypointcreative.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.drypointcreative.com/sl/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.drypointcreative.com/privacy" />
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.drypointcreative.com/sl/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.drypointcreative.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.drypointcreative.com/sl/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.drypointcreative.com/privacy" />
+    <priority>0.3</priority>
+  </url>
+</urlset>

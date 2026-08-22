@@ -61,9 +61,17 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
         </div>
 
         <div className="mt-16 flex flex-col-reverse items-center gap-6 border-t border-border pt-8 sm:flex-row sm:justify-between">
-          <p className="text-xs text-ink-muted">
-            &copy; {new Date().getFullYear()} DRYPOINT. {t.rights}
-          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-ink-muted sm:justify-start">
+            <p>
+              &copy; {new Date().getFullYear()} DRYPOINT. {t.rights}
+            </p>
+            <Link
+              href={localePath(locale, "/privacy")}
+              className="transition-colors hover:text-ink"
+            >
+              {t.privacy}
+            </Link>
+          </div>
 
           <button
             type="button"

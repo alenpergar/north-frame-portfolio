@@ -102,6 +102,7 @@ export type Dict = {
     follow: string;
     rights: string;
     backToTop: string;
+    privacy: string;
   };
 
   caseStudy: {
@@ -157,5 +158,15 @@ export type Dict = {
     resultTitle: Title;
     resultBody: string;
     resultCta: string;
+  };
+
+  privacy: {
+    metaTitle: string;
+    metaDescription: string;
+    eyebrow: string;
+    title: string;
+    updated: string;
+    intro: string;
+    sections: { heading: string; body: string[] }[];
   };
 };

@@ -204,6 +204,7 @@ export const sl: Dict = {
     follow: "Sledite nam",
     rights: "Vse pravice pridržane.",
     backToTop: "Nazaj na vrh",
+    privacy: "Zasebnost",
   },
 
   caseStudy: {
@@ -362,5 +363,72 @@ export const sl: Dict = {
     resultBody:
       "Stran je v živo in v uporabi podjetja, kontaktni obrazec pa teče na naročnikov lastni e-poštni predal.",
     resultCta: "Obiščite spletno stran",
+  },
+
+  // TODO: dopolni registrirano pravno osebo, poslovni naslov in morebitno
+  // matično/davčno številko, ko bodo potrjeni, ter zamenjaj nevtralne
+  // formulacije v razdelkih „Kdo smo“ in „Vaše pravice“.
+  privacy: {
+    metaTitle: "Politika zasebnosti",
+    metaDescription:
+      "Kako DRYPOINT ravna z osebnimi podatki, ki jih pošljete prek kontaktnega obrazca: kaj se zbira, zakaj, kdo obdeluje in kakšne pravice imate po GDPR.",
+    eyebrow: "Pravno",
+    title: "Politika zasebnosti",
+    updated: "Zadnja posodobitev: 22. avgust 2026",
+    intro:
+      "DRYPOINT je studio za digitalno oblikovanje, ki deluje iz Slovenije, znotraj Evropske unije. Ta politika pojasnjuje, katere osebne podatke prejmemo, ko nas kontaktirate, zakaj jih hranimo in kaj lahko od nas zahtevate. Napisana je zato, da se prebere, ne da se preživi.",
+    sections: [
+      {
+        heading: "Kdo smo",
+        body: [
+          "DRYPOINT je studio, ki stoji za to spletno stranjo, in je odgovoren za osebne podatke, opisane tukaj — po izrazoslovju GDPR upravljavec osebnih podatkov.",
+          "Za vse v zvezi z vašimi podatki pišite na hello@drypointcreative.com. Na ta sporočila odgovarjamo neposredno; vmes ni nobenega sistema za zahtevke.",
+        ],
+      },
+      {
+        heading: "Kaj zbiramo",
+        body: [
+          "Samo tisto, kar vpišete v kontaktni obrazec: ime, e-poštni naslov, izbrano vrsto projekta in vaše sporočilo. Nič drugega ni zahtevano in nič drugega ne zbiramo.",
+          "Ta spletna stran ne nastavlja piškotkov, ne uporablja analitike in ne vključuje sledilnikov tretjih oseb. Ni oglaševalskih pikslov, snemanja seje ali kakršnegakoli profiliranja.",
+          "Naš ponudnik gostovanja obdeluje običajne podatke o zahtevkih, kot so IP-naslovi, kot del varnega streženja strani. Teh podatkov ne uporabljamo za prepoznavanje ali sledenje posameznim obiskovalcem.",
+        ],
+      },
+      {
+        heading: "Zakaj jih hranimo",
+        body: [
+          "Da preberemo vaše povpraševanje in nanj odgovorimo ter — če pride do sodelovanja — izvedemo korake, ki vodijo do pogodbe.",
+          "Pravna podlaga je naš zakoniti interes, da odgovorimo tistim, ki nas kontaktirajo, in, kadar sledi projekt, predpogodbeni ter pogodbeni koraki, ki ste jih zahtevali.",
+        ],
+      },
+      {
+        heading: "Kdo drug jih vidi",
+        body: [
+          "Kontaktni obrazec dostavi vaše sporočilo po e-pošti prek ponudnika Resend v naš lastni predal. Resend sporočilo obdela izključno zato, da ga dostavi.",
+          "Spletna stran gostuje na Vercelu, ki obdeluje tehnične podatke o zahtevkih kot del streženja strani.",
+          "Osebnih podatkov ne prodajamo in jih ne delimo z nikomer za trženje.",
+        ],
+      },
+      {
+        heading: "Kako dolgo jih hranimo",
+        body: [
+          "Povpraševanja ostanejo v našem predalu, dokler so uporabna — med pogovorom, ves čas morebitnega projekta, ki sledi, in obdobje, ko smo poslovno dokumentacijo dolžni hraniti.",
+          "Če želite, da vaše sporočilo izbrišemo prej, nam to sporočite in bomo to storili.",
+        ],
+      },
+      {
+        heading: "Vaše pravice",
+        body: [
+          "Po GDPR lahko od nas zahtevate kopijo podatkov, ki jih hranimo o vas, njihov popravek, izbris, omejitev obdelave, prenos v prenosljivi obliki ali ugovarjate obdelavi.",
+          "Pišite na hello@drypointcreative.com in bomo ukrepali. Razloga vam ni treba navesti.",
+          "Če z našim ravnanjem niste zadovoljni, lahko vložite pritožbo pri Informacijskem pooblaščencu Republike Slovenije ali pri nadzornem organu v svoji državi.",
+        ],
+      },
+      {
+        heading: "Spremembe te politike",
+        body: [
+          "Če se ta politika spremeni, se na tej strani pojavi popravljena različica z novim datumom na vrhu. Sprememb ne uveljavljamo za nazaj.",
+        ],
+      },
+    ],
   },
 };

@@ -208,6 +208,7 @@ export const en: Dict = {
     follow: "Follow",
     rights: "All rights reserved.",
     backToTop: "Back to top",
+    privacy: "Privacy",
   },
 
   caseStudy: {
@@ -363,5 +364,74 @@ export const en: Dict = {
     resultBody:
       "The site is live and in use by the business, with the contact form running to the client’s own inbox.",
     resultCta: "Visit live website",
+  },
+
+  // TODO: fill in the registered legal entity, business address and any
+  // company/VAT number once confirmed, and replace the neutral wording in
+  // "Who we are" and "Contact" below. Nothing here is invented — the data
+  // categories come from app/api/contact/route.ts and the site currently sets
+  // no cookies and runs no analytics.
+  privacy: {
+    metaTitle: "Privacy Policy",
+    metaDescription:
+      "How DRYPOINT handles the personal data you send through the contact form: what is collected, why, who processes it, and the rights you have under the GDPR.",
+    eyebrow: "Legal",
+    title: "Privacy Policy",
+    updated: "Last updated: 22 August 2026",
+    intro:
+      "DRYPOINT is a digital design studio operating from Slovenia, within the European Union. This policy explains what personal data we receive when you contact us, why we hold it, and what you can ask us to do with it. It is written to be read, not to be survived.",
+    sections: [
+      {
+        heading: "Who we are",
+        body: [
+          "DRYPOINT is the studio behind this website and is responsible for the personal data described here — the data controller, in the language of the GDPR.",
+          "For anything relating to your data, write to hello@drypointcreative.com. We answer these directly; there is no ticketing system in between.",
+        ],
+      },
+      {
+        heading: "What we collect",
+        body: [
+          "Only what you type into the contact form: your name, your email address, the project type you select, and your message. Nothing else is required and nothing else is requested.",
+          "This website sets no cookies, runs no analytics, and embeds no third-party trackers. There is no advertising pixel, no session recording, and no profiling of any kind.",
+          "Our hosting provider processes standard server request data, such as IP addresses, as part of delivering the site securely. We do not use that data to identify or track individual visitors.",
+        ],
+      },
+      {
+        heading: "Why we hold it",
+        body: [
+          "To read your enquiry and reply to it, and — if we go on to work together — to carry out the steps leading to a contract.",
+          "The lawful basis is our legitimate interest in responding to people who contact us, and, where a project follows, the pre-contractual and contractual steps you have asked us to take.",
+        ],
+      },
+      {
+        heading: "Who else sees it",
+        body: [
+          "The contact form delivers your message by email through Resend, our email delivery provider, to our own inbox. Resend processes the message solely to deliver it.",
+          "This website is hosted on Vercel, which processes technical request data as part of serving the pages.",
+          "We do not sell personal data, and we do not share it with anyone for marketing.",
+        ],
+      },
+      {
+        heading: "How long we keep it",
+        body: [
+          "Enquiries stay in our inbox for as long as they are useful — while we are in conversation, and for the duration of any project that follows, plus the period we are required to keep business records.",
+          "If you would rather we deleted your message sooner, ask and we will.",
+        ],
+      },
+      {
+        heading: "Your rights",
+        body: [
+          "Under the GDPR you can ask us for a copy of the data we hold about you, ask us to correct it, ask us to delete it, ask us to restrict how we use it, ask for it in a portable format, or object to our using it at all.",
+          "Write to hello@drypointcreative.com and we will act on it. You do not need to give a reason.",
+          "If you are not satisfied with how we have handled your request, you may lodge a complaint with the Slovenian Information Commissioner (Informacijski pooblaščenec) or with the supervisory authority in your own country.",
+        ],
+      },
+      {
+        heading: "Changes to this policy",
+        body: [
+          "If this policy changes, the revised version appears on this page with a new date at the top. We do not change it retroactively.",
+        ],
+      },
+    ],
   },
 };

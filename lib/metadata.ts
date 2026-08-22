@@ -94,3 +94,24 @@ export function caseStudyMetadata(locale: Locale): Metadata {
     },
   };
 }
+
+export function privacyMetadata(locale: Locale): Metadata {
+  const t = getDict(locale).privacy;
+  const path = "/privacy";
+
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    alternates: {
+      ...alternates(path),
+      canonical: localePath(locale, path),
+    },
+    openGraph: {
+      title: t.metaTitle,
+      description: t.metaDescription,
+      type: "article",
+      locale: ogLocale[locale],
+      url: localePath(locale, path),
+    },
+  };
+}
