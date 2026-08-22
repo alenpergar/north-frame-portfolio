@@ -64,7 +64,7 @@ export function Approach() {
 
         <RevealGroup
           className="mt-20 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2"
-          stagger={0.1}
+          stagger={0.12}
         >
           {PILLARS.map((pillar) => (
             <RevealItem key={pillar.index}>

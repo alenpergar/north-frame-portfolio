@@ -17,7 +17,10 @@ const LINKS = [
   { href: "/#about", label: "About" },
 ];
 
-export function Nav() {
+// `showSectionNav` defaults to true, so the homepage is unaffected. The case
+// study page turns it off: the rail's links are homepage anchors, which have no
+// meaning there.
+export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -144,7 +147,7 @@ export function Nav() {
       {/* Zunaj <header>: ob scrollu glava dobi backdrop-blur, backdrop-filter pa
           postane containing block za fixed potomce in bi to letev odnesel iz
           viewporta. */}
-      <SectionNav />
+      {showSectionNav ? <SectionNav /> : null}
     </>
   );
 }

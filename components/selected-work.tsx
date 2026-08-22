@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
@@ -12,17 +13,18 @@ const AURELIA_LIVE_URL: string | null = "/aurelia";
 const NOVA_LIVE_URL: string | null = "/nova-performance";
 const VIVELLE_LIVE_URL: string | null = "/vivelle-beauty";
 
-// Shipped client work, hosted by the client — an absolute URL, unlike the
-// concept demos below, which are static exports served out of public/ via the
-// rewrites in next.config.ts.
-const ZILAVEC_LIVE_URL = "https://hise-zilavec.vercel.app/";
+// The card opens the case study rather than the client's site; the live site
+// is linked from there. This is an in-app route, unlike the concept demos
+// below, which are static exports served out of public/ via the rewrites in
+// next.config.ts.
+const ZILAVEC_CASE_STUDY = "/work/hise-zilavec";
 
 type ClientProject = {
   category: string;
   title: string;
   description: string;
   meta: string;
-  domain: string;
+  subLabel: string;
   angle: string;
   image?: string;
   href: string;
@@ -36,10 +38,10 @@ const CLIENT_PROJECT: ClientProject = {
   description:
     "A roofing, tinsmithing, and prefab-home builder trading since 2008. The site carries two distinct service lines and four house models through to a single, clear inquiry path — for customers across Slovenia and Austria.",
   meta: "Krovske in kleparske storitve, Robert Žilavec s.p. — Gornja Radgona, Slovenia",
-  domain: "hise-zilavec.vercel.app",
+  subLabel: "Hiše Žilavec",
   angle: "180deg",
   image: "/images/work/zilavec-hero.jpg",
-  href: ZILAVEC_LIVE_URL,
+  href: ZILAVEC_CASE_STUDY,
 };
 
 type Project = {
@@ -116,10 +118,10 @@ export function SelectedWork() {
 
         {/* Tier 1 — real, delivered client work. */}
         <Reveal className="mt-16">
-          <a
+          {/* An in-app route, so next/link and no target="_blank" — a new tab
+              would break the back button out of the case study. */}
+          <Link
             href={CLIENT_PROJECT.href}
-            target="_blank"
-            rel="noreferrer"
             className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-accent/60 hover:bg-surface-2 lg:grid-cols-2"
           >
             <div
@@ -164,15 +166,15 @@ export function SelectedWork() {
                 </span>
                 <span className="min-w-0">
                   <span className="block text-sm font-medium">
-                    Visit the live site
+                    View case study
                   </span>
                   <span className="block truncate text-xs text-ink-muted">
-                    {CLIENT_PROJECT.domain}
+                    {CLIENT_PROJECT.subLabel}
                   </span>
                 </span>
               </span>
             </div>
-          </a>
+          </Link>
         </Reveal>
 
         {/* Tier 2 — self-initiated concepts. */}

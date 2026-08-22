@@ -23,7 +23,10 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
       whileInView="visible"
       viewport={{ once: true, margin: "-10% 0px" }}
       variants={variants}
-      transition={{ delay }}
+      // `custom` feeds the delay into the variant itself. Passing it as a
+      // `transition` prop instead has no effect: a variant that declares its
+      // own transition replaces the prop rather than merging with it.
+      custom={delay}
     >
       {children}
     </MotionTag>
