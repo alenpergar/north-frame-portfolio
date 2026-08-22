@@ -8,19 +8,67 @@ import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { SectionNav } from "@/components/ui/section-nav";
+import { localePath, locales, type Dict, type Locale } from "@/lib/i18n";
 
-const LINKS = [
-  { href: "/#work", label: "Work" },
-  { href: "/#services", label: "Services" },
-  { href: "/#approach", label: "Approach" },
-  { href: "/#process", label: "Process" },
-  { href: "/#about", label: "About" },
-];
+type NavProps = {
+  dict: Dict;
+  locale: Locale;
+  /**
+   * The locale-independent route this page lives at — "/" for the homepage,
+   * "/work/hise-zilavec" for the case study. The language switcher uses it to
+   * build the matching href in the other language, so switching keeps you on
+   * the same page instead of dropping you back at the homepage.
+   */
+  path: string;
+  showSectionNav?: boolean;
+};
 
-// `showSectionNav` defaults to true, so the homepage is unaffected. The case
-// study page turns it off: the rail's links are homepage anchors, which have no
-// meaning there.
-export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
+// EN / SL, styled from the eyebrow type already used across the site: no new
+// colours, sizes or components.
+function LanguageSwitcher({
+  locale,
+  path,
+  dict,
+  className,
+  onNavigate,
+}: {
+  locale: Locale;
+  path: string;
+  dict: Dict;
+  className?: string;
+  onNavigate?: () => void;
+}) {
+  return (
+    <div
+      className={clsx("flex items-center gap-2", className)}
+      aria-label={dict.nav.languageLabel}
+    >
+      {locales.map((code, i) => (
+        <span key={code} className="flex items-center gap-2">
+          {i > 0 ? (
+            <span className="text-border" aria-hidden>
+              /
+            </span>
+          ) : null}
+          <Link
+            href={localePath(code, path)}
+            hrefLang={code}
+            aria-current={code === locale ? "true" : undefined}
+            onClick={onNavigate}
+            className={clsx(
+              "text-xs font-semibold uppercase tracking-[0.16em] transition-colors",
+              code === locale ? "text-ink" : "text-ink-muted hover:text-ink"
+            )}
+          >
+            {code}
+          </Link>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function Nav({ dict, locale, path, showSectionNav = true }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,15 +97,15 @@ export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
         )}
       >
         <nav className="container-px mx-auto flex max-w-content items-center justify-between py-4">
-          <Logo />
+          <Logo href={localePath(locale, "/")} />
 
           {/* Hidden once the vertical rail takes over at 1400px, so only one
               navigation is ever present for pointer and assistive tech alike. */}
           <ul className="hidden md:flex min-[1400px]:hidden items-center gap-4 lg:gap-9 text-sm text-ink-muted">
-            {LINKS.map((link) => (
-              <li key={link.href}>
+            {dict.nav.links.map((link) => (
+              <li key={link.to}>
                 <Link
-                  href={link.href}
+                  href={localePath(locale, link.to)}
                   className="whitespace-nowrap transition-colors hover:text-ink"
                 >
                   {link.label}
@@ -66,20 +114,24 @@ export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
             ))}
           </ul>
 
-          <div className="hidden md:block shrink-0">
+          <div className="hidden md:flex items-center gap-5 shrink-0">
+            <LanguageSwitcher locale={locale} path={path} dict={dict} />
             <Button
               as="a"
-              href="/#contact"
+              href={localePath(locale, "/#contact")}
               variant="primary"
               className="whitespace-nowrap text-xs md:px-4 md:py-2.5 lg:px-6 lg:py-3"
             >
-              Start a Project
+              {dict.nav.cta}
             </Button>
           </div>
 
+          {/* The wordmark already fills the narrow header, so the switcher
+              lives inside the mobile menu instead of beside the toggle —
+              adding it here pushed the row past 375px. */}
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? dict.nav.closeMenu : dict.nav.openMenu}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden inline-flex h-11 w-11 items-center justify-center text-ink"
@@ -105,16 +157,16 @@ export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
                   visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
                 }}
               >
-                {LINKS.map((link) => (
+                {dict.nav.links.map((link) => (
                   <motion.li
-                    key={link.href}
+                    key={link.to}
                     variants={{
                       hidden: { opacity: 0, y: 16 },
                       visible: { opacity: 1, y: 0 },
                     }}
                   >
                     <Link
-                      href={link.href}
+                      href={localePath(locale, link.to)}
                       onClick={() => setMenuOpen(false)}
                       className="font-display text-4xl italic text-ink"
                     >
@@ -131,12 +183,26 @@ export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
                 >
                   <Button
                     as="a"
-                    href="/#contact"
+                    href={localePath(locale, "/#contact")}
                     variant="primary"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Start a Project
+                    {dict.nav.cta}
                   </Button>
+                </motion.li>
+                <motion.li
+                  variants={{
+                    hidden: { opacity: 0, y: 16 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  className="pt-2"
+                >
+                  <LanguageSwitcher
+                    locale={locale}
+                    path={path}
+                    dict={dict}
+                    onNavigate={() => setMenuOpen(false)}
+                  />
                 </motion.li>
               </motion.ul>
             </motion.div>
@@ -144,10 +210,7 @@ export function Nav({ showSectionNav = true }: { showSectionNav?: boolean }) {
         </AnimatePresence>
       </header>
 
-      {/* Zunaj <header>: ob scrollu glava dobi backdrop-blur, backdrop-filter pa
-          postane containing block za fixed potomce in bi to letev odnesel iz
-          viewporta. */}
-      {showSectionNav ? <SectionNav /> : null}
+      {showSectionNav ? <SectionNav dict={dict} locale={locale} /> : null}
     </>
   );
 }

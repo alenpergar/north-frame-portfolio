@@ -4,42 +4,11 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
+import type { Dict } from "@/lib/i18n";
 
-const STEPS = [
-  {
-    index: "01",
-    title: "Discover",
-    description:
-      "We learn the brand, the audience, and the goal behind the project before a single pixel is placed.",
-  },
-  {
-    index: "02",
-    title: "Define",
-    description:
-      "Scope, sitemap, and creative direction are agreed on paper first — no surprises mid-build.",
-  },
-  {
-    index: "03",
-    title: "Design",
-    description:
-      "High-fidelity design across every breakpoint, reviewed together in structured rounds.",
-  },
-  {
-    index: "04",
-    title: "Develop",
-    description:
-      "Production-grade build in Next.js — fast, accessible, and animated with intent.",
-  },
-  {
-    index: "05",
-    title: "Deliver",
-    description:
-      "Launch, handoff, and a short support window to make sure the site performs as designed.",
-  },
-] as const;
-
-export function Process() {
+export function Process({ dict }: { dict: Dict }) {
   const shouldReduce = useReducedMotion();
+  const t = dict.process;
 
   return (
     <section id="process" className="relative overflow-hidden border-t border-border py-24 sm:py-32">
@@ -56,16 +25,16 @@ export function Process() {
 
       <div className="container-px relative z-10 mx-auto max-w-content">
         <SectionHeading
-          eyebrow="Process"
+          eyebrow={t.eyebrow}
           title={
             <>
-              Five steps.{" "}
+              {t.title.lead}{" "}
               <span className="font-display italic text-accent">
-                No guesswork.
+                {t.title.accent}
               </span>
             </>
           }
-          description="A structured path from first conversation to launch — transparent at every stage."
+          description={t.description}
         />
 
         <div className="relative mt-16">
@@ -81,11 +50,11 @@ export function Process() {
           </div>
 
           <RevealGroup className="space-y-12" stagger={0.12}>
-            {STEPS.map((step) => (
-              <RevealItem key={step.index}>
+            {t.steps.map((step, i) => (
+              <RevealItem key={step.title}>
                 <div className="relative flex gap-6 pl-11 sm:gap-8 sm:pl-14">
                   <span className="absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full border border-accent bg-bg font-display text-sm italic text-accent sm:h-10 sm:w-10">
-                    {step.index}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="pt-0.5">
                     <h3 className="font-display text-xl sm:text-2xl text-ink">

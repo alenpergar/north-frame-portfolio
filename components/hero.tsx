@@ -5,11 +5,11 @@ import { ArrowDown } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { EngravedPlate } from "@/components/ui/engraved-plate";
 import { staggerContainer } from "@/lib/motion";
+import type { Dict } from "@/lib/i18n";
 
-const TAGS = ["Web Design", "Landing Pages", "AI Creative"];
-
-export function Hero() {
+export function Hero({ dict }: { dict: Dict }) {
   const shouldReduce = useReducedMotion();
+  const t = dict.hero;
 
   const rise = {
     hidden: { opacity: 0, y: 18 },
@@ -36,7 +36,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent"
             >
               <span className="h-px w-6 bg-accent" aria-hidden />
-              DRYPOINT — Digital Design Studio
+              {t.eyebrow}
             </motion.span>
 
             <motion.h1
@@ -46,20 +46,18 @@ export function Hero() {
               }}
               className="mt-6 font-sans text-[12.5vw] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.02] tracking-tight text-ink text-balance"
             >
-              We design brands that{" "}
+              {t.title.lead}{" "}
               <span className="font-display italic font-normal text-accent">
-                move
+                {t.title.accent}
               </span>
-              .
+              {t.title.tail}
             </motion.h1>
 
             <motion.p
               variants={rise}
               className="mt-6 max-w-xl text-base sm:text-lg text-ink-muted leading-relaxed"
             >
-              High-end websites, landing pages, and AI-directed creative for
-              brands that refuse to look ordinary. Every project starts from a
-              blank plate — never a template.
+              {t.body}
             </motion.p>
 
             <motion.div
@@ -67,10 +65,10 @@ export function Hero() {
               className="mt-10 flex flex-wrap items-center gap-4"
             >
               <Button as="a" href="#contact" variant="primary">
-                Start a Project
+                {t.primary}
               </Button>
               <Button as="a" href="#work" variant="ghost">
-                View Our Work
+                {t.secondary}
               </Button>
             </motion.div>
 
@@ -78,13 +76,13 @@ export function Hero() {
               variants={rise}
               className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2"
             >
-              {TAGS.map((tag, i) => (
+              {t.tags.map((tag, i) => (
                 <li
                   key={tag}
                   className="flex items-center gap-6 text-sm text-ink-muted"
                 >
                   <span>{tag}</span>
-                  {i < TAGS.length - 1 ? (
+                  {i < t.tags.length - 1 ? (
                     <span className="h-1 w-1 rounded-full bg-border" aria-hidden />
                   ) : null}
                 </li>
@@ -108,7 +106,7 @@ export function Hero() {
 
       <motion.a
         href="#work"
-        aria-label="Scroll to work"
+        aria-label={t.scroll}
         animate={shouldReduce ? undefined : { y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
         className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 text-ink-muted transition-colors hover:text-accent"

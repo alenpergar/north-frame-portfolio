@@ -3,39 +3,34 @@
 import Link from "next/link";
 import { ArrowUp, InstagramLogo, LinkedinLogo } from "@phosphor-icons/react";
 import { Logo } from "@/components/ui/logo";
-
-const LINKS = [
-  { href: "/#work", label: "Work" },
-  { href: "/#services", label: "Services" },
-  { href: "/#approach", label: "Approach" },
-  { href: "/#process", label: "Process" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
-];
+import { localePath, type Dict, type Locale } from "@/lib/i18n";
 
 const SOCIALS = [
   { href: "https://www.instagram.com/drypointcreative/", label: "Instagram", icon: InstagramLogo },
   { href: "https://www.linkedin.com/in/alenpergar", label: "LinkedIn", icon: LinkedinLogo },
 ];
 
-export function Footer() {
+export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
+  const t = dict.footer;
   return (
     <footer className="border-t border-border py-16">
       <div className="container-px mx-auto max-w-content">
         <div className="flex flex-col gap-12 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-xs">
-            <Logo height={28} />
+            <Logo height={28} href={localePath(locale, "/")} />
             <p className="mt-4 text-sm text-ink-muted leading-relaxed">
-              Premium digital design studio — websites, landing pages, and
-              AI-powered creative experiences.
+              {t.blurb}
             </p>
           </div>
 
-          <nav aria-label="Footer">
+          <nav aria-label={t.nav}>
             <ul className="grid grid-cols-2 gap-x-10 gap-y-3 text-sm text-ink-muted sm:flex sm:flex-col">
-              {LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="transition-colors hover:text-ink">
+              {t.links.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    href={localePath(locale, link.to)}
+                    className="transition-colors hover:text-ink"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -44,7 +39,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <p className="text-sm text-ink-muted">Follow</p>
+            <p className="text-sm text-ink-muted">{t.follow}</p>
             <div className="mt-3 flex gap-4">
               {SOCIALS.map((social) => {
                 const Icon = social.icon;
@@ -67,8 +62,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col-reverse items-center gap-6 border-t border-border pt-8 sm:flex-row sm:justify-between">
           <p className="text-xs text-ink-muted">
-            &copy; {new Date().getFullYear()} DRYPOINT. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} DRYPOINT. {t.rights}
           </p>
 
           <button
@@ -76,7 +70,7 @@ export function Footer() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="inline-flex items-center gap-2 text-xs text-ink-muted transition-colors hover:text-accent"
           >
-            Back to top
+            {t.backToTop}
             <ArrowUp size={14} />
           </button>
         </div>

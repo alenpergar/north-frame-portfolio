@@ -6,18 +6,13 @@ import { EnvelopeSimple, CheckCircle } from "@phosphor-icons/react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
-
-const PROJECT_TYPES = [
-  "Web Design",
-  "Landing Page",
-  "AI Creative",
-  "Not sure yet",
-];
+import type { Dict } from "@/lib/i18n";
 
 const inputClasses =
   "mt-2 w-full rounded-lg border border-border bg-surface px-4 py-3 text-ink placeholder:text-ink-muted/60 transition-colors focus:border-accent focus-visible:outline-none";
 
-export function Contact() {
+export function Contact({ dict }: { dict: Dict }) {
+  const t = dict.contact;
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,13 +39,13 @@ export function Contact() {
 
       if (!res.ok) {
         const body = await res.json().catch(() => null);
-        setError(body?.error || "Something went wrong. Please try again.");
+        setError(body?.error || t.genericError);
         return;
       }
 
       setSubmitted(true);
     } catch {
-      setError("Something went wrong. Please check your connection and try again.");
+      setError(t.networkError);
     } finally {
       setLoading(false);
     }
@@ -73,16 +68,16 @@ export function Contact() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <SectionHeading
-              eyebrow="Contact"
+              eyebrow={t.eyebrow}
               title={
                 <>
-                  Let&apos;s build something{" "}
+                  {t.title.lead}{" "}
                   <span className="font-display italic text-accent">
-                    premium.
+                    {t.title.accent}
                   </span>
                 </>
               }
-              description="Tell us about your project and we'll reply within one business day. Prefer email? Reach us directly below."
+              description={t.description}
             />
 
             <Reveal delay={0.15} className="mt-8">
@@ -102,18 +97,17 @@ export function Contact() {
                 <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-border bg-surface p-10 text-center">
                   <CheckCircle size={40} className="text-accent" />
                   <h3 className="mt-4 font-display text-2xl text-ink">
-                    Message received.
+                    {t.successTitle}
                   </h3>
                   <p className="mt-2 max-w-sm text-ink-muted">
-                    Thanks for reaching out — we&apos;ll follow up within one
-                    business day.
+                    {t.successBody}
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <label className="block text-sm text-ink">
-                      Name<span className="text-accent">*</span>
+                      {t.name}<span className="text-accent">*</span>
                       <input
                         type="text"
                         name="name"
@@ -124,7 +118,7 @@ export function Contact() {
                     </label>
 
                     <label className="block text-sm text-ink">
-                      Email<span className="text-accent">*</span>
+                      {t.email}<span className="text-accent">*</span>
                       <input
                         type="email"
                         name="email"
@@ -135,22 +129,22 @@ export function Contact() {
                     </label>
 
                     <label className="block text-sm text-ink sm:col-span-2">
-                      Project type
+                      {t.projectType}
                       <select
                         name="projectType"
-                        defaultValue={PROJECT_TYPES[0]}
+                        defaultValue={t.projectTypes[0]?.value}
                         className={inputClasses}
                       >
-                        {PROJECT_TYPES.map((type) => (
-                          <option key={type} value={type}>
-                            {type}
+                        {t.projectTypes.map((type) => (
+                          <option key={type.value} value={type.value}>
+                            {type.label}
                           </option>
                         ))}
                       </select>
                     </label>
 
                     <label className="block text-sm text-ink sm:col-span-2">
-                      Message<span className="text-accent">*</span>
+                      {t.message}<span className="text-accent">*</span>
                       <textarea
                         name="message"
                         required
@@ -166,7 +160,7 @@ export function Contact() {
                     className="mt-8"
                     disabled={loading}
                   >
-                    {loading ? "Sending…" : "Send Message"}
+                    {loading ? t.sending : t.send}
                   </Button>
 
                   {error ? (

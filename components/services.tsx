@@ -3,56 +3,38 @@
 import { Browser, RocketLaunch, Sparkle } from "@phosphor-icons/react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
+import type { Dict } from "@/lib/i18n";
 
-const SERVICES = [
-  {
-    index: "01",
-    icon: Browser,
-    title: "Web Design",
-    description:
-      "Full-scale marketing and brand websites engineered for clarity, speed, and a premium first impression — designed to hold up under real client traffic, not just a portfolio screenshot.",
-  },
-  {
-    index: "02",
-    icon: RocketLaunch,
-    title: "Landing Pages",
-    description:
-      "Focused, high-conversion single pages for launches, campaigns, and offers — built around one goal, one story, and a clear path to action.",
-  },
-  {
-    index: "03",
-    icon: Sparkle,
-    title: "AI Creative",
-    description:
-      "AI-directed commercials, product films, and campaign visuals — cinematic output produced faster than a traditional shoot, without cutting craft.",
-  },
-] as const;
+// Icons and the numbering stay in code; only the words come from the dictionary.
+const ICONS = [Browser, RocketLaunch, Sparkle];
 
-export function Services() {
+export function Services({ dict }: { dict: Dict }) {
+  const t = dict.services;
   return (
     <section id="services" className="relative border-t border-border py-24 sm:py-32">
       <div className="container-px mx-auto max-w-content">
         <SectionHeading
-          eyebrow="Services"
+          eyebrow={t.eyebrow}
           title={
             <>
-              Three disciplines,{" "}
+              {t.title.lead}{" "}
               <span className="font-display italic text-accent">
-                one studio.
+                {t.title.accent}
               </span>
             </>
           }
-          description="Everything DRYPOINT builds sits somewhere between these three — strategy-led design work made for brands that need to look, and perform, at the top of their category."
+          description={t.description}
         />
 
         <RevealGroup className="mt-16 divide-y divide-border border-t border-border" stagger={0.08}>
-          {SERVICES.map((service) => {
-            const Icon = service.icon;
+          {t.items.map((service, i) => {
+            const Icon = ICONS[i] ?? Browser;
+            const index = String(i + 1).padStart(2, "0");
             return (
-              <RevealItem key={service.index}>
+              <RevealItem key={service.title}>
                 <div className="group flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:gap-10">
                   <span className="font-display text-4xl italic text-accent/70 sm:w-20 shrink-0">
-                    {service.index}
+                    {index}
                   </span>
 
                   <div className="flex items-center gap-3 sm:w-56 shrink-0">

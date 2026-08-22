@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { localePath, type Dict, type Locale } from "@/lib/i18n";
 
 // Set these once the respective sites are deployed — each card becomes
 // clickable (opens in a new tab) as soon as its URL is non-null.
@@ -19,100 +20,74 @@ const VIVELLE_LIVE_URL: string | null = "/vivelle-beauty";
 // next.config.ts.
 const ZILAVEC_CASE_STUDY = "/work/hise-zilavec";
 
-type ClientProject = {
-  category: string;
-  title: string;
-  description: string;
-  meta: string;
-  subLabel: string;
-  angle: string;
-  image?: string;
-  href: string;
-};
-
-// Real, delivered client work. Rendered above the concept grid and separated
-// from it so a paying client never reads as a self-initiated concept.
-const CLIENT_PROJECT: ClientProject = {
-  category: "Client Project · Live",
+// Everything that is not language-dependent lives here: brand names, imagery,
+// gradient angles and hrefs. The prose comes from the dictionary, keyed by
+// `key`, so a translation can never drift away from the wrong project.
+const CLIENT_PROJECT = {
   title: "Hiše Žilavec",
-  description:
-    "A roofing, tinsmithing, and prefab-home builder trading since 2008. The site carries two distinct service lines and four house models through to a single, clear inquiry path — for customers across Slovenia and Austria.",
-  meta: "Krovske in kleparske storitve, Robert Žilavec s.p. — Gornja Radgona, Slovenia",
   subLabel: "Hiše Žilavec",
   angle: "180deg",
   image: "/images/work/zilavec-hero.jpg",
   href: ZILAVEC_CASE_STUDY,
 };
 
-type Project = {
-  index: string;
-  category: string;
+type ConceptKey = "lumiere" | "aurelia" | "nova" | "vivelle";
+
+const CONCEPTS: {
+  key: ConceptKey;
   title: string;
-  description: string;
   angle: string;
   image?: string;
   href?: string | null;
-};
-
-const PROJECTS: Project[] = [
+}[] = [
   {
-    index: "01",
-    category: "Web Design",
+    key: "lumiere",
     title: "LUMIÈRE Dental Clinic",
-    description:
-      "A premium private dental clinic website focused on trust, patient experience, and modern healthcare design. Crafted to convert visitors into booked appointments.",
     angle: "135deg",
     image: "/images/work/lumiere-hero.jpg",
     href: LUMIERE_LIVE_URL,
   },
   {
-    index: "02",
-    category: "Web Design",
+    key: "aurelia",
     title: "AURELIA Restaurant",
-    description:
-      "A premium restaurant website designed to showcase the dining experience, atmosphere, and brand identity. Crafted to attract guests, build trust, and drive table reservations through an elegant digital presence.",
     angle: "225deg",
     image: "/images/work/aurelia-hero.jpg",
     href: AURELIA_LIVE_URL,
   },
   {
-    index: "03",
-    category: "Web Design",
+    key: "nova",
     title: "NOVA Performance",
-    description:
-      "Personalized coaching, science-based programming, and relentless accountability — built for those who refuse to settle for average.",
     angle: "45deg",
     image: "/images/work/nova-hero.jpg",
     href: NOVA_LIVE_URL,
   },
   {
-    index: "04",
-    category: "Web Design",
+    key: "vivelle",
     title: "VIVELLE Beauty",
-    description:
-      "A luxury beauty salon website built on editorial calm, cinematic video, and considered detail. Crafted to make every visit feel like an experience before a client even walks through the door.",
     angle: "315deg",
     image: "/images/work/vivelle-hero.jpg",
     href: VIVELLE_LIVE_URL,
   },
 ];
 
-export function SelectedWork() {
+export function SelectedWork({ dict, locale }: { dict: Dict; locale: Locale }) {
+  const t = dict.work;
+
   return (
     <section id="work" className="relative py-24 sm:py-32">
       <div className="container-px mx-auto max-w-content">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            eyebrow="Selected Work"
+            eyebrow={t.eyebrow}
             title={
               <>
-                Live client work,{" "}
+                {t.title.lead}{" "}
                 <span className="font-display italic text-accent">
-                  crafted to convert.
+                  {t.title.accent}
                 </span>
               </>
             }
-            description="A delivered client website, alongside self-initiated concepts created to showcase our approach to web design."
+            description={t.description}
           />
         </div>
 
@@ -121,7 +96,7 @@ export function SelectedWork() {
           {/* An in-app route, so next/link and no target="_blank" — a new tab
               would break the back button out of the case study. */}
           <Link
-            href={CLIENT_PROJECT.href}
+            href={localePath(locale, CLIENT_PROJECT.href)}
             className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-accent/60 hover:bg-surface-2 lg:grid-cols-2"
           >
             <div
@@ -145,7 +120,7 @@ export function SelectedWork() {
             <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 lg:p-10">
               <span className="inline-flex items-center gap-2 self-start rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                {CLIENT_PROJECT.category}
+                {t.client.category}
               </span>
 
               <h3 className="font-display text-2xl sm:text-3xl text-ink">
@@ -153,11 +128,11 @@ export function SelectedWork() {
               </h3>
 
               <p className="max-w-lg text-sm sm:text-base text-ink-muted leading-relaxed">
-                {CLIENT_PROJECT.description}
+                {t.client.description}
               </p>
 
               <p className="max-w-lg border-t border-border pt-4 text-sm text-ink-muted leading-relaxed">
-                Designed and built for a working business — {CLIENT_PROJECT.meta}.
+                {t.client.metaPrefix} — {t.client.meta}.
               </p>
 
               <span className="mt-2 inline-flex items-center gap-3 text-ink transition-colors duration-300 group-hover:text-accent">
@@ -166,7 +141,7 @@ export function SelectedWork() {
                 </span>
                 <span className="min-w-0">
                   <span className="block text-sm font-medium">
-                    View case study
+                    {t.client.action}
                   </span>
                   <span className="block truncate text-xs text-ink-muted">
                     {CLIENT_PROJECT.subLabel}
@@ -182,10 +157,10 @@ export function SelectedWork() {
           <Reveal>
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
               <span className="h-px w-6 bg-accent" aria-hidden />
-              Concept Directions
+              {t.conceptsEyebrow}
             </span>
             <h3 className="mt-4 max-w-2xl font-display text-2xl sm:text-3xl leading-tight text-ink text-balance">
-              Self-initiated work, built to the same standard.
+              {t.conceptsTitle}
             </h3>
           </Reveal>
 
@@ -193,7 +168,8 @@ export function SelectedWork() {
             className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2"
             stagger={0.1}
           >
-            {PROJECTS.map((project) => {
+            {CONCEPTS.map((project, i) => {
+              const index = String(i + 1).padStart(2, "0");
               const cardClasses =
                 "group relative overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-accent/60 hover:bg-surface-2";
 
@@ -216,20 +192,20 @@ export function SelectedWork() {
                     ) : null}
                     <div className="grain absolute inset-0" />
                     <span className="absolute left-6 top-6 font-display text-6xl italic text-ink/10 transition-colors duration-300 group-hover:text-accent/20">
-                      {project.index}
+                      {index}
                     </span>
                   </div>
 
                   <div className="flex items-start justify-between gap-4 p-6 sm:p-8">
                     <div>
                       <span className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
-                        {project.category}
+                        {t.conceptCategory}
                       </span>
                       <h3 className="mt-2 font-display text-xl sm:text-2xl text-ink">
                         {project.title}
                       </h3>
                       <p className="mt-2 max-w-sm text-sm text-ink-muted leading-relaxed">
-                        {project.description}
+                        {t.concepts[project.key]}
                       </p>
                     </div>
 
@@ -241,7 +217,7 @@ export function SelectedWork() {
               );
 
               return (
-                <RevealItem key={project.index}>
+                <RevealItem key={project.key}>
                   {project.href ? (
                     <a
                       href={project.href}

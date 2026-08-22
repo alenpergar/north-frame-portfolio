@@ -5,6 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { motion, useReducedMotion } from "framer-motion";
 import { EASE_CINEMATIC } from "@/lib/motion";
+import { localePath, type Dict, type Locale } from "@/lib/i18n";
 
 /**
  * The vertical section index, set against the right edge of the page.
@@ -19,19 +20,6 @@ import { EASE_CINEMATIC } from "@/lib/motion";
  * rail would sit on top of section content, and the horizontal nav in the
  * header covers those sizes instead.
  */
-
-type Item = { id: string; href: string; label: string };
-
-// hrefs and section ids are the ones already in the page — nothing rerouted.
-const ITEMS: Item[] = [
-  { id: "top", href: "/#top", label: "Home" },
-  { id: "work", href: "/#work", label: "Work" },
-  { id: "services", href: "/#services", label: "Services" },
-  { id: "approach", href: "/#approach", label: "Approach" },
-  { id: "process", href: "/#process", label: "Process" },
-  { id: "about", href: "/#about", label: "About" },
-  { id: "contact", href: "/#contact", label: "Contact" },
-];
 
 const list = {
   hidden: {},
@@ -48,12 +36,13 @@ const item = {
   },
 };
 
-export function SectionNav() {
+export function SectionNav({ dict, locale }: { dict: Dict; locale: Locale }) {
   const shouldReduce = useReducedMotion();
   const [active, setActive] = useState("top");
+  const items = dict.nav.sections;
 
   useEffect(() => {
-    const sections = ITEMS.map((i) => document.getElementById(i.id)).filter(
+    const sections = items.map((i) => document.getElementById(i.id)).filter(
       (el): el is HTMLElement => el !== null
     );
     if (sections.length === 0) return;
@@ -68,7 +57,7 @@ export function SectionNav() {
           if (entry.isIntersecting) inBand.add(entry.target.id);
           else inBand.delete(entry.target.id);
         }
-        const next = ITEMS.find((i) => inBand.has(i.id));
+        const next = items.find((i) => inBand.has(i.id));
         if (next) setActive(next.id);
       },
       { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
@@ -76,11 +65,11 @@ export function SectionNav() {
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [items]);
 
   return (
     <nav
-      aria-label="Sections"
+      aria-label={dict.nav.sectionsLabel}
       className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 min-[1400px]:block"
     >
       <motion.ul
@@ -101,13 +90,13 @@ export function SectionNav() {
           transition={{ duration: 0.45, ease: EASE_CINEMATIC }}
         />
 
-        {ITEMS.map((entry) => {
+        {items.map((entry) => {
           const isActive = entry.id === active;
 
           return (
             <motion.li key={entry.id} variants={item}>
               <Link
-                href={entry.href}
+                href={localePath(locale, entry.to)}
                 aria-current={isActive ? "location" : undefined}
                 className="group flex items-center justify-end gap-2 py-1.5 pr-0"
               >
