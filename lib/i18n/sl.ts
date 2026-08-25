@@ -30,7 +30,7 @@ export const sl: Dict = {
   hero: {
     eyebrow: "DRYPOINT — Studio za digitalno oblikovanje",
     title: { lead: "Oblikujemo znamke, ki", accent: "ganejo", tail: "." },
-    body: "Vrhunske spletne strani, pristajalne strani in AI-vodena kreativa za znamke, ki nočejo izgledati povprečno. Vsak projekt se začne na prazni plošči — nikoli na predlogi.",
+    body: "Vrhunske spletne strani, pristajalne strani in AI-vodena kreativa za podjetja in znamke, ki nočejo izgledati povprečno. Vsak projekt se začne na prazni plošči — nikoli na predlogi.",
     primary: "Začnimo projekt",
     secondary: "Poglejte naše delo",
     tags: ["Spletno oblikovanje", "Pristajalne strani", "AI kreativa"],
@@ -39,11 +39,11 @@ export const sl: Dict = {
 
   work: {
     eyebrow: "Izbrano delo",
-    title: { lead: "Delo za naročnike,", accent: "ustvarjeno za rezultat." },
+    title: { lead: "Izdelava spletnih strani,", accent: "ustvarjena za rezultat." },
     description:
-      "Dostavljena stran za naročnika, ob njej pa samoiniciativni koncepti, ki prikazujejo naš pristop k spletnemu oblikovanju.",
+      "Dostavljena stran za naročnika, ob njej pa samoiniciativni koncepti, ki prikazujejo naš pristop k spletnemu oblikovanju in izdelavi spletnih strani.",
     client: {
-      category: "Projekt za naročnika · V živo",
+      category: "Izdelava spletne strani · V živo",
       description:
         "Krovstvo, kleparstvo in izdelava montažnih hiš, dejavni od leta 2008. Stran vodi dve ločeni storitveni liniji in štiri modele hiš do ene same, jasne poti do povpraševanja — za stranke po Sloveniji in Avstriji.",
       meta: "Krovske in kleparske storitve, Robert Žilavec s.p. — Gornja Radgona, Slovenija",
@@ -68,12 +68,12 @@ export const sl: Dict = {
     eyebrow: "Storitve",
     title: { lead: "Tri discipline,", accent: "en studio." },
     description:
-      "Vse, kar DRYPOINT izdela, leži nekje med temi tremi — strateško vodeno oblikovanje za znamke, ki morajo izgledati in delovati na vrhu svoje kategorije.",
+      "Vse, kar DRYPOINT izdela, leži nekje med temi tremi — od izdelave spletnih strani in pristajalnih strani do AI-vodene kreative. Vsak projekt je strateško voden, premišljeno oblikovan in prilagojen znamki, ki mora izgledati in delovati na vrhu svoje kategorije.",
     items: [
       {
         title: "Spletno oblikovanje",
         description:
-          "Celovite predstavitvene in znamčne spletne strani, zasnovane za jasnost, hitrost in vrhunski prvi vtis — narejene tako, da zdržijo resničen promet, ne le posnetek za portfelj.",
+          "Celovite spletne strani po meri, zasnovane za jasnost, hitrost in vrhunski prvi vtis — narejene tako, da zdržijo resničen promet, ne le posnetek za portfelj.",
       },
       {
         title: "Pristajalne strani",
@@ -210,8 +210,8 @@ export const sl: Dict = {
   caseStudy: {
     metaTitle: "Hiše Žilavec",
     metaDescription:
-      "Case study: spletna stran za Krovske in kleparske storitve, Robert Žilavec s.p. — krovstvo, kleparstvo in montažne hiše od leta 2008, z dvema storitvenima linijama in štirimi modeli hiš, ki vodijo do ene same poti do povpraševanja.",
-    ogTitle: "Hiše Žilavec — Case Study",
+      "Case study: DRYPOINT je zgradil stran za krovstvo, kleparstvo in izdelavo montažnih hiš — dve storitveni liniji, štirje modeli hiš, ena pot do povpraševanja.",
+    ogTitle: "Hiše Žilavec Case Study — DRYPOINT",
     ogDescription:
       "Dve storitveni liniji, štirje modeli hiš, ena pot do povpraševanja. Kako je DRYPOINT strukturiral in izdelal stran za krovstvo in montažne hiše po Sloveniji in Avstriji.",
 

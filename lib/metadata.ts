@@ -14,9 +14,9 @@ const site: Record<Locale, { title: string; description: string; ogDescription: 
       "High-end websites, landing pages, and AI-powered creative experiences.",
   },
   sl: {
-    title: "DRYPOINT — Vrhunski studio za digitalno oblikovanje",
+    title: "Izdelava spletnih strani za podjetja — DRYPOINT",
     description:
-      "DRYPOINT je vrhunski studio za digitalno oblikovanje, ki ustvarja spletne strani, pristajalne strani in AI-podprte kreativne izkušnje za znamke, ki nočejo izgledati povprečno.",
+      "Izdelava sodobnih spletnih strani po meri za podjetja, ki želijo profesionalen nastop, jasno uporabniško izkušnjo in močno digitalno prisotnost.",
     ogDescription:
       "Vrhunske spletne strani, pristajalne strani in AI-podprte kreativne izkušnje.",
   },
@@ -91,6 +91,14 @@ export function caseStudyMetadata(locale: Locale): Metadata {
       type: "article",
       locale: ogLocale[locale],
       url: localePath(locale, path),
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: t.ogTitle,
+        },
+      ],
     },
   };
 }

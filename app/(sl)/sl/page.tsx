@@ -1,4 +1,5 @@
 import { Nav } from "@/components/nav";
+import { StructuredData } from "@/components/structured-data";
 import { Hero } from "@/components/hero";
 import { SelectedWork } from "@/components/selected-work";
 import { Services } from "@/components/services";
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <>
+      <StructuredData />
       <Nav dict={dict} locale={locale} path="/" />
       <main>
         <Hero dict={dict} />

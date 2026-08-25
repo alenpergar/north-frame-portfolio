@@ -214,8 +214,8 @@ export const en: Dict = {
   caseStudy: {
     metaTitle: "Hiše Žilavec",
     metaDescription:
-      "Case study: a website for Krovske in kleparske storitve, Robert Žilavec s.p. — a roofing, tinsmithing and prefab-home builder trading since 2008, carrying two service lines and four house models through to a single inquiry path.",
-    ogTitle: "Hiše Žilavec — Case Study",
+      "Case study: the website DRYPOINT built for a roofing, tinsmithing and prefab-home builder — two service lines and four house models, one inquiry path.",
+    ogTitle: "Hiše Žilavec Case Study — DRYPOINT",
     ogDescription:
       "Two service lines, four house models, one inquiry path. How DRYPOINT structured and built the site for a roofing and prefab-home builder working across Slovenia and Austria.",
 
