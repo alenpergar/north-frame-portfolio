@@ -10,6 +10,8 @@
   html {
     scroll-behavior: smooth;
     overscroll-behavior-x: none;
+    /* Clears the sticky header so anchor jumps don't land under it. */
+    scroll-padding-top: 5.5rem;
   }
 
   body {
@@ -34,9 +36,12 @@
     *,
     *::before,
     *::after {
+      /* Snap keyframe entrances to their end state so nothing is ever left
+         mid-fade or waiting on an animation. Transitions are deliberately not
+         touched here: hover, focus and press feedback stay responsive. */
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
   }

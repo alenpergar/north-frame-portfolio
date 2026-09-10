@@ -29,7 +29,7 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
                 <li key={link.to}>
                   <Link
                     href={localePath(locale, link.to)}
-                    className="transition-colors hover:text-ink"
+                    className="relative inline-block py-0.5 transition-colors duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-ink after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-right after:scale-x-0 after:bg-accent after:transition-transform after:duration-[280ms] after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:origin-left hover:after:scale-x-100"
                   >
                     {link.label}
                   </Link>
@@ -76,10 +76,13 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="inline-flex items-center gap-2 text-xs text-ink-muted transition-colors hover:text-accent"
+            className="group inline-flex min-h-[44px] items-center gap-2 py-2 text-xs text-ink-muted transition-colors duration-[240ms] hover:text-accent"
           >
             {t.backToTop}
-            <ArrowUp size={14} />
+            <ArrowUp
+              size={14}
+              className="transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
+            />
           </button>
         </div>
       </div>

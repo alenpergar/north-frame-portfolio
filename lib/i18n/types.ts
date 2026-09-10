@@ -77,6 +77,16 @@ export type Dict = {
     beliefs: string[];
   };
 
+  // "Behind DRYPOINT" — the quieter coda under About that names the person the
+  // studio "we" stands for. Separate key so the About object above is untouched.
+  founder: {
+    eyebrow: string;
+    lead: string;
+    body: string[];
+    location: string;
+    photoAlt: string;
+  };
+
   contact: {
     eyebrow: string;
     title: Title;

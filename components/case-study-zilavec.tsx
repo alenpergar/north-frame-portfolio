@@ -62,63 +62,62 @@ export function CaseStudyZilavec({
         {/* 1 — Hero */}
         {/* The header sits in flow rather than fixed, so it already supplies
             part of the top margin — this padding only tops it up. */}
+        {/* This block is above the fold: rendered straight and animated with
+            CSS only, so the LCP heading is never held behind hydration. Same
+            mask-rise as the homepage hero. */}
         <section className="relative pt-20 pb-16 sm:pt-28 sm:pb-20">
           <div className="container-px mx-auto max-w-content">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                <span className="h-px w-6 bg-accent" aria-hidden />
-                {t.eyebrow}
-              </span>
-            </Reveal>
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent motion-safe:animate-fade-up">
+              <span className="h-px w-6 bg-accent" aria-hidden />
+              {t.eyebrow}
+            </span>
 
-            <Reveal>
-              <h1 className="mt-6 max-w-4xl font-display text-[13vw] sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-ink text-balance">
-                {t.title}
-              </h1>
-            </Reveal>
+            <h1
+              className="mt-6 max-w-4xl pb-[0.14em] -mb-[0.14em] font-display text-[13vw] sm:text-6xl/[1.02] lg:text-7xl/[1.02] leading-[1.02] tracking-tight text-ink text-balance motion-safe:animate-mask-rise"
+              style={{ animationDelay: "0.06s" }}
+            >
+              {t.title}
+            </h1>
 
-            <Reveal>
-              <p className="mt-6 max-w-xl text-base sm:text-lg text-ink-muted leading-relaxed">
-                {t.intro}
-              </p>
-            </Reveal>
+            <p
+              className="mt-6 max-w-xl text-base sm:text-lg text-ink-muted leading-relaxed motion-safe:animate-fade-up"
+              style={{ animationDelay: "0.24s" }}
+            >
+              {t.intro}
+            </p>
 
-            <Reveal>
-              <dl className="mt-12 grid grid-cols-1 gap-y-6 border-t border-border pt-8 sm:grid-cols-3 sm:gap-x-8">
-                {t.meta.map((entry) => (
-                  <div key={entry.value}>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
-                      {entry.label}
-                    </dt>
-                    <dd className="mt-2 text-ink">{entry.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+            <dl className="mt-12 grid grid-cols-1 gap-y-6 border-t border-border pt-8 sm:grid-cols-3 sm:gap-x-8">
+              {t.meta.map((entry) => (
+                <div key={entry.value}>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                    {entry.label}
+                  </dt>
+                  <dd className="mt-2 text-ink">{entry.value}</dd>
+                </div>
+              ))}
+            </dl>
 
-            <Reveal>
-              <div className="mt-12 flex flex-wrap items-center gap-4">
-                <Button
-                  as="a"
-                  href={ZILAVEC_LIVE_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant="primary"
-                >
-                  {t.visit}
-                </Button>
-                <Link
-                  href={localePath(locale, "/#work")}
-                  className="group inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-ink"
-                >
-                  <ArrowLeft
-                    size={16}
-                    className="transition-transform duration-300 group-hover:-translate-x-0.5"
-                  />
-                  {t.back}
-                </Link>
-              </div>
-            </Reveal>
+            <div className="mt-12 flex flex-wrap items-center gap-4">
+              <Button
+                as="a"
+                href={ZILAVEC_LIVE_URL}
+                target="_blank"
+                rel="noreferrer"
+                variant="primary"
+              >
+                {t.visit}
+              </Button>
+              <Link
+                href={localePath(locale, "/#work")}
+                className="group inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-ink"
+              >
+                <ArrowLeft
+                  size={16}
+                  className="transition-transform duration-300 group-hover:-translate-x-0.5"
+                />
+                {t.back}
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -464,7 +463,7 @@ export function CaseStudyZilavec({
                   <span className="h-px w-6 bg-accent" aria-hidden />
                   {t.resultEyebrow}
                 </span>
-                <h2 className="mt-6 font-display text-3xl sm:text-4xl lg:text-5xl leading-tight text-ink text-balance">
+                <h2 className="mt-6 font-display text-3xl/[1.25] sm:text-4xl/[1.25] lg:text-5xl/[1.25] text-ink text-balance">
                   {t.resultTitle.lead}{" "}
                   <span className="font-display italic text-accent">
                     {t.resultTitle.accent}

@@ -164,6 +164,19 @@ export const sl: Dict = {
     ],
   },
 
+  // Prevod je zvesta priredba angleškega izvirnika v obstoječem tonu — prosim
+  // za pregled naravnega govorca.
+  founder: {
+    eyebrow: "Za DRYPOINT",
+    lead: "Sem Alen — DRYPOINT je enočlanski studio, in to namerno.",
+    body: [
+      "Pogovarjate se s človekom, ki oblikuje stran, napiše kodo in objavi. Brez vodje projekta, ki posreduje vaše pripombe, brez čakanja tri dni na odgovor na dvominutno vprašanje.",
+      "To je tudi razlog za pravilo „manj naročnikov“ zgoraj. Ni pozicioniranje — je računica.",
+    ],
+    location: "Sedež v Sloveniji. Sodelovanje z naročniki kjer koli.",
+    photoAlt: "Alen",
+  },
+
   contact: {
     eyebrow: "Kontakt",
     title: { lead: "Ustvarimo nekaj", accent: "vrhunskega." },

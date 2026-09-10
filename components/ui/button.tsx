@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import type { ButtonHTMLAttributes, MouseEventHandler } from "react";
 import clsx from "clsx";
+import { useFinePointer, useMagnetic } from "@/components/ui/motion-primitives";
 
 const MotionLink = motion.create(Link);
 
@@ -18,13 +19,19 @@ type ButtonProps = Omit<
   rel?: string;
 };
 
+// No `focus-visible:outline-none` here: the button carries the same 2px accent
+// ring as every link on the site, from the global `:focus-visible` rule in
+// globals.css. Suppressing it left every CTA with no visible keyboard focus.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium tracking-wide px-6 py-3 min-h-[44px] transition-colors duration-200 focus-visible:outline-none";
+  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium tracking-wide px-6 py-3 min-h-[44px] transition-[color,background-color,border-color,box-shadow] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 const variants = {
-  primary: "bg-accent text-bg hover:bg-ink",
+  // The fill stays accent; the response is a soft accent-tinted lift shadow
+  // plus the magnetic pull, not a colour swap.
+  primary:
+    "bg-accent text-bg hover:shadow-[0_12px_34px_-12px_rgba(200,155,108,0.6)]",
   ghost:
-    "text-ink border border-border hover:border-accent hover:text-accent bg-transparent",
+    "text-ink border border-border bg-transparent hover:border-accent hover:text-accent hover:bg-accent/[0.06]",
 };
 
 export function Button({
@@ -39,6 +46,13 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = clsx(base, variants[variant], className);
+  const fine = useFinePointer();
+  const magnetic = variant === "primary" && fine;
+  const { x, y, onMove, onLeave } = useMagnetic(0.22);
+
+  const motionExtras = magnetic
+    ? { style: { x, y }, onPointerMove: onMove, onPointerLeave: onLeave }
+    : {};
 
   if (as === "a" && href) {
     const isExternal = target === "_blank" || /^(https?:|mailto:|tel:)/.test(href);
@@ -52,6 +66,7 @@ export function Button({
           whileTap={{ scale: 0.97 }}
           className={classes}
           onClick={onClick as unknown as MouseEventHandler<HTMLAnchorElement>}
+          {...motionExtras}
         >
           {children}
         </motion.a>
@@ -64,6 +79,7 @@ export function Button({
         whileTap={{ scale: 0.97 }}
         className={classes}
         onClick={onClick as unknown as MouseEventHandler<HTMLAnchorElement>}
+        {...motionExtras}
       >
         {children}
       </MotionLink>
@@ -75,6 +91,7 @@ export function Button({
       whileTap={{ scale: 0.97 }}
       className={classes}
       onClick={onClick}
+      {...motionExtras}
       {...props}
     >
       {children}

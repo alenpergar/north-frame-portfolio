@@ -100,12 +100,23 @@ export function caseStudyMetadata(locale: Locale): Metadata {
         },
       ],
     },
+    // Set explicitly rather than inherited: without this block the page would
+    // fall back to the root layout's Twitter card (the homepage title and copy).
+    twitter: {
+      card: "summary_large_image",
+      title: t.ogTitle,
+      description: t.ogDescription,
+      images: ["/og-image.png"],
+    },
   };
 }
 
 export function privacyMetadata(locale: Locale): Metadata {
   const t = getDict(locale).privacy;
   const path = "/privacy";
+  // The document <title> gets "— DRYPOINT" from the layout's title template;
+  // the social title carries the same suffix so a shared link reads the same.
+  const socialTitle = `${t.metaTitle} — DRYPOINT`;
 
   return {
     title: t.metaTitle,
@@ -115,11 +126,27 @@ export function privacyMetadata(locale: Locale): Metadata {
       canonical: localePath(locale, path),
     },
     openGraph: {
-      title: t.metaTitle,
+      title: socialTitle,
       description: t.metaDescription,
       type: "article",
       locale: ogLocale[locale],
       url: localePath(locale, path),
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: socialTitle,
+        },
+      ],
+    },
+    // As above: set explicitly so this page does not inherit the homepage's
+    // Twitter card from the root layout.
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description: t.metaDescription,
+      images: ["/og-image.png"],
     },
   };
 }

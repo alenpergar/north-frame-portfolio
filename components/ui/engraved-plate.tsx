@@ -146,13 +146,14 @@ export function EngravedPlate({ className }: { className?: string }) {
   return (
     <div ref={hostRef} className={className}>
       <motion.div
-        className="h-full w-full"
-        style={shouldReduce ? undefined : { x, y }}
         // The plate is engraved left to right on load, as the needle would cut
-        // it. One orchestrated moment rather than several scattered ones.
-        initial={shouldReduce ? false : { clipPath: "inset(0 100% 0 0)" }}
-        animate={{ clipPath: "inset(0 0% 0 0)" }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+        // it. That reveal is CSS (`motion-safe:animate-plate-draw`) so it plays
+        // from first paint, needs no hydration, and simply doesn't run for
+        // reduced-motion — the plate is fully drawn and visible by default.
+        // Framer here only carries the pointer parallax, which is a pure
+        // enhancement.
+        className="h-full w-full motion-safe:animate-plate-draw"
+        style={shouldReduce ? undefined : { x, y }}
       >
         <svg
           viewBox={`0 0 ${W} ${H}`}

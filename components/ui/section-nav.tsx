@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { EASE_CINEMATIC } from "@/lib/motion";
+import { useMotionReady } from "@/components/ui/use-motion-ready";
 import { localePath, type Dict, type Locale } from "@/lib/i18n";
 
 /**
@@ -37,8 +38,11 @@ const item = {
 };
 
 export function SectionNav({ dict, locale }: { dict: Dict; locale: Locale }) {
-  const shouldReduce = useReducedMotion();
   const [active, setActive] = useState("top");
+  // The entrance is a load flourish only. Until it is safe to animate, the rail
+  // renders in its final, visible state so it is never blank in the HTML, on a
+  // failed hydration, in a background tab, or for reduced-motion users.
+  const animateIn = useMotionReady();
   const items = dict.nav.sections;
 
   useEffect(() => {
@@ -73,10 +77,12 @@ export function SectionNav({ dict, locale }: { dict: Dict; locale: Locale }) {
       className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 min-[1400px]:block"
     >
       <motion.ul
+        // Remount once motion is ready so the entrance runs from a fresh
+        // `initial`; the `false` first pass keeps the rail visible in the HTML,
+        // through a failed hydration, and for reduced-motion users.
+        key={animateIn ? "in" : "static"}
         className="relative flex flex-col items-end"
-        // Reduced motion renders the final state outright rather than starting
-        // hidden, so suppressing the animation can never leave the nav blank.
-        initial={shouldReduce ? false : "hidden"}
+        initial={animateIn ? "hidden" : false}
         animate="visible"
         variants={list}
       >
@@ -85,7 +91,7 @@ export function SectionNav({ dict, locale }: { dict: Dict; locale: Locale }) {
         <motion.span
           aria-hidden
           className="absolute right-0 top-0 h-full w-px origin-top bg-border"
-          initial={shouldReduce ? false : { scaleY: 0 }}
+          initial={animateIn ? { scaleY: 0 } : false}
           animate={{ scaleY: 1 }}
           transition={{ duration: 0.45, ease: EASE_CINEMATIC }}
         />

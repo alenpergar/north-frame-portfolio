@@ -166,6 +166,19 @@ export const en: Dict = {
     ],
   },
 
+  // Quotes and apostrophes normalised to the site's curly style; wording is
+  // otherwise exactly as supplied.
+  founder: {
+    eyebrow: "Behind DRYPOINT",
+    lead: "I’m Alen — DRYPOINT is a one-person studio, by design.",
+    body: [
+      "You talk to the person who designs the site, writes the build, and presses deploy. No account manager relaying your feedback, no waiting three days for an answer to a two-minute question.",
+      "That’s also the reason for the “fewer clients” rule above. It isn’t positioning — it’s arithmetic.",
+    ],
+    location: "Based in Slovenia. Working with clients anywhere.",
+    photoAlt: "Alen",
+  },
+
   contact: {
     eyebrow: "Contact",
     title: { lead: "Let’s build something", accent: "premium." },

@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { ConceptCard, useCardPointer } from "@/components/ui/work-card";
+import { useFinePointer } from "@/components/ui/motion-primitives";
 import { localePath, type Dict, type Locale } from "@/lib/i18n";
 
 // Set these once the respective sites are deployed — each card becomes
@@ -70,6 +73,80 @@ const CONCEPTS: {
   },
 ];
 
+function ClientCard({ dict, locale }: { dict: Dict; locale: Locale }) {
+  const t = dict.work;
+  const fine = useFinePointer();
+  const { imgX, imgY, arrowX, arrowY, onMove, onLeave } = useCardPointer();
+
+  return (
+    <Link
+      href={localePath(locale, CLIENT_PROJECT.href)}
+      onPointerMove={fine ? onMove : undefined}
+      onPointerLeave={fine ? onLeave : undefined}
+      className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-surface transition-[border-color,background-color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent/60 hover:bg-surface-2 lg:grid-cols-2"
+    >
+      <div
+        className="relative aspect-[16/11] overflow-hidden lg:aspect-auto lg:min-h-[380px]"
+        style={{
+          background: `radial-gradient(120% 100% at 10% 0%, rgba(200,155,108,0.16), transparent 60%), linear-gradient(${CLIENT_PROJECT.angle}, #17160f, #0A0A09 60%)`,
+        }}
+      >
+        <motion.div
+          className="absolute -inset-[6%]"
+          style={fine ? { x: imgX, y: imgY } : undefined}
+        >
+          <Image
+            src={CLIENT_PROJECT.image}
+            alt={CLIENT_PROJECT.title}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="scale-105 object-cover opacity-75 transition-[opacity,transform] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:opacity-90"
+          />
+        </motion.div>
+        <div className="grain absolute inset-0" />
+      </div>
+
+      <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 lg:p-10">
+        <span className="inline-flex items-center gap-2 self-start rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+          {t.client.category}
+        </span>
+
+        <h3 className="font-display text-2xl sm:text-3xl text-ink">
+          {CLIENT_PROJECT.title}
+        </h3>
+
+        <p className="max-w-lg text-sm sm:text-base text-ink-muted leading-relaxed">
+          {t.client.description}
+        </p>
+
+        <p className="max-w-lg border-t border-border pt-4 text-sm text-ink-muted leading-relaxed">
+          {t.client.metaPrefix} — {t.client.meta}.
+        </p>
+
+        <span className="mt-2 inline-flex items-center gap-3 text-ink transition-colors duration-300 group-hover:text-accent">
+          <motion.span
+            aria-hidden
+            style={fine ? { x: arrowX, y: arrowY } : undefined}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border transition-colors duration-300 group-hover:border-accent"
+          >
+            <ArrowUpRight
+              size={18}
+              className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </motion.span>
+          <span className="min-w-0">
+            <span className="block text-sm font-medium">{t.client.action}</span>
+            <span className="block truncate text-xs text-ink-muted">
+              {CLIENT_PROJECT.subLabel}
+            </span>
+          </span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export function SelectedWork({ dict, locale }: { dict: Dict; locale: Locale }) {
   const t = dict.work;
 
@@ -93,63 +170,7 @@ export function SelectedWork({ dict, locale }: { dict: Dict; locale: Locale }) {
 
         {/* Tier 1 — real, delivered client work. */}
         <Reveal className="mt-16">
-          {/* An in-app route, so next/link and no target="_blank" — a new tab
-              would break the back button out of the case study. */}
-          <Link
-            href={localePath(locale, CLIENT_PROJECT.href)}
-            className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-accent/60 hover:bg-surface-2 lg:grid-cols-2"
-          >
-            <div
-              className="relative aspect-[16/11] overflow-hidden lg:aspect-auto lg:min-h-[380px]"
-              style={{
-                background: `radial-gradient(120% 100% at 10% 0%, rgba(200,155,108,0.16), transparent 60%), linear-gradient(${CLIENT_PROJECT.angle}, #17160f, #0A0A09 60%)`,
-              }}
-            >
-              {CLIENT_PROJECT.image ? (
-                <Image
-                  src={CLIENT_PROJECT.image}
-                  alt={CLIENT_PROJECT.title}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-90"
-                />
-              ) : null}
-              <div className="grain absolute inset-0" />
-            </div>
-
-            <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 lg:p-10">
-              <span className="inline-flex items-center gap-2 self-start rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                {t.client.category}
-              </span>
-
-              <h3 className="font-display text-2xl sm:text-3xl text-ink">
-                {CLIENT_PROJECT.title}
-              </h3>
-
-              <p className="max-w-lg text-sm sm:text-base text-ink-muted leading-relaxed">
-                {t.client.description}
-              </p>
-
-              <p className="max-w-lg border-t border-border pt-4 text-sm text-ink-muted leading-relaxed">
-                {t.client.metaPrefix} — {t.client.meta}.
-              </p>
-
-              <span className="mt-2 inline-flex items-center gap-3 text-ink transition-colors duration-300 group-hover:text-accent">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border transition-all duration-300 group-hover:border-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  <ArrowUpRight size={18} />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-sm font-medium">
-                    {t.client.action}
-                  </span>
-                  <span className="block truncate text-xs text-ink-muted">
-                    {CLIENT_PROJECT.subLabel}
-                  </span>
-                </span>
-              </span>
-            </div>
-          </Link>
+          <ClientCard dict={dict} locale={locale} />
         </Reveal>
 
         {/* Tier 2 — self-initiated concepts. */}
@@ -159,7 +180,7 @@ export function SelectedWork({ dict, locale }: { dict: Dict; locale: Locale }) {
               <span className="h-px w-6 bg-accent" aria-hidden />
               {t.conceptsEyebrow}
             </span>
-            <h3 className="mt-4 max-w-2xl font-display text-2xl sm:text-3xl leading-tight text-ink text-balance">
+            <h3 className="mt-4 max-w-2xl font-display text-2xl/[1.25] sm:text-3xl/[1.25] text-ink text-balance">
               {t.conceptsTitle}
             </h3>
           </Reveal>
@@ -168,71 +189,19 @@ export function SelectedWork({ dict, locale }: { dict: Dict; locale: Locale }) {
             className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2"
             stagger={0.1}
           >
-            {CONCEPTS.map((project, i) => {
-              const index = String(i + 1).padStart(2, "0");
-              const cardClasses =
-                "group relative overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-accent/60 hover:bg-surface-2";
-
-              const cardContent = (
-                <>
-                  <div
-                    className="relative aspect-[4/5] sm:aspect-[16/11] overflow-hidden"
-                    style={{
-                      background: `radial-gradient(120% 100% at 10% 0%, rgba(200,155,108,0.16), transparent 60%), linear-gradient(${project.angle}, #17160f, #0A0A09 60%)`,
-                    }}
-                  >
-                    {project.image ? (
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(min-width: 640px) 50vw, 100vw"
-                        className="object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-90"
-                      />
-                    ) : null}
-                    <div className="grain absolute inset-0" />
-                    <span className="absolute left-6 top-6 font-display text-6xl italic text-ink/10 transition-colors duration-300 group-hover:text-accent/20">
-                      {index}
-                    </span>
-                  </div>
-
-                  <div className="flex items-start justify-between gap-4 p-6 sm:p-8">
-                    <div>
-                      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
-                        {t.conceptCategory}
-                      </span>
-                      <h3 className="mt-2 font-display text-xl sm:text-2xl text-ink">
-                        {project.title}
-                      </h3>
-                      <p className="mt-2 max-w-sm text-sm text-ink-muted leading-relaxed">
-                        {t.concepts[project.key]}
-                      </p>
-                    </div>
-
-                    <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-ink-muted transition-all duration-300 group-hover:border-accent group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      <ArrowUpRight size={18} />
-                    </span>
-                  </div>
-                </>
-              );
-
-              return (
-                <RevealItem key={project.key}>
-                  {project.href ? (
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={cardClasses}
-                    >
-                      {cardContent}
-                    </a>
-                  ) : (
-                    <article className={cardClasses}>{cardContent}</article>
-                  )}
-                </RevealItem>
-              );
-            })}
+            {CONCEPTS.map((project, i) => (
+              <RevealItem key={project.key}>
+                <ConceptCard
+                  index={String(i + 1).padStart(2, "0")}
+                  category={t.conceptCategory}
+                  title={project.title}
+                  description={t.concepts[project.key]}
+                  angle={project.angle}
+                  image={project.image}
+                  href={project.href}
+                />
+              </RevealItem>
+            ))}
           </RevealGroup>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { EnvelopeSimple, CheckCircle } from "@phosphor-icons/react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { Parallax } from "@/components/ui/motion-primitives";
 import type { Dict } from "@/lib/i18n";
 
 const inputClasses =
@@ -54,13 +55,15 @@ export function Contact({ dict }: { dict: Dict }) {
   return (
     <section id="contact" className="relative overflow-hidden border-t border-border py-24 sm:py-32">
       <div className="absolute inset-0">
-        <Image
-          src="/images/restaurant.png"
-          alt=""
-          fill
-          className="object-cover opacity-[0.08] grayscale"
-          sizes="100vw"
-        />
+        <Parallax className="absolute inset-0" amount={44} scale={1.12}>
+          <Image
+            src="/images/restaurant.png"
+            alt=""
+            fill
+            className="object-cover opacity-[0.08] grayscale"
+            sizes="100vw"
+          />
+        </Parallax>
         <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/95 to-bg" />
       </div>
 
@@ -83,10 +86,15 @@ export function Contact({ dict }: { dict: Dict }) {
             <Reveal delay={0.15} className="mt-8">
               <a
                 href="mailto:hello@drypointcreative.com"
-                className="inline-flex items-center gap-2 text-ink transition-colors hover:text-accent"
+                className="group inline-flex items-center gap-2 text-ink transition-colors duration-[240ms] hover:text-accent"
               >
-                <EnvelopeSimple size={20} />
-                hello@drypointcreative.com
+                <EnvelopeSimple
+                  size={20}
+                  className="transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
+                />
+                <span className="relative after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-right after:scale-x-0 after:bg-accent after:transition-transform after:duration-[280ms] after:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:after:origin-left group-hover:after:scale-x-100">
+                  hello@drypointcreative.com
+                </span>
               </a>
             </Reveal>
           </div>
