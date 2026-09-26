@@ -4,7 +4,8 @@
 // JSON-LD: this is a server component rendering static, deterministic JSON,
 // so server and client output are identical and hydration never runs against
 // this node's contents.
-const SITE_URL = "https://www.drypointcreative.com";
+import { SITE as SITE_URL } from "@/lib/metadata";
+import { htmlLang, locales } from "@/lib/i18n";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -15,15 +16,14 @@ const structuredData = {
       name: "DRYPOINT",
       url: SITE_URL,
       logo: `${SITE_URL}/drypoint-logo-dark.png`,
-      sameAs: [
-        "https://www.instagram.com/drypointcreative/",
-        "https://www.linkedin.com/in/alenpergar",
-      ],
+      // Official studio profiles only. A personal profile does not belong here.
+      sameAs: ["https://www.instagram.com/drypointcreative/"],
     },
     {
       "@type": "WebSite",
       name: "DRYPOINT",
       url: SITE_URL,
+      inLanguage: locales.map((l) => htmlLang[l]),
       publisher: { "@id": `${SITE_URL}/#organization` },
     },
   ],

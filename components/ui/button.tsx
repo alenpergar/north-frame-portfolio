@@ -26,12 +26,12 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium tracking-wide px-6 py-3 min-h-[44px] transition-[color,background-color,border-color,box-shadow] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 const variants = {
-  // The fill stays accent; the response is a soft accent-tinted lift shadow
-  // plus the magnetic pull, not a colour swap.
+  // Off-white pill on the dark room. The response is a soft lift shadow plus
+  // the magnetic pull, not a colour swap.
   primary:
-    "bg-accent text-bg hover:shadow-[0_12px_34px_-12px_rgba(200,155,108,0.6)]",
+    "bg-accent text-bg hover:shadow-[0_12px_34px_-14px_rgba(237,237,235,0.45)]",
   ghost:
-    "text-ink border border-border bg-transparent hover:border-accent hover:text-accent hover:bg-accent/[0.06]",
+    "text-ink border border-ink/25 bg-transparent hover:border-ink/60 hover:bg-ink/[0.06]",
 };
 
 export function Button({

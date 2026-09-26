@@ -29,7 +29,7 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
                 <li key={link.to}>
                   <Link
                     href={localePath(locale, link.to)}
-                    className="relative inline-block py-0.5 transition-colors duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-ink after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-right after:scale-x-0 after:bg-accent after:transition-transform after:duration-[280ms] after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:origin-left hover:after:scale-x-100"
+                    className="relative inline-block py-0.5 before:absolute before:inset-x-0 before:top-1/2 before:h-9 before:-translate-y-1/2 before:content-[''] transition-colors duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-ink after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-right after:scale-x-0 after:bg-accent after:transition-transform after:duration-[280ms] after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:origin-left hover:after:scale-x-100"
                   >
                     {link.label}
                   </Link>
@@ -52,7 +52,7 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
                     rel="noreferrer"
                     className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink-muted transition-colors hover:border-accent hover:text-accent"
                   >
-                    <Icon size={18} />
+                    <Icon size={18} aria-hidden />
                   </a>
                 );
               })}
@@ -65,9 +65,11 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
             <p>
               &copy; {new Date().getFullYear()} DRYPOINT. {t.rights}
             </p>
+            {/* The 44px-tall invisible hit area (::before) makes these small text
+                links comfortable touch targets without moving anything. */}
             <Link
               href={localePath(locale, "/privacy")}
-              className="transition-colors hover:text-ink"
+              className="relative transition-colors hover:text-ink before:absolute before:inset-x-0 before:top-1/2 before:h-11 before:-translate-y-1/2 before:content-['']"
             >
               {t.privacy}
             </Link>
@@ -81,6 +83,7 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
             {t.backToTop}
             <ArrowUp
               size={14}
+              aria-hidden
               className="transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
             />
           </button>

@@ -1,20 +1,19 @@
-import { Fraunces, Manrope } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
-// Shared by both root layouts so the two locales load one identical font set
-// rather than two competing instances.
-export const fraunces = Fraunces({
+// One family for everything: Geist for display and body, Geist Mono only for
+// the small metadata lines under the films (status, duration). Shared by both
+// root layouts so the two locales load one identical font set.
+export const geist = Geist({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-fraunces",
-  style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  variable: "--font-geist",
   display: "swap",
 });
 
-export const manrope = Manrope({
+export const geistMono = Geist_Mono({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-manrope",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-geist-mono",
+  weight: ["400", "500"],
   display: "swap",
 });
 
-export const fontVariables = `${fraunces.variable} ${manrope.variable}`;
+export const fontVariables = `${geist.variable} ${geistMono.variable}`;

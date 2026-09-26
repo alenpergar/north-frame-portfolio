@@ -3,7 +3,8 @@ import clsx from "clsx";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 
 type SectionHeadingProps = {
-  eyebrow: string;
+  /** Optional small label. The homepage uses none; the case study keeps its. */
+  eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -11,10 +12,9 @@ type SectionHeadingProps = {
 };
 
 /**
- * Every section opens the same way: the eyebrow fades in, the heading rises out
- * of its own box behind a lifting clip, and the supporting line follows a beat
- * later. The heading mask is the site's one recurring "big type" move — it is
- * what makes each section feel authored rather than faded in.
+ * A section opens with its heading rising out of its own box behind a lifting
+ * clip, the site's one recurring move for big type, then the supporting line
+ * a beat later.
  */
 export function SectionHeading({
   eyebrow,
@@ -25,35 +25,29 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <RevealGroup
-      className={clsx(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-        className
-      )}
+      className={clsx("max-w-3xl", align === "center" && "mx-auto text-center", className)}
       stagger={0.09}
     >
-      <RevealItem>
-        <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-          <span className="h-px w-6 bg-accent" aria-hidden />
-          {eyebrow}
-        </span>
-      </RevealItem>
+      {eyebrow ? (
+        <RevealItem>
+          <span className="mb-4 inline-block font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
+            {eyebrow}
+          </span>
+        </RevealItem>
+      ) : null}
 
-      {/* The clip lifts from the bottom, so a hair of bottom padding (pulled
-          back with a negative margin) keeps italic descenders clear. */}
+      {/* A hair of bottom padding, pulled back with a negative margin, keeps
+          descenders clear of the clip. Line-height is pinned with an explicit
+          leading so it survives every breakpoint. */}
       <RevealItem variant="mask" className="pb-[0.14em] -mb-[0.14em]">
-        {/* Line-height is pinned per size with the slash modifier so it survives
-            the breakpoint — a bare `leading-tight` is overridden at `sm`/`lg` by
-            the line-height Tailwind bundles into each `text-*` step. 1.25 is
-            `leading-tight`. */}
-        <h2 className="mt-4 font-display text-3xl/[1.25] sm:text-4xl/[1.25] lg:text-5xl/[1.25] text-ink text-balance">
+        <h2 className="text-[clamp(2.25rem,4.6vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-ink text-balance">
           {title}
         </h2>
       </RevealItem>
 
       {description ? (
         <RevealItem>
-          <p className="mt-4 text-base sm:text-lg text-ink-muted leading-relaxed">
+          <p className="mt-5 max-w-xl text-base text-ink-muted leading-relaxed sm:text-lg">
             {description}
           </p>
         </RevealItem>

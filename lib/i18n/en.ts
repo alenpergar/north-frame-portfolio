@@ -1,189 +1,122 @@
-// English is the source of truth: every string below is the copy that was
-// already on the page, moved here verbatim. `sl.ts` is typed against this
-// object, so a missing or renamed key is a compile error rather than a gap
-// that only shows up in the browser.
+// English is the source of truth. `sl.ts` is typed against this object, so a
+// missing or renamed key is a compile error rather than a gap that only shows
+// up in the browser. Visible copy uses no em dashes (house style).
 import type { Dict } from "./types";
 
 export const en: Dict = {
   nav: {
     links: [
       { to: "/#work", label: "Work" },
-      { to: "/#services", label: "Services" },
-      { to: "/#approach", label: "Approach" },
-      { to: "/#process", label: "Process" },
-      { to: "/#about", label: "About" },
+      { to: "/#services", label: "Capabilities" },
+      { to: "/#digital", label: "Digital" },
+      { to: "/#contact", label: "Contact" },
     ],
-    cta: "Start a Project",
+    cta: "Start a project",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     languageLabel: "Language",
-    sectionsLabel: "Sections",
-    sections: [
-      { id: "top", to: "/#top", label: "Home" },
-      { id: "work", to: "/#work", label: "Work" },
-      { id: "services", to: "/#services", label: "Services" },
-      { id: "approach", to: "/#approach", label: "Approach" },
-      { id: "process", to: "/#process", label: "Process" },
-      { id: "about", to: "/#about", label: "About" },
-      { id: "contact", to: "/#contact", label: "Contact" },
-    ],
   },
 
+  status: {
+    client: "Client work",
+    spec: "Spec commercial",
+    concept: "Concept",
+    website: "Website",
+  },
+
+  player: {
+    play: "Play",
+    close: "Close",
+    frameLabel: "Play {name}, {status}, {seconds} seconds",
+    specNote: "Unsolicited spec work. Not commissioned by or affiliated with {brand}.",
+    conceptNote: "Concept. Original brand and product created by DRYPOINT.",
+  },
+
+  // Approved 2026-09-26. No supporting line: headline, status and two CTAs.
   hero: {
-    eyebrow: "DRYPOINT — Digital Design Studio",
-    title: { lead: "We design brands that", accent: "move", tail: "." },
-    body: "High-end websites, landing pages, and AI-directed creative for brands that refuse to look ordinary. Every project starts from a blank plate — never a template.",
-    primary: "Start a Project",
-    secondary: "View Our Work",
-    tags: ["Web Design", "Landing Pages", "AI Creative"],
-    scroll: "Scroll to work",
+    title: ["Commercials made with AI.", "Directed like film."],
+    primary: "Start a project",
+    secondary: "Watch the film",
   },
 
-  work: {
-    eyebrow: "Selected Work",
-    title: { lead: "Live client work,", accent: "crafted to convert." },
-    description:
-      "A delivered client website, alongside self-initiated concepts created to showcase our approach to web design.",
-    client: {
-      category: "Client Project · Live",
-      description:
-        "A roofing, tinsmithing, and prefab-home builder trading since 2008. The site carries two distinct service lines and four house models through to a single, clear inquiry path — for customers across Slovenia and Austria.",
-      meta: "Krovske in kleparske storitve, Robert Žilavec s.p. — Gornja Radgona, Slovenia",
-      metaPrefix: "Designed and built for a working business",
-      action: "View case study",
-    },
-    conceptsEyebrow: "Concept Directions",
-    conceptsTitle: "Self-initiated work, built to the same standard.",
-    conceptCategory: "Web Design",
-    concepts: {
-      lumiere:
-        "A premium private dental clinic website focused on trust, patient experience, and modern healthcare design. Crafted to convert visitors into booked appointments.",
-      aurelia:
-        "A premium restaurant website designed to showcase the dining experience, atmosphere, and brand identity. Crafted to attract guests, build trust, and drive table reservations through an elegant digital presence.",
-      nova: "Personalized coaching, science-based programming, and relentless accountability — built for those who refuse to settle for average.",
-      vivelle:
-        "A luxury beauty salon website built on editorial calm, cinematic video, and considered detail. Crafted to make every visit feel like an experience before a client even walks through the door.",
+  commercials: {
+    title: "Selected commercials",
+    feedTitle: "Made for the feed.",
+    lines: {
+      snap: "A thirty-second story told in one checkout queue.",
+      proda: "A cherry soda, shot like a cocktail.",
+      matcha: "Process, people and a cup worth queueing for.",
     },
   },
 
-  services: {
-    eyebrow: "Services",
-    title: { lead: "Three disciplines,", accent: "one studio." },
-    description:
-      "Everything DRYPOINT builds sits somewhere between these three — strategy-led design work made for brands that need to look, and perform, at the top of their category.",
+  capabilities: {
+    title: "From script to final cut.",
     items: [
       {
-        title: "Web Design",
-        description:
-          "Full-scale marketing and brand websites engineered for clarity, speed, and a premium first impression — designed to hold up under real client traffic, not just a portfolio screenshot.",
+        title: "AI commercials",
+        description: "Spots for launches, campaigns and social, from idea to final cut.",
       },
       {
-        title: "Landing Pages",
-        description:
-          "Focused, high-conversion single pages for launches, campaigns, and offers — built around one goal, one story, and a clear path to action.",
+        title: "AI video production",
+        description: "Product films and brand visuals, produced without a traditional shoot.",
       },
       {
-        title: "AI Creative",
-        description:
-          "AI-directed commercials, product films, and campaign visuals — cinematic output produced faster than a traditional shoot, without cutting craft.",
-      },
-    ],
-  },
-
-  approach: {
-    eyebrow: "Approach",
-    title: { lead: "How we", accent: "think", tail: ", before we design." },
-    quote: "“The first frame sets the tone for everything after it.”",
-    pillars: [
-      {
-        title: "Strategy-Led",
-        description:
-          "Every design decision traces back to a business goal, not a passing trend.",
+        title: "Creative advertising",
+        description: "Concepts, scripts and campaign lines that give a product something to say.",
       },
       {
-        title: "Cinematic Craft",
-        description:
-          "We treat pacing, contrast, and rhythm as seriously as a director treats a scene.",
-      },
-      {
-        title: "AI-Augmented",
-        description:
-          "AI accelerates production and exploration — it never replaces taste or judgment.",
-      },
-      {
-        title: "Obsessive Detail",
-        description:
-          "Spacing, motion, and copy are refined until nothing feels accidental.",
+        title: "Web & digital",
+        description: "Websites and landing pages, designed and built in-house.",
       },
     ],
   },
 
   process: {
-    eyebrow: "Process",
-    title: { lead: "Five steps.", accent: "No guesswork." },
-    description:
-      "A structured path from first conversation to launch — transparent at every stage.",
+    title: "How a spot gets made.",
     steps: [
       {
-        title: "Discover",
-        description:
-          "We learn the brand, the audience, and the goal behind the project before a single pixel is placed.",
+        title: "Brief",
+        description: "What the product is, who it is for, and where the spot will live.",
       },
       {
-        title: "Define",
-        description:
-          "Scope, sitemap, and creative direction are agreed on paper first — no surprises mid-build.",
+        title: "Concept & script",
+        description: "One idea, written and boarded before anything is generated.",
       },
       {
-        title: "Design",
-        description:
-          "High-fidelity design across every breakpoint, reviewed together in structured rounds.",
+        title: "Production",
+        description: "Shots generated, directed and refined until every frame holds up.",
       },
       {
-        title: "Develop",
-        description:
-          "Production-grade build in Next.js — fast, accessible, and animated with intent.",
-      },
-      {
-        title: "Deliver",
-        description:
-          "Launch, handoff, and a short support window to make sure the site performs as designed.",
+        title: "Delivery",
+        description: "The final cut, plus the formats you need: 16:9, 9:16 and 1:1.",
       },
     ],
   },
 
-  about: {
-    eyebrow: "About",
-    title: { lead: "A studio built for", accent: "craft." },
-    paragraphs: [
-      "DRYPOINT exists because most “creative” work online looks the same — the same templates, the same stock gradients, the same forgettable hero section. We started this studio to do the opposite: treat every website like a film that needs its own tone, pacing, and voice.",
-      "That means fewer clients, more attention per project, and a refusal to ship anything that reads as generic. Where it makes sense, we bring AI into the process — not to cut corners, but to explore more directions, faster, before committing to the one that’s right.",
-    ],
-    beliefs: [
-      "Fewer clients, more attention per project.",
-      "Every brand gets an original direction — never a template.",
-      "AI is a tool in the process, never a replacement for taste.",
-    ],
+  digital: {
+    title: "Web & digital",
+    description: "Websites designed and built in-house.",
+    zilavec: {
+      title: "Hiše Žilavec",
+      description: "Two service lines and four house models, one inquiry path.",
+      action: "View case study",
+      alt: "The Hiše Žilavec homepage: the headline “Streha nad glavo. Dom za življenje.” beside a modern house with a dark tiled roof.",
+    },
+    vivelle: {
+      title: "VIVELLE Beauty",
+      description: "An editorial website concept for a luxury salon.",
+      action: "View site",
+      alt: "The VIVELLE Beauty concept: a therapist giving a facial treatment in a marble and gold salon.",
+    },
   },
 
-  // Quotes and apostrophes normalised to the site's curly style; wording is
-  // otherwise exactly as supplied.
-  founder: {
-    eyebrow: "Behind DRYPOINT",
-    lead: "I’m Alen — DRYPOINT is a one-person studio, by design.",
-    body: [
-      "You talk to the person who designs the site, writes the build, and presses deploy. No account manager relaying your feedback, no waiting three days for an answer to a two-minute question.",
-      "That’s also the reason for the “fewer clients” rule above. It isn’t positioning — it’s arithmetic.",
-    ],
-    location: "Based in Slovenia. Working with clients anywhere.",
-    photoAlt: "Alen",
+  closing: {
+    about:
+      "DRYPOINT is an independent creative studio led by Alen. Based in Slovenia, working with brands anywhere.",
+    title: "Have a product worth filming?",
   },
 
   contact: {
-    eyebrow: "Contact",
-    title: { lead: "Let’s build something", accent: "premium." },
-    description:
-      "Tell us about your project and we'll reply within one business day. Prefer email? Reach us directly below.",
     name: "Name",
     email: "Email",
     projectType: "Project type",
@@ -191,30 +124,27 @@ export const en: Dict = {
     // The option values stay in English because app/api/contact/route.ts
     // validates them against a fixed allowlist; only the labels are localised.
     projectTypes: [
-      { value: "Web Design", label: "Web Design" },
-      { value: "Landing Page", label: "Landing Page" },
-      { value: "AI Creative", label: "AI Creative" },
+      { value: "AI Commercial", label: "AI commercial" },
+      { value: "Video Production", label: "Video production" },
+      { value: "Website", label: "Website" },
       { value: "Not sure yet", label: "Not sure yet" },
     ],
-    send: "Send Message",
+    send: "Send message",
     sending: "Sending…",
     successTitle: "Message received.",
-    successBody:
-      "Thanks for reaching out — we’ll follow up within one business day.",
+    successBody: "Thanks for reaching out. You will hear back within one business day.",
     genericError: "Something went wrong. Please try again.",
-    networkError:
-      "Something went wrong. Please check your connection and try again.",
+    networkError: "Something went wrong. Please check your connection and try again.",
+    invalid: "Please fill in the required fields and use a valid email address.",
   },
 
   footer: {
-    blurb:
-      "Premium digital design studio — websites, landing pages, and AI-powered creative experiences.",
+    blurb: "Independent creative studio for AI commercials, video production and digital work.",
     links: [
       { to: "/#work", label: "Work" },
-      { to: "/#services", label: "Services" },
-      { to: "/#approach", label: "Approach" },
+      { to: "/#services", label: "Capabilities" },
       { to: "/#process", label: "Process" },
-      { to: "/#about", label: "About" },
+      { to: "/#digital", label: "Digital" },
       { to: "/#contact", label: "Contact" },
     ],
     nav: "Footer",

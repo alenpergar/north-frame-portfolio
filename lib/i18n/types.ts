@@ -3,7 +3,6 @@
 export type Title = { lead: string; accent: string; tail?: string };
 
 type NavLink = { to: string; label: string };
-type SectionLink = { id: string; to: string; label: string };
 type TitledBody = { title: string; description: string };
 
 export type Dict = {
@@ -13,84 +12,65 @@ export type Dict = {
     openMenu: string;
     closeMenu: string;
     languageLabel: string;
-    sectionsLabel: string;
-    sections: SectionLink[];
+  };
+
+  /** Labels shown under every film and project. Rendered uppercase in mono. */
+  status: {
+    client: string;
+    spec: string;
+    concept: string;
+    website: string;
+  };
+
+  /** The full-screen film player and the in-frame play affordance. */
+  player: {
+    play: string;
+    close: string;
+    /** Accessible name for a film frame. {name}, {status}, {seconds}. */
+    frameLabel: string;
+    /** Disclaimer for spec work. {brand} is replaced with the brand name. */
+    specNote: string;
+    conceptNote: string;
   };
 
   hero: {
-    eyebrow: string;
-    title: Title;
-    body: string;
+    /** One entry per display line. */
+    title: string[];
     primary: string;
     secondary: string;
-    tags: string[];
-    scroll: string;
   };
 
-  work: {
-    eyebrow: string;
-    title: Title;
-    description: string;
-    client: {
-      category: string;
-      description: string;
-      meta: string;
-      metaPrefix: string;
-      action: string;
-    };
-    conceptsEyebrow: string;
-    conceptsTitle: string;
-    conceptCategory: string;
-    concepts: {
-      lumiere: string;
-      aurelia: string;
-      nova: string;
-      vivelle: string;
-    };
+  commercials: {
+    title: string;
+    feedTitle: string;
+    /** One line of context under each film, keyed by campaign id. */
+    lines: { snap: string; proda: string; matcha: string };
   };
 
-  services: {
-    eyebrow: string;
-    title: Title;
-    description: string;
+  capabilities: {
+    title: string;
     items: TitledBody[];
   };
 
-  approach: {
-    eyebrow: string;
-    title: Title;
-    quote: string;
-    pillars: TitledBody[];
-  };
-
   process: {
-    eyebrow: string;
-    title: Title;
-    description: string;
+    title: string;
     steps: TitledBody[];
   };
 
-  about: {
-    eyebrow: string;
-    title: Title;
-    paragraphs: string[];
-    beliefs: string[];
+  digital: {
+    title: string;
+    description: string;
+    zilavec: { title: string; description: string; action: string; alt: string };
+    vivelle: { title: string; description: string; action: string; alt: string };
   };
 
-  // "Behind DRYPOINT" — the quieter coda under About that names the person the
-  // studio "we" stands for. Separate key so the About object above is untouched.
-  founder: {
-    eyebrow: string;
-    lead: string;
-    body: string[];
-    location: string;
-    photoAlt: string;
+  /** About and contact, closed together: two sentences, then the ask. */
+  closing: {
+    about: string;
+    title: string;
   };
 
   contact: {
-    eyebrow: string;
-    title: Title;
-    description: string;
     name: string;
     email: string;
     projectType: string;
@@ -103,6 +83,8 @@ export type Dict = {
     successBody: string;
     genericError: string;
     networkError: string;
+    /** Shown when required fields are empty or the email is malformed. */
+    invalid: string;
   };
 
   footer: {

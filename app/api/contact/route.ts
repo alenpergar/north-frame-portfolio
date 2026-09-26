@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 const TO_EMAIL = "hello@drypointcreative.com";
 const FROM_EMAIL = "DRYPOINT <hello@drypointcreative.com>";
 
-const PROJECT_TYPES = ["Web Design", "Landing Page", "AI Creative", "Not sure yet"];
+const PROJECT_TYPES = ["AI Commercial", "Video Production", "Website", "Not sure yet"];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

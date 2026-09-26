@@ -1,216 +1,148 @@
 import type { Dict } from "./types";
 
 // Brand and technical names are deliberately left in their original form:
-// DRYPOINT, the four concept projects, Hiše Žilavec, and the stack names.
+// DRYPOINT, the campaign brands, Hiše Žilavec, VIVELLE and the stack names.
 export const sl: Dict = {
   nav: {
     links: [
       { to: "/#work", label: "Delo" },
       { to: "/#services", label: "Storitve" },
-      { to: "/#approach", label: "Pristop" },
-      { to: "/#process", label: "Proces" },
-      { to: "/#about", label: "O nas" },
+      { to: "/#digital", label: "Digitalno" },
+      { to: "/#contact", label: "Kontakt" },
     ],
     cta: "Začnimo projekt",
     openMenu: "Odpri meni",
     closeMenu: "Zapri meni",
     languageLabel: "Jezik",
-    sectionsLabel: "Sekcije",
-    sections: [
-      { id: "top", to: "/#top", label: "Domov" },
-      { id: "work", to: "/#work", label: "Delo" },
-      { id: "services", to: "/#services", label: "Storitve" },
-      { id: "approach", to: "/#approach", label: "Pristop" },
-      { id: "process", to: "/#process", label: "Proces" },
-      { id: "about", to: "/#about", label: "O nas" },
-      { id: "contact", to: "/#contact", label: "Kontakt" },
-    ],
+  },
+
+  // Status labels stay in English on both locales (decided 2026-09-26): they
+  // are industry terms and should read identically in either language.
+  status: {
+    client: "Client work",
+    spec: "Spec commercial",
+    concept: "Concept",
+    website: "Website",
+  },
+
+  player: {
+    play: "Predvajaj",
+    close: "Zapri",
+    frameLabel: "Predvajaj {name}, {status}, {seconds} sekund",
+    specNote: "Nenaročeno spec delo. Ni naročeno s strani znamke {brand} in z njo ni povezano.",
+    conceptNote: "Koncept. Izvirno znamko in izdelek je ustvaril DRYPOINT.",
   },
 
   hero: {
-    eyebrow: "DRYPOINT — Studio za digitalno oblikovanje",
-    title: { lead: "Oblikujemo znamke, ki", accent: "ganejo", tail: "." },
-    body: "Vrhunske spletne strani, pristajalne strani in AI-vodena kreativa za podjetja in znamke, ki nočejo izgledati povprečno. Vsak projekt se začne na prazni plošči — nikoli na predlogi.",
+    title: ["Reklame, ustvarjene z AI.", "Režirane kot film."],
     primary: "Začnimo projekt",
-    secondary: "Poglejte naše delo",
-    tags: ["Spletno oblikovanje", "Pristajalne strani", "AI kreativa"],
-    scroll: "Pomakni se na delo",
+    secondary: "Oglejte si film",
   },
 
-  work: {
-    eyebrow: "Izbrano delo",
-    title: { lead: "Izdelava spletnih strani,", accent: "ustvarjena za rezultat." },
-    description:
-      "Dostavljena stran za naročnika, ob njej pa samoiniciativni koncepti, ki prikazujejo naš pristop k spletnemu oblikovanju in izdelavi spletnih strani.",
-    client: {
-      category: "Izdelava spletne strani · V živo",
-      description:
-        "Krovstvo, kleparstvo in izdelava montažnih hiš, dejavni od leta 2008. Stran vodi dve ločeni storitveni liniji in štiri modele hiš do ene same, jasne poti do povpraševanja — za stranke po Sloveniji in Avstriji.",
-      meta: "Krovske in kleparske storitve, Robert Žilavec s.p. — Gornja Radgona, Slovenija",
-      metaPrefix: "Zasnovano in izdelano za delujoče podjetje",
-      action: "Oglejte si case study",
-    },
-    conceptsEyebrow: "Konceptne smeri",
-    conceptsTitle: "Samoiniciativno delo, izdelano po istem merilu.",
-    conceptCategory: "Spletno oblikovanje",
-    concepts: {
-      lumiere:
-        "Stran za vrhunsko zasebno zobozdravstveno kliniko, osredotočena na zaupanje, izkušnjo pacienta in sodobno oblikovanje v zdravstvu. Zasnovana tako, da obiskovalca pripelje do rezerviranega termina.",
-      aurelia:
-        "Stran za vrhunsko restavracijo, zasnovana za predstavitev kulinarične izkušnje, vzdušja in identitete znamke. Ustvarjena tako, da privabi goste, gradi zaupanje in vodi do rezervacij mize prek elegantne digitalne prisotnosti.",
-      nova: "Osebno vodenje, znanstveno utemeljeni programi in dosledna odgovornost — za tiste, ki se ne zadovoljijo s povprečjem.",
-      vivelle:
-        "Stran za luksuzni lepotni salon, zgrajena na uredniški umirjenosti, filmskem videu in premišljenem detajlu. Ustvarjena tako, da vsak obisk deluje kot izkušnja, še preden stranka stopi skozi vrata.",
+  commercials: {
+    title: "Izbrane reklame",
+    feedTitle: "Za družbena omrežja.",
+    lines: {
+      snap: "Tridesetsekundna zgodba v eni vrsti pred blagajno.",
+      proda: "Češnjeva soda, posneta kot koktajl.",
+      matcha: "Proces, ljudje in kozarec, za katerega se splača počakati.",
     },
   },
 
-  services: {
-    eyebrow: "Storitve",
-    title: { lead: "Tri discipline,", accent: "en studio." },
-    description:
-      "Vse, kar DRYPOINT izdela, leži nekje med temi tremi — od izdelave spletnih strani in pristajalnih strani do AI-vodene kreative. Vsak projekt je strateško voden, premišljeno oblikovan in prilagojen znamki, ki mora izgledati in delovati na vrhu svoje kategorije.",
+  capabilities: {
+    title: "Od scenarija do končne montaže.",
     items: [
       {
-        title: "Spletno oblikovanje",
-        description:
-          "Celovite spletne strani po meri, zasnovane za jasnost, hitrost in vrhunski prvi vtis — narejene tako, da zdržijo resničen promet, ne le posnetek za portfelj.",
+        title: "AI reklame",
+        description: "Spoti za lansiranja, kampanje in družbena omrežja, od ideje do končne montaže.",
       },
       {
-        title: "Pristajalne strani",
-        description:
-          "Osredotočene enostranske predstavitve z visoko konverzijo za lansiranja, kampanje in ponudbe — zgrajene okoli enega cilja, ene zgodbe in jasne poti do dejanja.",
+        title: "AI video produkcija",
+        description: "Produktni filmi in vizuali znamke, brez klasičnega snemanja.",
       },
       {
-        title: "AI kreativa",
-        description:
-          "AI-vodeni oglasi, produktni filmi in kampanjski vizuali — filmski rezultat, ustvarjen hitreje od klasičnega snemanja, brez odrekanja obrti.",
-      },
-    ],
-  },
-
-  approach: {
-    eyebrow: "Pristop",
-    title: { lead: "Kako", accent: "razmišljamo", tail: ", preden oblikujemo." },
-    quote: "„Prvi kader določi ton vsemu, kar sledi.“",
-    pillars: [
-      {
-        title: "Vodeni s strategijo",
-        description:
-          "Vsaka oblikovalska odločitev se vrne k poslovnemu cilju, ne k trenutnemu trendu.",
+        title: "Kreativno oglaševanje",
+        description: "Koncepti, scenariji in kampanjske linije, ki dajo izdelku kaj povedati.",
       },
       {
-        title: "Filmska obrt",
-        description:
-          "Ritem, kontrast in tempo jemljemo enako resno, kot režiser jemlje prizor.",
-      },
-      {
-        title: "Podprto z AI",
-        description:
-          "AI pospeši izdelavo in raziskovanje — nikoli pa ne nadomesti okusa ali presoje.",
-      },
-      {
-        title: "Obsesiven detajl",
-        description:
-          "Razmiki, gibanje in besedilo so brušeni, dokler nič ne deluje naključno.",
+        title: "Splet in digitalno",
+        description: "Spletne in pristajalne strani, zasnovane in izdelane v studiu.",
       },
     ],
   },
 
   process: {
-    eyebrow: "Proces",
-    title: { lead: "Pet korakov.", accent: "Brez ugibanja." },
-    description:
-      "Strukturirana pot od prvega pogovora do lansiranja — pregledna na vsaki stopnji.",
+    title: "Kako nastane spot.",
     steps: [
       {
-        title: "Spoznavanje",
-        description:
-          "Spoznamo znamko, občinstvo in cilj projekta, preden postavimo prvi piksel.",
+        title: "Brief",
+        description: "Kaj je izdelek, komu je namenjen in kje bo spot živel.",
       },
       {
-        title: "Opredelitev",
-        description:
-          "Obseg, struktura strani in kreativna smer so dogovorjeni najprej na papirju — brez presenečenj med izdelavo.",
+        title: "Koncept in scenarij",
+        description: "Ena ideja, napisana in narisana, preden karkoli generiramo.",
       },
       {
-        title: "Oblikovanje",
-        description:
-          "Natančno oblikovanje za vsako širino zaslona, pregledano skupaj v strukturiranih krogih.",
+        title: "Produkcija",
+        description: "Kadri, generirani, režirani in dodelani, dokler ne zdrži vsak kader.",
       },
       {
-        title: "Razvoj",
-        description:
-          "Produkcijska izdelava v Next.js — hitra, dostopna in animirana z namenom.",
-      },
-      {
-        title: "Predaja",
-        description:
-          "Lansiranje, predaja in kratko obdobje podpore, da stran deluje tako, kot je bila zasnovana.",
+        title: "Dostava",
+        description: "Končna montaža in formati, ki jih potrebujete: 16:9, 9:16 in 1:1.",
       },
     ],
   },
 
-  about: {
-    eyebrow: "O nas",
-    title: { lead: "Studio, zgrajen za", accent: "mojstrstvo." },
-    paragraphs: [
-      "DRYPOINT obstaja, ker je večina „kreativnega“ dela na spletu videti enako — iste predloge, isti generični gradienti, isti pozabljivi uvodni zaslon. Ta studio smo ustanovili, da delamo nasprotno: vsako spletno stran obravnavamo kot film, ki potrebuje svoj ton, ritem in glas.",
-      "To pomeni manj naročnikov, več pozornosti na projekt in odklonitev vsega, kar bi delovalo generično. Kjer je smiselno, v proces vključimo AI — ne zato, da bi rezali ovinke, ampak da hitreje raziščemo več smeri, preden se odločimo za pravo.",
-    ],
-    beliefs: [
-      "Manj naročnikov, več pozornosti na projekt.",
-      "Vsaka znamka dobi izvirno smer — nikoli predloge.",
-      "AI je orodje v procesu, nikoli nadomestilo za okus.",
-    ],
+  digital: {
+    title: "Splet in digitalno",
+    description: "Spletne strani, zasnovane in izdelane v studiu.",
+    zilavec: {
+      title: "Hiše Žilavec",
+      description: "Dve storitveni liniji in štirje modeli hiš, ena pot do povpraševanja.",
+      action: "Oglejte si case study",
+      alt: "Domača stran Hiše Žilavec: naslov „Streha nad glavo. Dom za življenje.“ ob sodobni hiši s temno strešno kritino.",
+    },
+    vivelle: {
+      title: "VIVELLE Beauty",
+      description: "Uredniški koncept spletne strani za luksuzni salon.",
+      action: "Oglejte si stran",
+      alt: "Koncept VIVELLE Beauty: terapevtka izvaja nego obraza v salonu iz marmorja in zlata.",
+    },
   },
 
-  // Prevod je zvesta priredba angleškega izvirnika v obstoječem tonu — prosim
-  // za pregled naravnega govorca.
-  founder: {
-    eyebrow: "Za DRYPOINT",
-    lead: "Sem Alen — DRYPOINT je enočlanski studio, in to namerno.",
-    body: [
-      "Pogovarjate se s človekom, ki oblikuje stran, napiše kodo in objavi. Brez vodje projekta, ki posreduje vaše pripombe, brez čakanja tri dni na odgovor na dvominutno vprašanje.",
-      "To je tudi razlog za pravilo „manj naročnikov“ zgoraj. Ni pozicioniranje — je računica.",
-    ],
-    location: "Sedež v Sloveniji. Sodelovanje z naročniki kjer koli.",
-    photoAlt: "Alen",
+  closing: {
+    about:
+      "DRYPOINT je neodvisen kreativni studio, ki ga vodi Alen. S sedežem v Sloveniji, za znamke kjerkoli.",
+    title: "Imate izdelek, ki si zasluži film?",
   },
 
   contact: {
-    eyebrow: "Kontakt",
-    title: { lead: "Ustvarimo nekaj", accent: "vrhunskega." },
-    description:
-      "Povejte nam o svojem projektu in odgovorili bomo v enem delovnem dnevu. Raje po e-pošti? Pišite nam neposredno spodaj.",
-    name: "Ime in priimek",
+    name: "Ime",
     email: "E-pošta",
     projectType: "Vrsta projekta",
     message: "Sporočilo",
     projectTypes: [
-      { value: "Web Design", label: "Spletno oblikovanje" },
-      { value: "Landing Page", label: "Pristajalna stran" },
-      { value: "AI Creative", label: "AI kreativa" },
-      { value: "Not sure yet", label: "Še nisem odločen" },
+      { value: "AI Commercial", label: "AI reklama" },
+      { value: "Video Production", label: "Video produkcija" },
+      { value: "Website", label: "Spletna stran" },
+      { value: "Not sure yet", label: "Še ne vem" },
     ],
     send: "Pošlji sporočilo",
     sending: "Pošiljam…",
     successTitle: "Sporočilo prejeto.",
-    successBody:
-      "Hvala za sporočilo — javimo se v enem delovnem dnevu.",
+    successBody: "Hvala za sporočilo. Odgovor prejmete v enem delovnem dnevu.",
     genericError: "Nekaj je šlo narobe. Poskusite znova.",
-    networkError:
-      "Nekaj je šlo narobe. Preverite povezavo in poskusite znova.",
+    networkError: "Nekaj je šlo narobe. Preverite povezavo in poskusite znova.",
+    invalid: "Izpolnite obvezna polja in vpišite veljaven e-poštni naslov.",
   },
 
   footer: {
-    blurb:
-      "Vrhunski studio za digitalno oblikovanje — spletne strani, pristajalne strani in AI-podprte kreativne izkušnje.",
+    blurb: "Neodvisni kreativni studio za AI reklame, video produkcijo in digitalno delo.",
     links: [
       { to: "/#work", label: "Delo" },
       { to: "/#services", label: "Storitve" },
-      { to: "/#approach", label: "Pristop" },
       { to: "/#process", label: "Proces" },
-      { to: "/#about", label: "O nas" },
+      { to: "/#digital", label: "Digitalno" },
       { to: "/#contact", label: "Kontakt" },
     ],
     nav: "Noga",

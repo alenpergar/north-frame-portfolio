@@ -16,7 +16,7 @@ export function PrivacyPolicy({
 
   return (
     <>
-      <Nav dict={dict} locale={locale} path={PRIVACY_PATH} showSectionNav={false} />
+      <Nav dict={dict} locale={locale} path={PRIVACY_PATH} />
 
       <main>
         <section className="relative pt-20 pb-16 sm:pt-28 sm:pb-20">

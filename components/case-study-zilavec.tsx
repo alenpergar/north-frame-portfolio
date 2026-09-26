@@ -56,7 +56,7 @@ export function CaseStudyZilavec({
 
   return (
     <>
-      <Nav dict={dict} locale={locale} path={ZILAVEC_PATH} showSectionNav={false} />
+      <Nav dict={dict} locale={locale} path={ZILAVEC_PATH} />
 
       <main>
         {/* 1 — Hero */}
@@ -108,7 +108,7 @@ export function CaseStudyZilavec({
                 {t.visit}
               </Button>
               <Link
-                href={localePath(locale, "/#work")}
+                href={localePath(locale, "/#digital")}
                 className="group inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-ink"
               >
                 <ArrowLeft

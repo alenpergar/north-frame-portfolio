@@ -13,7 +13,6 @@ import clsx from "clsx";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
-import { SectionNav } from "@/components/ui/section-nav";
 import { EASE_OUT } from "@/lib/motion";
 import { localePath, locales, type Dict, type Locale } from "@/lib/i18n";
 
@@ -27,7 +26,6 @@ type NavProps = {
    * the same page instead of dropping you back at the homepage.
    */
   path: string;
-  showSectionNav?: boolean;
 };
 
 // EN / SL, styled from the eyebrow type already used across the site: no new
@@ -53,7 +51,7 @@ function LanguageSwitcher({
       {locales.map((code, i) => (
         <span key={code} className="flex items-center gap-2">
           {i > 0 ? (
-            <span className="text-border" aria-hidden>
+            <span className="text-border group-data-[over-film=true]/header:text-ink/40" aria-hidden>
               /
             </span>
           ) : null}
@@ -68,7 +66,9 @@ function LanguageSwitcher({
               // or resizing anything that shows.
               "relative inline-flex items-center text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               "before:absolute before:left-1/2 before:top-1/2 before:h-11 before:w-10 before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']",
-              code === locale ? "text-ink" : "text-ink-muted hover:text-ink"
+              code === locale
+                ? "text-ink"
+                : "text-ink-muted hover:text-ink group-data-[over-film=true]/header:text-ink/80"
             )}
           >
             {code}
@@ -79,13 +79,15 @@ function LanguageSwitcher({
   );
 }
 
-export function Nav({ dict, locale, path, showSectionNav = true }: NavProps) {
+export function Nav({ dict, locale, path }: NavProps) {
   const shouldReduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLDivElement>(null);
+  // Only the homepage opens on a film; everywhere else the header sits on bg.
+  const overFilm = path === "/" && !scrolled;
 
   // One Framer-managed scroll source drives both the backdrop state and the
   // hide-on-scroll-down / reveal-on-scroll-up behaviour. No manual listener.
@@ -186,10 +188,14 @@ export function Nav({ dict, locale, path, showSectionNav = true }: NavProps) {
         // Reveal the moment anything inside it takes keyboard focus, so a
         // hidden bar can never trap a tabbing user.
         onFocusCapture={() => setHidden(false)}
+        // Over the homepage film the header is transparent, so its muted grey
+        // links drop to ~1.3:1 on bright frames. While it sits over the film
+        // they switch to the ink colour (5.2:1 with the hero's top veil).
+        data-over-film={overFilm}
         animate={{ y: hidden ? "-102%" : "0%" }}
         transition={{ duration: shouldReduce ? 0 : 0.42, ease: EASE_OUT }}
         className={clsx(
-          "sticky top-0 z-50 transition-[background-color,border-color] duration-300",
+          "group/header sticky top-0 z-50 transition-[background-color,border-color] duration-300",
           scrolled
             ? "bg-bg/80 backdrop-blur-md border-b border-border"
             : "bg-transparent border-b border-transparent"
@@ -198,12 +204,9 @@ export function Nav({ dict, locale, path, showSectionNav = true }: NavProps) {
         <nav className="container-px mx-auto flex max-w-content items-center justify-between py-4">
           <Logo href={localePath(locale, "/")} />
 
-          {/* Handoff at 880px, not md/768: at 768 the full row (logo + links +
-              switcher + CTA) is ~25px wider than the viewport and forces a
-              horizontal scroll, which the sticky header now keeps on screen.
-              Hidden again once the vertical rail takes over at 1400px, so only
-              one navigation is ever present for pointer and assistive tech. */}
-          <ul className="hidden min-[880px]:flex min-[1400px]:hidden items-center gap-4 lg:gap-9 text-sm text-ink-muted">
+          {/* Handoff at 880px, not md/768: below that the full row (logo +
+              links + switcher + CTA) no longer fits and the menu takes over. */}
+          <ul className="hidden min-[880px]:flex items-center gap-6 lg:gap-9 text-sm text-ink-muted transition-colors duration-300 group-data-[over-film=true]/header:text-ink">
             {dict.nav.links.map((link) => (
               <li key={link.to}>
                 <Link
@@ -292,7 +295,7 @@ export function Nav({ dict, locale, path, showSectionNav = true }: NavProps) {
                   <Link
                     href={localePath(locale, link.to)}
                     onClick={() => setMenuOpen(false)}
-                    className="font-display text-4xl italic text-ink"
+                    className="text-4xl font-medium tracking-[-0.03em] text-ink"
                   >
                     {link.label}
                   </Link>
@@ -333,7 +336,6 @@ export function Nav({ dict, locale, path, showSectionNav = true }: NavProps) {
         )}
       </AnimatePresence>
 
-      {showSectionNav ? <SectionNav dict={dict} locale={locale} /> : null}
     </>
   );
 }

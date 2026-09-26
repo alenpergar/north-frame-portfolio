@@ -20,7 +20,7 @@ export function Logo({
   return (
     <Link
       href={href}
-      aria-label="DRYPOINT — home"
+      aria-label="DRYPOINT, home"
       className={clsx("inline-flex items-center shrink-0", className)}
     >
       <Image

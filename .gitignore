@@ -2,7 +2,11 @@ node_modules
 .next
 out
 build
+# Any real env file stays local; only the documented template is committed.
+.env
 .env*.local
+.env.production
+.env.development
 .DS_Store
 *.pem
 npm-debug.log*
@@ -10,3 +14,6 @@ yarn-debug.log*
 yarn-error.log*
 .vercel
 next-env.d.ts
+
+# Local-only video assets (symlink to ~/Movies/DRYPOINT-web/02_web). Videos ship from Vercel Blob, never git.
+public/_media

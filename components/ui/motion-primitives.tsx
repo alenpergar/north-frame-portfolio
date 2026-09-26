@@ -64,7 +64,22 @@ type ParallaxProps = {
   amount?: number;
   /** Optional constant scale so the travel never exposes an edge on full-bleed media. */
   scale?: number;
+  /** No travel below 768px, where the layout is a single stacked column. */
+  desktopOnly?: boolean;
 };
+
+/** `true` at or above 768px. SSR-safe, starts `false`. */
+function useDesktop() {
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setDesktop(mq.matches);
+    const on = () => setDesktop(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  return desktop;
+}
 
 /**
  * Translates its children vertically as the element scrolls through the
@@ -76,9 +91,17 @@ type ParallaxProps = {
  * are all `absolute inset-0` over their section), which is what Framer measures
  * the scroll offset against.
  */
-export function Parallax({ children, className, amount = 48, scale = 1 }: ParallaxProps) {
+export function Parallax({
+  children,
+  className,
+  amount = 48,
+  scale = 1,
+  desktopOnly = false,
+}: ParallaxProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const ready = useMotionReady();
+  const motionReady = useMotionReady();
+  const desktop = useDesktop();
+  const ready = motionReady && (!desktopOnly || desktop);
   const coarse = useCoarsePointer();
   const { scrollYProgress } = useScroll({
     target: ref,

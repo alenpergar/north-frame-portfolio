@@ -1,35 +1,41 @@
 import type { Metadata } from "next";
 import { getDict, localePath, ogLocale, type Locale } from "@/lib/i18n";
 
-const SITE = "https://www.drypointcreative.com";
+/** Production origin. The single source for every absolute URL (metadata, JSON-LD). */
+export const SITE = "https://www.drypointcreative.com";
 
 // Site-level copy lives here rather than in the page dictionary: it describes
-// the document, not anything rendered on screen.
+// the document, not anything rendered on screen. Positioning (2026-09): AI
+// commercials and video production first, premium web design and development
+// second. Titles are the ones the owner specified.
 const site: Record<Locale, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "DRYPOINT — Premium Digital Design Studio",
+    title: "AI Commercials & Premium Websites — DRYPOINT",
     description:
-      "DRYPOINT is a premium digital design studio crafting high-end websites, landing pages, and AI-powered creative experiences for brands that refuse to look ordinary.",
+      "DRYPOINT is an independent creative studio for AI commercials, video production and premium web design and development, based in Slovenia.",
     ogDescription:
-      "High-end websites, landing pages, and AI-powered creative experiences.",
+      "AI commercials, video production and premium websites from an independent creative studio.",
   },
   sl: {
-    title: "Izdelava spletnih strani za podjetja — DRYPOINT",
+    title: "AI oglasi in vrhunske spletne strani — DRYPOINT",
     description:
-      "Izdelava sodobnih spletnih strani po meri za podjetja, ki želijo profesionalen nastop, jasno uporabniško izkušnjo in močno digitalno prisotnost.",
+      "DRYPOINT je neodvisen kreativni studio za AI oglase, video produkcijo ter oblikovanje in izdelavo vrhunskih spletnih strani, s sedežem v Sloveniji.",
     ogDescription:
-      "Vrhunske spletne strani, pristajalne strani in AI-podprte kreativne izkušnje.",
+      "AI oglasi, video produkcija in vrhunske spletne strani neodvisnega kreativnega studia.",
   },
 };
 
+/** The other locale's Open Graph code, for og:locale:alternate. */
+const otherOgLocale = (locale: Locale) => ogLocale[locale === "en" ? "sl" : "en"];
+
 /**
- * Both locales describe the same two pages, so every page advertises the other
+ * Both locales describe the same pages, so every page advertises the other
  * language through `alternates.languages`. `x-default` points at English,
- * which is the site's default.
+ * which is the site's default. Each caller sets its own locale's canonical;
+ * `localePath` stays the single source of truth for every URL.
  */
 function alternates(path: string) {
   return {
-    canonical: localePath("en", path) === path ? path : path,
     languages: {
       en: localePath("en", path),
       sl: localePath("sl", path),
@@ -55,6 +61,7 @@ export function siteMetadata(locale: Locale): Metadata {
       siteName: "DRYPOINT",
       type: "website",
       locale: ogLocale[locale],
+      alternateLocale: otherOgLocale(locale),
       url: localePath(locale, "/"),
       images: [
         {
@@ -90,6 +97,7 @@ export function caseStudyMetadata(locale: Locale): Metadata {
       description: t.ogDescription,
       type: "article",
       locale: ogLocale[locale],
+      alternateLocale: otherOgLocale(locale),
       url: localePath(locale, path),
       images: [
         {
@@ -130,6 +138,7 @@ export function privacyMetadata(locale: Locale): Metadata {
       description: t.metaDescription,
       type: "article",
       locale: ogLocale[locale],
+      alternateLocale: otherOgLocale(locale),
       url: localePath(locale, path),
       images: [
         {
