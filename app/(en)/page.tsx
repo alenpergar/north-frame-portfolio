@@ -5,6 +5,8 @@ import { Commercials } from "@/components/commercials";
 import { Capabilities } from "@/components/capabilities";
 import { Process } from "@/components/process";
 import { DigitalWork } from "@/components/digital-work";
+import { Pricing } from "@/components/pricing";
+import { Faq } from "@/components/faq";
 import { Closing } from "@/components/closing";
 import { Footer } from "@/components/footer";
 import { PlaybackProvider } from "@/components/video/playback-provider";
@@ -27,6 +29,8 @@ export default function Home() {
           <Capabilities dict={dict} />
           <Process dict={dict} />
           <DigitalWork dict={dict} locale={locale} />
+          <Pricing dict={dict} />
+          <Faq dict={dict} />
           <Closing dict={dict} />
         </main>
         <Footer dict={dict} locale={locale} />

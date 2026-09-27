@@ -110,6 +110,68 @@ export const sl: Dict = {
     },
   },
 
+  pricing: {
+    eyebrow: "Cenik",
+    title: "Jasna začetna cena. Vsak projekt je drugačen.",
+    description:
+      "Vsak projekt je pripravljen individualno glede na cilje, zahtevnost in produkcijske potrebe.",
+    items: [
+      {
+        name: "AI reklame",
+        price: "Od 300 €",
+        description: "AI produkcija reklam, od koncepta do končnega filma.",
+      },
+      {
+        name: "Spletno oblikovanje in razvoj",
+        price: "Od 700 €",
+        description: "Oblikovanje in izdelava spletnih strani, prilagojenih vašemu podjetju.",
+      },
+      {
+        name: "Projekti po meri",
+        price: "Pogovorimo se",
+        description: "Za večje, kompleksnejše ali kombinirane kreativne projekte.",
+      },
+    ],
+    ctaLead: "Imate projekt v mislih?",
+    ctaLabel: "Stopite v stik",
+  },
+
+  faq: {
+    eyebrow: "Pogosta vprašanja",
+    title: "Vprašanja, ki jih morda imate.",
+    items: [
+      {
+        question: "Kaj vključuje AI reklama?",
+        answer:
+          "Odvisno od projekta lahko produkcija vključuje razvoj koncepta, vizualno režijo, AI generiranje, montažo, oblikovanje zvoka in končno izvedbo. Natančen obseg določimo pred začetkom produkcije.",
+      },
+      {
+        question: "Koliko stane AI reklama?",
+        answer:
+          "Projekti AI reklam se začnejo pri 300 €. Končna cena je odvisna od koncepta, dolžine, števila kadrov, zahtevnosti produkcije in končnih materialov.",
+      },
+      {
+        question: "Koliko časa traja projekt?",
+        answer:
+          "Čas izvedbe je odvisen od obsega projekta. Manjše produkcije so lahko izvedene hitro, kompleksnejši koncepti pa zahtevajo več časa za razvoj, generiranje in dodelavo.",
+      },
+      {
+        question: "Ali lahko skupaj izdelate spletno stran in reklamo?",
+        answer:
+          "Da. Oblikovanje spletne strani, razvoj in produkcijo AI reklame lahko združimo v enoten kreativni projekt, kadar je to smiselno za znamko.",
+      },
+      {
+        question: "Ali sodelujete s strankami zunaj Slovenije?",
+        answer: "Da. DRYPOINT ima sedež v Sloveniji in sodeluje s strankami ne glede na njihovo lokacijo.",
+      },
+      {
+        question: "Kako začnemo?",
+        answer:
+          "Pošljite sporočilo preko kontaktnega obrazca s kratkim opisom projekta. Pred začetkom se pogovorimo o ideji, obsegu in naslednjih korakih.",
+      },
+    ],
+  },
+
   closing: {
     about:
       "DRYPOINT je neodvisen kreativni studio, ki ga vodi Alen. S sedežem v Sloveniji, za znamke kjerkoli.",
@@ -143,6 +205,7 @@ export const sl: Dict = {
       { to: "/#services", label: "Storitve" },
       { to: "/#process", label: "Proces" },
       { to: "/#digital", label: "Digitalno" },
+      { to: "/#pricing", label: "Cenik" },
       { to: "/#contact", label: "Kontakt" },
     ],
     nav: "Noga",

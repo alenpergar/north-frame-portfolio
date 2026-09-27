@@ -64,6 +64,23 @@ export type Dict = {
     vivelle: { title: string; description: string; action: string; alt: string };
   };
 
+  /** Starting prices. Factual only: three entries, no tiers, no claims. */
+  pricing: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: { name: string; price: string; description: string }[];
+    ctaLead: string;
+    ctaLabel: string;
+  };
+
+  /** Questions and answers. Factual only; no new claims. */
+  faq: {
+    eyebrow: string;
+    title: string;
+    items: { question: string; answer: string }[];
+  };
+
   /** About and contact, closed together: two sentences, then the ask. */
   closing: {
     about: string;

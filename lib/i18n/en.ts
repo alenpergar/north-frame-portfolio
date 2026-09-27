@@ -110,6 +110,68 @@ export const en: Dict = {
     },
   },
 
+  pricing: {
+    eyebrow: "Pricing",
+    title: "Clear starting points. Every project is different.",
+    description:
+      "Projects are scoped individually based on the goals, complexity and production requirements.",
+    items: [
+      {
+        name: "AI Commercials",
+        price: "From €300",
+        description: "AI-powered commercial production, from concept to final film.",
+      },
+      {
+        name: "Web Design & Development",
+        price: "From €700",
+        description: "Custom websites designed and developed around your business.",
+      },
+      {
+        name: "Custom Projects",
+        price: "Let’s talk",
+        description: "For larger, more complex or combined creative projects.",
+      },
+    ],
+    ctaLead: "Have a project in mind?",
+    ctaLabel: "Get in touch",
+  },
+
+  faq: {
+    eyebrow: "FAQ",
+    title: "Questions you might have.",
+    items: [
+      {
+        question: "What does an AI commercial include?",
+        answer:
+          "Depending on the project, production can include concept development, visual direction, AI generation, editing, sound design and final delivery. The exact scope is defined before production begins.",
+      },
+      {
+        question: "How much does an AI commercial cost?",
+        answer:
+          "AI commercial projects start at €300. The final price depends on the concept, length, number of scenes, production complexity and required deliverables.",
+      },
+      {
+        question: "How long does a project take?",
+        answer:
+          "Timelines depend on the scope of the project. Smaller productions can move quickly, while more complex concepts require additional development, generation and refinement.",
+      },
+      {
+        question: "Can you create a website and a commercial together?",
+        answer:
+          "Yes. Web design, development and AI commercial production can be combined into one creative project when it makes sense for the brand.",
+      },
+      {
+        question: "Do you work with clients outside Slovenia?",
+        answer: "Yes. DRYPOINT is based in Slovenia and works with clients regardless of location.",
+      },
+      {
+        question: "How do we start?",
+        answer:
+          "Send a message through the contact form with a short description of your project. We will discuss the idea, scope and next steps before anything is started.",
+      },
+    ],
+  },
+
   closing: {
     about:
       "DRYPOINT is an independent creative studio led by Alen. Based in Slovenia, working with brands anywhere.",
@@ -145,6 +207,7 @@ export const en: Dict = {
       { to: "/#services", label: "Capabilities" },
       { to: "/#process", label: "Process" },
       { to: "/#digital", label: "Digital" },
+      { to: "/#pricing", label: "Pricing" },
       { to: "/#contact", label: "Contact" },
     ],
     nav: "Footer",
