@@ -8,6 +8,8 @@ export const sl: Dict = {
       { to: "/#work", label: "Delo" },
       { to: "/#services", label: "Storitve" },
       { to: "/#digital", label: "Digitalno" },
+      { to: "/#pricing", label: "Cenik" },
+      { to: "/#faq", label: "Vprašanja" },
       { to: "/#contact", label: "Kontakt" },
     ],
     cta: "Začnimo projekt",

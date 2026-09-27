@@ -9,6 +9,8 @@ export const en: Dict = {
       { to: "/#work", label: "Work" },
       { to: "/#services", label: "Capabilities" },
       { to: "/#digital", label: "Digital" },
+      { to: "/#pricing", label: "Pricing" },
+      { to: "/#faq", label: "FAQ" },
       { to: "/#contact", label: "Contact" },
     ],
     cta: "Start a project",

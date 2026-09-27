@@ -204,9 +204,10 @@ export function Nav({ dict, locale, path }: NavProps) {
         <nav className="container-px mx-auto flex max-w-content items-center justify-between py-4">
           <Logo href={localePath(locale, "/")} />
 
-          {/* Handoff at 880px, not md/768: below that the full row (logo +
-              links + switcher + CTA) no longer fits and the menu takes over. */}
-          <ul className="hidden min-[880px]:flex items-center gap-6 lg:gap-9 text-sm text-ink-muted transition-colors duration-300 group-data-[over-film=true]/header:text-ink">
+          {/* Handoff at 1120px: with six links (incl. Pricing and FAQ) the full
+              row (logo + links + switcher + CTA) touches or overflows below
+              that, measured in both locales, so the menu takes over. */}
+          <ul className="hidden min-[1120px]:flex items-center gap-6 lg:gap-9 text-sm text-ink-muted transition-colors duration-300 group-data-[over-film=true]/header:text-ink">
             {dict.nav.links.map((link) => (
               <li key={link.to}>
                 <Link
@@ -219,7 +220,7 @@ export function Nav({ dict, locale, path }: NavProps) {
             ))}
           </ul>
 
-          <div className="hidden min-[880px]:flex items-center gap-5 shrink-0">
+          <div className="hidden min-[1120px]:flex items-center gap-5 shrink-0">
             <LanguageSwitcher locale={locale} path={path} dict={dict} />
             <Button
               as="a"
@@ -242,7 +243,7 @@ export function Nav({ dict, locale, path }: NavProps) {
             aria-expanded={menuOpen}
             aria-controls="nav-menu-panel"
             onClick={() => setMenuOpen((v) => !v)}
-            className="min-[880px]:hidden inline-flex h-11 w-11 items-center justify-center text-ink"
+            className="min-[1120px]:hidden inline-flex h-11 w-11 items-center justify-center text-ink"
           >
             {menuOpen ? <X size={24} /> : <List size={24} />}
           </button>
@@ -268,7 +269,7 @@ export function Nav({ dict, locale, path }: NavProps) {
             // goes straight to the page instead of being caught by the overlay.
             exit={{ opacity: 0, pointerEvents: "none" }}
             transition={{ duration: shouldReduce ? 0 : 0.25 }}
-            className="min-[880px]:hidden fixed inset-0 top-0 z-40 h-dvh bg-bg"
+            className="min-[1120px]:hidden fixed inset-0 top-0 z-40 h-dvh bg-bg"
           >
             <motion.ul
               className="container-px flex h-full flex-col justify-center gap-6 pb-24"
