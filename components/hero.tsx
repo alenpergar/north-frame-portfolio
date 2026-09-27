@@ -99,7 +99,10 @@ export function Hero({ dict }: { dict: Dict }) {
       id="top"
       // Pulled up under the sticky header so the film starts at the very top
       // of the screen. 77px is the header's height (py-4 + 44px + 1px border).
-      className="relative -mt-[77px] overflow-hidden bg-bg md:flex md:min-h-dvh md:items-end"
+      // Opening now sits between the sticky header and Hero, so the header
+      // offset that used to live here moved to Opening (it is the first
+      // element after the header now). Everything else here is unchanged.
+      className="relative overflow-hidden bg-bg md:flex md:min-h-dvh md:items-end"
     >
       <motion.div
         style={ready ? { scale: filmScale } : undefined}

@@ -1,6 +1,10 @@
 import { Nav } from "@/components/nav";
 import { StructuredData } from "@/components/structured-data";
 import { Hero } from "@/components/hero";
+import { Opening } from "@/components/cinematic/opening";
+import { TheLens } from "@/components/cinematic/the-lens";
+import { ScrollTimelineProvider } from "@/components/cinematic/scroll-timeline-provider";
+import { PauseBeat } from "@/components/cinematic/pause-beat";
 import { Commercials } from "@/components/commercials";
 import { Capabilities } from "@/components/capabilities";
 import { Process } from "@/components/process";
@@ -24,11 +28,16 @@ export default function Home() {
         <StructuredData />
         <Nav dict={dict} locale={locale} path="/" />
         <main>
-          <Hero dict={dict} />
+          <ScrollTimelineProvider>
+            <Opening />
+            <TheLens />
+            <Hero dict={dict} />
+          </ScrollTimelineProvider>
           <Commercials dict={dict} />
           <Capabilities dict={dict} />
           <Process dict={dict} />
           <DigitalWork dict={dict} locale={locale} />
+          <PauseBeat />
           <Pricing dict={dict} />
           <Faq dict={dict} />
           <Closing dict={dict} />

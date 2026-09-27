@@ -94,6 +94,21 @@ export const campaigns: Record<CampaignId, Campaign> = {
 };
 
 /**
+ * The Lens: a 2.8 s macro rack-focus shot, silent, looping, that sits between
+ * the DRYPOINT impact and Hero in the cinematic opening. Single H.264
+ * rendition for now (no AV1/HEVC pass has been produced for it yet).
+ */
+export const theLensLoop: VideoSource[] = [
+  { src: v("the-lens/loop_1280x720.h264.mp4"), type: H264_720 },
+];
+
+export const theLensPoster: Poster = {
+  src: "/media/posters/the-lens_1280x720.jpg",
+  width: 1280,
+  height: 720,
+};
+
+/**
  * The PULSE hero loop (9.6 s, silent): four of the spot's six shots in their
  * original order. Three renditions; the hero picks one at mount from the
  * viewport, then the browser picks the codec.
