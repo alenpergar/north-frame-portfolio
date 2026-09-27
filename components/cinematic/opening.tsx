@@ -158,7 +158,7 @@ export function Opening() {
         <CinematicStage className="flex h-[100dvh] flex-col items-center justify-center border-b border-border">
           <motion.p
             ref={scope}
-            className="will-change-transform select-none text-center font-sans font-extrabold uppercase leading-none text-ink [font-size:clamp(2.75rem,12.5vw,6.25rem)] [letter-spacing:0.01em]"
+            className="will-change-transform select-none text-center font-sans uppercase leading-none text-ink [font-size:clamp(2.5rem,10.8vw,6.25rem)] [font-weight:750] [letter-spacing:0.11em]"
           >
             DRYPOINT
           </motion.p>
