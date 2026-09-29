@@ -1,0 +1,150 @@
+[
+  {
+    "id": "vivelle",
+    "path": "/vivelle-beauty",
+    "title": "VIVELLE Beauty — Luxury Beauty Studio",
+    "sections": [
+      {
+        "key": "top",
+        "h": 900,
+        "tex": "vivelle-0"
+      },
+      {
+        "key": "about",
+        "h": 991,
+        "tex": "vivelle-1"
+      },
+      {
+        "key": "services",
+        "h": 824,
+        "tex": "vivelle-2"
+      },
+      {
+        "key": "gallery",
+        "h": 1852,
+        "tex": "vivelle-3"
+      },
+      {
+        "key": "booking",
+        "h": 950,
+        "tex": "vivelle-4"
+      }
+    ]
+  },
+  {
+    "id": "lumiere",
+    "path": "/lumiere-dental",
+    "title": "LUMIÈRE Dental Studio — Luxury Private Dental Care",
+    "sections": [
+      {
+        "key": "top",
+        "h": 962,
+        "tex": "lumiere-0"
+      },
+      {
+        "key": "about",
+        "h": 946,
+        "tex": "lumiere-1"
+      },
+      {
+        "key": "services",
+        "h": 973,
+        "tex": "lumiere-2"
+      },
+      {
+        "key": "why-lumiere",
+        "h": 608,
+        "tex": "lumiere-3"
+      },
+      {
+        "key": "team",
+        "h": 720,
+        "tex": "lumiere-team"
+      },
+      {
+        "key": "experience",
+        "h": 975,
+        "tex": "lumiere-experience"
+      },
+      {
+        "key": "contact",
+        "h": 835,
+        "tex": "lumiere-4"
+      }
+    ]
+  },
+  {
+    "id": "aurelia",
+    "path": "/aurelia",
+    "title": "Aurelia — Modern Fire-Cooked Dining",
+    "sections": [
+      {
+        "key": "top",
+        "h": 952,
+        "tex": "aurelia-0"
+      },
+      {
+        "key": "dishes",
+        "h": 1075,
+        "tex": "aurelia-1"
+      },
+      {
+        "key": "story",
+        "h": 946,
+        "tex": "aurelia-2"
+      },
+      {
+        "key": "menu",
+        "h": 649,
+        "tex": "aurelia-3"
+      },
+      {
+        "key": "reviews",
+        "h": 553,
+        "tex": "aurelia-reviews"
+      },
+      {
+        "key": "contact",
+        "h": 835,
+        "tex": "aurelia-4"
+      }
+    ]
+  },
+  {
+    "id": "nova",
+    "path": "/nova-performance",
+    "title": "NOVA Performance — Elite Fitness Coaching by Ethan Cole",
+    "sections": [
+      {
+        "key": "top",
+        "h": 932,
+        "tex": "nova-0"
+      },
+      {
+        "key": "about",
+        "h": 834,
+        "tex": "nova-1"
+      },
+      {
+        "key": "programs",
+        "h": 1220,
+        "tex": "nova-2"
+      },
+      {
+        "key": "method",
+        "h": 749,
+        "tex": "nova-3"
+      },
+      {
+        "key": "results",
+        "h": 1160,
+        "tex": "nova-results"
+      },
+      {
+        "key": "contact",
+        "h": 761,
+        "tex": "nova-4"
+      }
+    ]
+  }
+]
