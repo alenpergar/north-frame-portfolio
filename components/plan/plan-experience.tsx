@@ -151,6 +151,9 @@ function PlanPoster({ portrait }: { portrait: boolean }) {
 }
 
 
+const SHORT = "[@media(max-height:599px)]:right-auto [@media(max-height:599px)]:max-h-[calc(100dvh-7.5rem)] [@media(max-height:599px)]:overflow-y-auto";
+const SHORT_LIVE = "[@media(max-height:599px)]:pointer-events-auto";
+
 // Only the space in view takes the pointer; the others are there to be read
 // (screen readers, search) and step in when keyboard focus reaches them.
 const LIVE =
@@ -177,8 +180,11 @@ function Panel({
       onFocus={() => {
         if (!active) onEnter();
       }}
-      className={`absolute inset-x-0 bottom-0 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-        active ? `opacity-100 ${LIVE}` : "opacity-0"
+      // Below 600 px of height (a phone on its side) a space scrolls inside
+      // itself between the header and the bottom, only as wide as its text,
+      // so the models beside it still answer to the pointer
+      className={`absolute inset-x-0 bottom-0 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${SHORT} ${
+        active ? `opacity-100 ${LIVE} ${SHORT_LIVE}` : "opacity-0"
       } ${className}`}
     >
       {children}
@@ -367,7 +373,7 @@ export function PlanExperience({ copy, home = "/" }: { copy: PlanCopy; home?: st
     // Pulled up under the header (77px), as the homepage hero is: the header hides
     // on the way down, so the stage has to be the whole screen, not the rest of it.
     <section ref={sectionRef} aria-label="The DRYPOINT site, as a plan" className="relative -mt-[77px]" style={{ height: `${STOPS.length * 110}vh` }}>
-      <div className="sticky top-0 h-[100dvh] min-h-[600px] overflow-hidden" style={{ background: GROUND }}>
+      <div className="sticky top-0 h-[100dvh] min-h-[600px] overflow-hidden [@media(max-height:599px)]:min-h-0" style={{ background: GROUND }}>
         {!live && (
           <>
             <div className={portrait === null ? "hidden md:block" : portrait ? "hidden" : ""}>
@@ -459,7 +465,7 @@ export function PlanExperience({ copy, home = "/" }: { copy: PlanCopy; home?: st
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[150px] bg-[linear-gradient(to_bottom,rgb(14_14_15/0.9)_0%,rgb(14_14_15/0.75)_62%,rgb(14_14_15/0)_100%)] md:hidden" />
 
         {/* the spaces: DOM navigation, in the order of the plan */}
-        <nav aria-label="Spaces" className="absolute inset-x-6 top-[86px] z-10 sm:inset-x-10 md:inset-x-auto md:bottom-14 md:right-8 md:top-auto">
+        <nav aria-label="Spaces" className="absolute inset-x-6 top-[86px] z-10 sm:inset-x-10 md:inset-x-auto md:bottom-14 md:right-8 md:top-auto [@media(min-width:768px)_and_(max-height:599px)]:bottom-5">
           <ol className="flex gap-3.5 md:flex-col md:gap-2.5">
             {SPACES.map((sp, i) => (
               <li key={sp.id}>
@@ -481,7 +487,7 @@ export function PlanExperience({ copy, home = "/" }: { copy: PlanCopy; home?: st
 
         {/* content: one section per space, crossfading as the camera arrives */}
         <div className="container-px pointer-events-none relative mx-auto h-full max-w-content">
-          <div className="absolute inset-x-6 bottom-10 sm:inset-x-10 md:bottom-14 lg:inset-x-16">
+          <div className="absolute inset-x-6 bottom-10 sm:inset-x-10 md:bottom-14 lg:inset-x-16 [@media(max-height:599px)]:bottom-5">
             <Panel {...panel("overview")}>
               <h1 {...head("overview")} className="max-w-[11ch] text-[clamp(2.3rem,4.6vw,4.75rem)] font-medium leading-[0.98] tracking-[-0.035em] text-ink focus:outline-none">
                 {copy.title}

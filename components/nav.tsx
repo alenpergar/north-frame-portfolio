@@ -198,7 +198,10 @@ export function Nav({ dict, locale, path }: NavProps) {
           "group/header sticky top-0 z-50 transition-[background-color,border-color] duration-300",
           scrolled
             ? "bg-bg/80 backdrop-blur-md border-b border-border"
-            : "bg-transparent border-b border-transparent"
+            : "bg-transparent border-b border-transparent",
+          // with the menu open the header sits on the menu's own ground, so
+          // links scrolled up under it (a phone on its side) stay out of sight
+          menuOpen && "!bg-bg"
         )}
       >
         <nav className="container-px mx-auto flex max-w-content items-center justify-between py-4">
@@ -269,10 +272,14 @@ export function Nav({ dict, locale, path }: NavProps) {
             // goes straight to the page instead of being caught by the overlay.
             exit={{ opacity: 0, pointerEvents: "none" }}
             transition={{ duration: shouldReduce ? 0 : 0.25 }}
-            className="min-[1120px]:hidden fixed inset-0 top-0 z-40 h-dvh bg-bg"
+            // Scrolls within itself when the links are taller than the screen
+            // (a phone on its side); otherwise nothing changes.
+            className="min-[1120px]:hidden fixed inset-0 top-0 z-40 h-dvh overflow-y-auto overscroll-contain bg-bg"
           >
             <motion.ul
-              className="container-px flex h-full flex-col justify-center gap-6 pb-24"
+              // min-h-full: centred as before when the links fit, and when
+              // they do not, they start below the header instead of above it
+              className="container-px flex min-h-full flex-col justify-center gap-6 pb-24 [@media(max-height:599px)]:pb-10 [@media(max-height:599px)]:pt-24"
               // Reduced motion: items are present the moment the menu opens,
               // no stagger and no slide to sit through.
               initial={shouldReduce ? false : "hidden"}
