@@ -1,4 +1,4 @@
-/* Page-local styles for the Slovenian homepage (app/(sl)/sl/page.tsx). Scoped under .sell so
+/* Page-local styles for the homepage (components/sell/sell-page.tsx). Scoped under .sell so
    nothing here reaches the rest of the site. The palette is the site's own
    from before the screening-room and 3D phases (git 3a5f0f1): near-black,
    warm off-white and one copper-orange accent. */

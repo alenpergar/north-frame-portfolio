@@ -17,7 +17,7 @@ export function MobileMenu({
 }: {
   items: Item[];
   cta: Item;
-  labels: { open: string; close: string };
+  labels: { open: string; close: string; nav: string };
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -60,7 +60,7 @@ export function MobileMenu({
         hidden={!open}
         className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto border-t border-[var(--rule)] bg-[var(--bg)]"
       >
-        <nav aria-label="Mobilna navigacija" className="container-px flex min-h-full flex-col pb-10 pt-6">
+        <nav aria-label={labels.nav} className="container-px flex min-h-full flex-col pb-10 pt-6">
           <ul className="divide-y divide-[var(--rule)] border-b border-[var(--rule)]">
             {items.map((item) => (
               <li key={item.href}>
