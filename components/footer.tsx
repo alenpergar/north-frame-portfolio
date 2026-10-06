@@ -10,14 +10,16 @@ const SOCIALS = [
   { href: "https://www.linkedin.com/in/alenpergar", label: "LinkedIn", icon: LinkedinLogo },
 ];
 
-export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
+// `homeHref` lets a page point the wordmark somewhere other than the locale
+// homepage (a prototype route links back to itself).
+export function Footer({ dict, locale, homeHref }: { dict: Dict; locale: Locale; homeHref?: string }) {
   const t = dict.footer;
   return (
     <footer className="border-t border-border py-16">
       <div className="container-px mx-auto max-w-content">
         <div className="flex flex-col gap-12 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-xs">
-            <Logo height={28} href={localePath(locale, "/")} />
+            <Logo height={28} href={homeHref ?? localePath(locale, "/")} />
             <p className="mt-4 text-sm text-ink-muted leading-relaxed">
               {t.blurb}
             </p>

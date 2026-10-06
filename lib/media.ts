@@ -1,5 +1,5 @@
 /**
- * The four films on the site and every file each one ships as.
+ * The films on the site and every file each one ships as.
  *
  * Videos are served from MEDIA_BASE: Vercel Blob in production
  * (`NEXT_PUBLIC_MEDIA_BASE_URL`), and `/_media` locally, a git-ignored
@@ -21,7 +21,7 @@ export type Poster = { src: string; width: number; height: number };
 /** Client work, spec work for a real brand, or an invented brand. */
 export type CampaignStatus = "client" | "spec" | "concept";
 
-export type CampaignId = "pulse" | "snap" | "proda" | "matcha";
+export type CampaignId = "pulse" | "snap" | "redbull" | "proda" | "matcha";
 
 export type Campaign = {
   id: CampaignId;
@@ -64,6 +64,19 @@ export const campaigns: Record<CampaignId, Campaign> = {
       { src: v("snap/preview_1280x720.h264.mp4"), type: H264_720 },
     ],
     full: { src: v("snap/full_1280x720.h264.mp4"), width: 1280, height: 720 },
+  },
+  redbull: {
+    id: "redbull",
+    name: "Red Bull",
+    status: "spec",
+    duration: 75,
+    orientation: "landscape",
+    poster: { src: "/media/posters/redbull_1280x720.jpg", width: 1280, height: 720 },
+    preview: [
+      { src: v("redbull/preview_1280x720.av1.mp4"), type: AV1_720 },
+      { src: v("redbull/preview_1280x720.h264.mp4"), type: H264_720 },
+    ],
+    full: { src: v("redbull/full_1280x720.h264.mp4"), width: 1280, height: 720 },
   },
   proda: {
     id: "proda",
