@@ -27,6 +27,8 @@ type Copy = {
   conceptsTitle: string;
   webServices: { title: string; body: string }[];
   servicesTitle: string;
+  /** Under "web design and development" in the pricing table. */
+  webIncluded: { title: string; items: string[]; payment: string; cta: string };
   processTitle: string;
   processBody: string;
   process: { title: string; body: string }[];
@@ -62,6 +64,24 @@ export const SELL_COPY: Record<Locale, Copy> = {
       },
     ],
     servicesTitle: "Storitve",
+    webIncluded: {
+      title: "Kaj je vključeno",
+      items: [
+        "Pogovor o vašem podjetju, strankah in ciljih strani",
+        "Struktura strani in načrt vsebine (do 5 podstrani)",
+        "Unikatno oblikovanje, brez predlog",
+        "Pomoč pri besedilih, ki jasno predstavijo vašo ponudbo",
+        "Prilagoditev za telefone in tablice",
+        "Osnovna optimizacija za Google (naslovi, opisi, hitrost)",
+        "Kontaktni obrazec in povezave do družbenih omrežij",
+        "Pomoč pri domeni, gostovanju in objavi",
+        "Piškotki in osnovna skladnost z GDPR",
+        "2 kroga popravkov pred objavo",
+        "30 dni brezplačne podpore po objavi",
+      ],
+      payment: "Enkratno plačilo, brez mesečne naročnine.",
+      cta: "Pošljite povpraševanje",
+    },
     processTitle: "Pet korakov. Brez ugibanja.",
     processBody: "Strukturirana pot od prvega pogovora do lansiranja, pregledna na vsaki stopnji.",
     process: [
@@ -113,6 +133,24 @@ export const SELL_COPY: Record<Locale, Copy> = {
       },
     ],
     servicesTitle: "Services",
+    webIncluded: {
+      title: "What’s included",
+      items: [
+        "A conversation about your business, your customers and the site’s goals",
+        "Site structure and content plan (up to 5 subpages)",
+        "Original design, no templates",
+        "Help with copy that presents your offer clearly",
+        "Adapted for phones and tablets",
+        "Basic Google optimization (titles, descriptions, speed)",
+        "Contact form and links to your social media",
+        "Help with the domain, hosting and launch",
+        "Cookie consent and basic GDPR compliance",
+        "2 rounds of revisions before launch",
+        "30 days of free support after launch",
+      ],
+      payment: "One-time payment, no monthly subscription.",
+      cta: "Send an inquiry",
+    },
     processTitle: "Five steps. No guesswork.",
     processBody: "A structured path from first conversation to launch, transparent at every stage.",
     process: [

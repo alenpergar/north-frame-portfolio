@@ -26,6 +26,24 @@ const btnLine =
 const h2 = "text-[clamp(1.875rem,3.4vw,3rem)] font-medium leading-[1.05] tracking-[-0.03em]";
 const body = "text-[17px] leading-[1.6] text-[var(--muted)]";
 
+/** The tick before each "what's included" line, in the accent colour. */
+function CheckMark() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      className="mt-[3px] h-4 w-4 shrink-0 text-[var(--accent)]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 8.5 6.5 12 13 4.5" />
+    </svg>
+  );
+}
+
 /** Display type: never break inside a hyphenated word ("in-house"). */
 function keepHyphenated(text: string) {
   return text.split(/(\S*-\S*)/).map((part, i) =>
@@ -161,11 +179,9 @@ export function SellPage({ locale }: { locale: Locale }) {
                         href={href}
                         className="group flex min-h-[64px] items-baseline justify-between gap-6 border-t border-[var(--rule)] py-5"
                       >
+                        {/* Names only: prices are shown once, in the pricing section. */}
                         <span className="text-[20px] font-medium tracking-[-0.015em] transition-colors group-hover:text-[var(--accent)] md:text-[24px]">
                           {item.name}
-                        </span>
-                        <span className="shrink-0 text-[20px] font-medium tracking-[-0.015em] text-[var(--accent)] md:text-[24px]">
-                          {item.price}
                         </span>
                       </a>
                     </li>
@@ -346,6 +362,24 @@ export function SellPage({ locale }: { locale: Locale }) {
                           {item.price}
                         </dd>
                         <dd className="text-[15px] leading-[1.6] text-[var(--muted)]">{item.description}</dd>
+                        {/* Web design and development: what the starting price covers. */}
+                        {i === 1 && (
+                          <dd className="mt-4 border-t border-[var(--rule)] pt-6 sm:col-span-2">
+                            <h3 className="text-[17px] font-medium tracking-[-0.01em]">{COPY.webIncluded.title}</h3>
+                            <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 xl:grid-cols-2">
+                              {COPY.webIncluded.items.map((line) => (
+                                <li key={line} className="flex gap-3 text-[15px] leading-[1.5] text-[var(--fg)]">
+                                  <CheckMark />
+                                  <span>{line}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <p className="mt-6 text-[15px] text-[var(--muted)]">{COPY.webIncluded.payment}</p>
+                            <a href={`#${SECTION.contact}`} className={`${btnAccent} mt-6`}>
+                              {COPY.webIncluded.cta}
+                            </a>
+                          </dd>
+                        )}
                       </div>
                     ))}
                   </dl>
