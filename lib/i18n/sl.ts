@@ -5,9 +5,8 @@ import type { Dict } from "./types";
 export const sl: Dict = {
   nav: {
     links: [
-      { to: "/#work", label: "Delo" },
+      { to: "/#digital", label: "Delo" },
       { to: "/#services", label: "Storitve" },
-      { to: "/#digital", label: "Digitalno" },
       { to: "/#pricing", label: "Cenik" },
       { to: "/#faq", label: "Vprašanja" },
       { to: "/#contact", label: "Kontakt" },
@@ -36,9 +35,9 @@ export const sl: Dict = {
   },
 
   hero: {
-    title: ["Reklame, ustvarjene z AI.", "Režirane kot film."],
+    title: ["Spletne strani za podjetja,", "ki želijo več."],
     primary: "Začnimo projekt",
-    secondary: "Oglejte si film",
+    secondary: "Oglejte si projekte",
   },
 
   commercials: {
@@ -52,29 +51,28 @@ export const sl: Dict = {
   },
 
   capabilities: {
-    title: "Od scenarija do končne montaže.",
+    title: "Od prvega pogovora do objave.",
     items: [
       {
-        title: "AI reklame",
-        description: "Spoti za lansiranja, kampanje in družbena omrežja, od ideje do končne montaže.",
+        title: "Spletne strani za podjetja",
+        description:
+          "Celovite predstavitvene strani po meri, zasnovane za jasnost, hitrost in profesionalen prvi vtis. Združujejo premišljen dizajn, pregledno strukturo in zanesljivo delovanje na vseh napravah.",
       },
       {
-        title: "AI video produkcija",
-        description: "Produktni filmi in vizuali znamke, brez klasičnega snemanja.",
+        title: "Enostranske strani",
+        description:
+          "Osredotočene enostranske predstavitve z visoko konverzijo za manjša podjetja, samostojne podjetnike in posamezne ponudbe, zgrajene okoli enega cilja in jasne poti do dejanja.",
       },
       {
-        title: "Kreativno oglaševanje",
-        description: "Koncepti, scenariji in kampanjske linije, ki dajo izdelku kaj povedati.",
-      },
-      {
-        title: "Splet in digitalno",
-        description: "Spletne in pristajalne strani, zasnovane in izdelane v studiu.",
+        title: "Prenova in optimizacija",
+        description:
+          "Posodobitev obstoječe spletne strani z modernejšim videzom, preglednejšo strukturo in boljšo uporabniško izkušnjo. Posebna pozornost je namenjena mobilnim napravam, hitrosti nalaganja in enostavni uporabi.",
       },
     ],
   },
 
   process: {
-    title: "Kako nastane spot.",
+    title: "Kako nastane spletna stran.",
     steps: [
       {
         title: "Brief",
@@ -114,26 +112,70 @@ export const sl: Dict = {
 
   pricing: {
     eyebrow: "Cenik",
-    title: "Jasna začetna cena. Vsak projekt je drugačen.",
+    title: "Jasne cene. Brez presenečenj.",
     description:
-      "Vsak projekt je pripravljen individualno glede na cilje, zahtevnost in produkcijske potrebe.",
+      "Vsak paket vključuje en jezik, dva kroga popravkov in 14 dni podpore po objavi. Ceno poznate pred začetkom dela.",
     items: [
       {
-        name: "AI reklame",
-        price: "Od 300 €",
-        description: "AI produkcija reklam, od koncepta do končnega filma.",
+        name: "START",
+        price: "200 €",
+        pages: "1 stran",
+        description:
+          "Za manjša podjetja in samostojne podjetnike, ki potrebujejo jasno predstavitev na spletu.",
+        features: [
+          "Enostranska spletna stran",
+          "Moderen odziven dizajn",
+          "Prilagojeno za telefone in tablice",
+          "Kontaktni podatki in povezave",
+          "Kontaktni obrazec",
+          "Osnovna optimizacija za Google (naslovi, opisi, hitrost)",
+          "Osnovno obvestilo o piškotkih in tehnična priprava",
+          "Dva kroga popravkov pred objavo",
+          "14 dni podpore po objavi (tehnične napake)",
+        ],
       },
       {
-        name: "Spletno oblikovanje in razvoj",
-        price: "Od 700 €",
-        description: "Oblikovanje in izdelava spletnih strani, prilagojenih vašemu podjetju.",
+        name: "BUSINESS",
+        price: "350 €",
+        pages: "do 5 podstrani",
+        badge: "Najbolj priljubljen",
+        description: "Za podjetja, ki potrebujejo bolj celovito in profesionalno spletno stran.",
+        inherits: "Vse iz paketa START, in še:",
+        features: [
+          "Do 5 podstrani",
+          "Prilagojen dizajn po meri",
+          "Prikaz lokacije na zemljevidu (Google Maps)",
+          "Povezave z družbenimi omrežji",
+          "Napredna optimizacija hitrosti",
+        ],
       },
       {
-        name: "Projekti po meri",
-        price: "Pogovorimo se",
-        description: "Za večje, kompleksnejše ali kombinirane kreativne projekte.",
+        name: "PREMIUM",
+        price: "550 €",
+        pages: "do 10 podstrani",
+        description: "Za podjetja, ki želijo naprednejšo in obsežnejšo spletno stran.",
+        inherits: "Vse iz paketa BUSINESS, in še:",
+        features: [
+          "Do 10 podstrani",
+          "Premium dizajn po meri",
+          "Napredne animacije in interakcije",
+          "Razširjena optimizacija za iskalnike",
+          "Dodatni razdelki in funkcionalnosti po meri",
+        ],
       },
     ],
+    languageAddon: {
+      title: "Dodatni jezik",
+      description:
+        "Cena velja na dodatni jezik, ne na podstran. Dodatni jezik pomeni prevod in postavitev vseh besedil na strani v še eni jezikovni različici.",
+      priceNote: "+ 50 € na dodatni jezik",
+      examples: [
+        { combination: "Samo slovensko", price: "vključeno" },
+        { combination: "Slovensko + angleško", price: "+ 50 €" },
+        { combination: "Slovensko + nemško", price: "+ 50 €" },
+        { combination: "Slovensko + angleško + nemško", price: "+ 100 €" },
+      ],
+    },
     ctaLead: "Imate projekt v mislih?",
     ctaLabel: "Stopite v stik",
   },
@@ -143,24 +185,49 @@ export const sl: Dict = {
     title: "Vprašanja, ki jih morda imate.",
     items: [
       {
-        question: "Kaj vključuje AI reklama?",
+        question: "Kaj je brezplačen koncept?",
         answer:
-          "Odvisno od projekta lahko produkcija vključuje razvoj koncepta, vizualno režijo, AI generiranje, montažo, oblikovanje zvoka in končno izvedbo. Natančen obseg določimo pred začetkom produkcije.",
+          "Brezplačen koncept je vizualni predogled vaše naslovne strani, ki ga pripravimo še pred naročilom. Tako vidite našo zasnovo za vaše podjetje, preden se za karkoli odločite. Koncept je brezplačen in ne obvezuje k naročilu.",
       },
       {
-        question: "Koliko stane AI reklama?",
+        question: "Kaj potrebujete od mene za začetek?",
         answer:
-          "Projekti AI reklam se začnejo pri 300 €. Končna cena je odvisna od koncepta, dolžine, števila kadrov, zahtevnosti produkcije in končnih materialov.",
+          "Besedila in vsebino za stran priskrbite sami. Poleg tega potrebujemo osnovne podatke o podjetju, logotip, če ga imate, in fotografije. Pisanje besedil lahko dogovorimo posebej, kot plačljivo storitev.",
       },
       {
-        question: "Koliko časa traja projekt?",
+        question: "Koliko časa traja izdelava?",
         answer:
-          "Čas izvedbe je odvisen od obsega projekta. Manjše produkcije so lahko izvedene hitro, kompleksnejši koncepti pa zahtevajo več časa za razvoj, generiranje in dodelavo.",
+          "Enostranska stran je običajno pripravljena hitreje kot večstranska. Konkretni rok se dogovorimo na začetku, glede na obseg in hitrost pregledov z vaše strani.",
       },
       {
-        question: "Ali lahko skupaj izdelate spletno stran in reklamo?",
+        question: "Koliko krogov popravkov je vključenih?",
         answer:
-          "Da. Oblikovanje spletne strani, razvoj in produkcijo AI reklame lahko združimo v enoten kreativni projekt, kadar je to smiselno za znamko.",
+          "V vsak paket sta vključena dva kroga popravkov pred objavo. Spremembe, ki presegajo dogovorjeni obseg, ovrednotimo posebej.",
+      },
+      {
+        question: "Sta domena in gostovanje vključena v ceno?",
+        answer:
+          "Nista. Domeno in gostovanje imate v lasti sami in ju plačate neposredno ponudniku. Pomoč pri prvi povezavi in osnovni nastavitvi je vključena.",
+      },
+      {
+        question: "Kaj vključuje podpora po objavi?",
+        answer:
+          "Vsak paket vključuje 14 dni podpore po objavi, namenjene izključno odpravi tehničnih napak na predani spletni strani. Podpora ne vključuje oblikovnih sprememb, novih vsebin ali dodatnih funkcionalnosti — te ovrednotimo posebej.",
+      },
+      {
+        question: "Ali ponujate mesečno vzdrževanje?",
+        answer:
+          "Mesečno vzdrževanje ni vključeno v noben paket. Če ga potrebujete, ga lahko dogovorimo posebej. Plačilo izdelave je enkratno, brez obvezne mesečne naročnine.",
+      },
+      {
+        question: "Kaj pomeni dodatni jezik?",
+        answer:
+          "Vsak paket vključuje eno jezikovno različico. Cena 50 € velja na dodatni jezik, ne na podstran.",
+      },
+      {
+        question: "Kako je s piškotki in GDPR?",
+        answer:
+          "Stran pripravimo z osnovnim obvestilom o piškotkih in tehnično pripravo, ki podpira skladnost. To ni pravni nasvet in ne nadomešča pravnega pregleda.",
       },
       {
         question: "Ali sodelujete s strankami zunaj Slovenije?",
@@ -177,7 +244,7 @@ export const sl: Dict = {
   closing: {
     about:
       "DRYPOINT je neodvisen kreativni studio, ki ga vodi Alen. S sedežem v Sloveniji, za znamke kjerkoli.",
-    title: "Imate izdelek, ki si zasluži film?",
+    title: "Imate podjetje, ki si zasluži boljšo spletno stran?",
   },
 
   contact: {
@@ -186,27 +253,27 @@ export const sl: Dict = {
     projectType: "Vrsta projekta",
     message: "Sporočilo",
     projectTypes: [
-      { value: "AI Commercial", label: "AI reklama" },
-      { value: "Video Production", label: "Video produkcija" },
-      { value: "Website", label: "Spletna stran" },
-      { value: "Not sure yet", label: "Še ne vem" },
+      { value: "start", label: "Paket START (200 €)" },
+      { value: "business", label: "Paket BUSINESS (350 €)" },
+      { value: "premium", label: "Paket PREMIUM (550 €)" },
+      { value: "redesign", label: "Prenova obstoječe strani" },
+      { value: "unsure", label: "Še nisem prepričan/-a" },
     ],
     send: "Pošlji sporočilo",
     sending: "Pošiljam…",
     successTitle: "Sporočilo prejeto.",
-    successBody: "Hvala za sporočilo. Odgovor prejmete v enem delovnem dnevu.",
+    successBody: "Hvala za sporočilo. Na vaše povpraševanje odgovorimo v najkrajšem možnem času.",
     genericError: "Nekaj je šlo narobe. Poskusite znova.",
     networkError: "Nekaj je šlo narobe. Preverite povezavo in poskusite znova.",
     invalid: "Izpolnite obvezna polja in vpišite veljaven e-poštni naslov.",
   },
 
   footer: {
-    blurb: "Neodvisni kreativni studio za AI reklame, video produkcijo in digitalno delo.",
+    blurb: "Neodvisni studio za izdelavo modernih, preglednih in odzivnih spletnih strani za podjetja.",
     links: [
-      { to: "/#work", label: "Delo" },
+      { to: "/#digital", label: "Delo" },
       { to: "/#services", label: "Storitve" },
       { to: "/#process", label: "Proces" },
-      { to: "/#digital", label: "Digitalno" },
       { to: "/#pricing", label: "Cenik" },
       { to: "/#contact", label: "Kontakt" },
     ],

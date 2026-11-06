@@ -6,9 +6,8 @@ import type { Dict } from "./types";
 export const en: Dict = {
   nav: {
     links: [
-      { to: "/#work", label: "Work" },
-      { to: "/#services", label: "Capabilities" },
-      { to: "/#digital", label: "Digital" },
+      { to: "/#digital", label: "Work" },
+      { to: "/#services", label: "Services" },
       { to: "/#pricing", label: "Pricing" },
       { to: "/#faq", label: "FAQ" },
       { to: "/#contact", label: "Contact" },
@@ -36,9 +35,9 @@ export const en: Dict = {
 
   // Approved 2026-09-26. No supporting line: headline, status and two CTAs.
   hero: {
-    title: ["Commercials made with AI.", "Directed like film."],
+    title: ["Websites for businesses", "that want more."],
     primary: "Start a project",
-    secondary: "Watch the film",
+    secondary: "View projects",
   },
 
   commercials: {
@@ -52,29 +51,28 @@ export const en: Dict = {
   },
 
   capabilities: {
-    title: "From script to final cut.",
+    title: "From first conversation to launch.",
     items: [
       {
-        title: "AI commercials",
-        description: "Spots for launches, campaigns and social, from idea to final cut.",
+        title: "Business websites",
+        description:
+          "Custom-built business websites designed for clarity, speed and a professional first impression. Combining thoughtful design, clear structure and reliable performance across all devices.",
       },
       {
-        title: "AI video production",
-        description: "Product films and brand visuals, produced without a traditional shoot.",
+        title: "Landing pages",
+        description:
+          "Focused, high-conversion single pages for small businesses, sole traders and individual offers, built around one goal and a clear path to action.",
       },
       {
-        title: "Creative advertising",
-        description: "Concepts, scripts and campaign lines that give a product something to say.",
-      },
-      {
-        title: "Web & digital",
-        description: "Websites and landing pages, designed and built in-house.",
+        title: "Redesign & optimisation",
+        description:
+          "Updating an existing website with a more modern look, clearer structure and improved user experience. Special attention is given to mobile devices, loading speed and ease of use.",
       },
     ],
   },
 
   process: {
-    title: "How a spot gets made.",
+    title: "How a website gets made.",
     steps: [
       {
         title: "Brief",
@@ -114,26 +112,70 @@ export const en: Dict = {
 
   pricing: {
     eyebrow: "Pricing",
-    title: "Clear starting points. Every project is different.",
+    title: "Clear prices. No surprises.",
     description:
-      "Projects are scoped individually based on the goals, complexity and production requirements.",
+      "Every package includes one language, two rounds of revisions and 14 days of post-launch support. You know the price before any work begins.",
     items: [
       {
-        name: "AI Commercials",
-        price: "From €300",
-        description: "AI-powered commercial production, from concept to final film.",
+        name: "START",
+        price: "€200",
+        pages: "1 page",
+        description:
+          "For small businesses and sole traders who need a clear online presence.",
+        features: [
+          "One-page website",
+          "Modern, responsive design",
+          "Optimised for phones and tablets",
+          "Contact details and links",
+          "Contact form",
+          "Basic Google optimisation (titles, descriptions, speed)",
+          "Basic cookie notice and technical setup",
+          "Two rounds of revisions before launch",
+          "14 days of post-launch support (technical fixes)",
+        ],
       },
       {
-        name: "Web Design & Development",
-        price: "From €700",
-        description: "Custom websites designed and developed around your business.",
+        name: "BUSINESS",
+        price: "€350",
+        pages: "up to 5 pages",
+        badge: "Most popular",
+        description: "For businesses that need a more complete and professional website.",
+        inherits: "Everything in START, plus:",
+        features: [
+          "Up to 5 pages",
+          "Custom design",
+          "Location map (Google Maps)",
+          "Social media links",
+          "Advanced performance optimisation",
+        ],
       },
       {
-        name: "Custom Projects",
-        price: "Let’s talk",
-        description: "For larger, more complex or combined creative projects.",
+        name: "PREMIUM",
+        price: "€550",
+        pages: "up to 10 pages",
+        description: "For businesses that want a more advanced and comprehensive website.",
+        inherits: "Everything in BUSINESS, plus:",
+        features: [
+          "Up to 10 pages",
+          "Premium custom design",
+          "Advanced animations and interactions",
+          "Extended search engine optimisation",
+          "Additional custom sections and functionality",
+        ],
       },
     ],
+    languageAddon: {
+      title: "Additional language",
+      description:
+        "The fee applies per additional language, not per page. An additional language means translating and laying out all the copy on the site in one more language version.",
+      priceNote: "+ €50 per additional language",
+      examples: [
+        { combination: "English only", price: "included" },
+        { combination: "English + Slovenian", price: "+ €50" },
+        { combination: "English + German", price: "+ €50" },
+        { combination: "English + Slovenian + German", price: "+ €100" },
+      ],
+    },
     ctaLead: "Have a project in mind?",
     ctaLabel: "Get in touch",
   },
@@ -143,24 +185,49 @@ export const en: Dict = {
     title: "Questions you might have.",
     items: [
       {
-        question: "What does an AI commercial include?",
+        question: "What is a free concept?",
         answer:
-          "Depending on the project, production can include concept development, visual direction, AI generation, editing, sound design and final delivery. The exact scope is defined before production begins.",
+          "A free concept is a visual preview of your homepage that we prepare before you order. It lets you see our design direction for your business before you commit to anything. The concept is free and carries no obligation to order.",
       },
       {
-        question: "How much does an AI commercial cost?",
+        question: "What do you need from me to get started?",
         answer:
-          "AI commercial projects start at €300. The final price depends on the concept, length, number of scenes, production complexity and required deliverables.",
+          "You provide the copy and content for the site. Beyond that we need basic details about your business, your logo if you have one, and photographs. Copywriting can be arranged separately, as a paid service.",
       },
       {
-        question: "How long does a project take?",
+        question: "How long does it take?",
         answer:
-          "Timelines depend on the scope of the project. Smaller productions can move quickly, while more complex concepts require additional development, generation and refinement.",
+          "A one-page site is usually ready sooner than a multi-page one. We agree a specific timeline at the start, based on scope and how quickly reviews come back from your side.",
       },
       {
-        question: "Can you create a website and a commercial together?",
+        question: "How many rounds of revisions are included?",
         answer:
-          "Yes. Web design, development and AI commercial production can be combined into one creative project when it makes sense for the brand.",
+          "Every package includes two rounds of revisions before launch. Changes that go beyond the agreed scope are quoted separately.",
+      },
+      {
+        question: "Are a domain and hosting included in the price?",
+        answer:
+          "No. You own the domain and hosting account and pay the provider directly. Help with the initial connection and basic setup is included.",
+      },
+      {
+        question: "What does post-launch support cover?",
+        answer:
+          "Every package includes 14 days of support after launch, covering only the fixing of technical errors in the delivered website. It does not cover design changes, new content or additional functionality — those are quoted separately.",
+      },
+      {
+        question: "Do you offer monthly maintenance?",
+        answer:
+          "Monthly maintenance is not included in any package. If you need it, it can be arranged separately. The build itself is a one-time payment, with no mandatory monthly subscription.",
+      },
+      {
+        question: "What does an additional language mean?",
+        answer:
+          "Each package includes one language version. The €50 fee applies per additional language, not per page.",
+      },
+      {
+        question: "What about cookies and GDPR?",
+        answer:
+          "Sites are prepared with a basic cookie notice and technical setup that supports compliance. This is not legal advice and does not replace a legal review.",
       },
       {
         question: "Do you work with clients outside Slovenia?",
@@ -177,7 +244,7 @@ export const en: Dict = {
   closing: {
     about:
       "DRYPOINT is an independent creative studio led by Alen. Based in Slovenia, working with brands anywhere.",
-    title: "Have a product worth filming?",
+    title: "Have a business worth a better website?",
   },
 
   contact: {
@@ -188,27 +255,27 @@ export const en: Dict = {
     // The option values stay in English because app/api/contact/route.ts
     // validates them against a fixed allowlist; only the labels are localised.
     projectTypes: [
-      { value: "AI Commercial", label: "AI commercial" },
-      { value: "Video Production", label: "Video production" },
-      { value: "Website", label: "Website" },
-      { value: "Not sure yet", label: "Not sure yet" },
+      { value: "start", label: "START package (€200)" },
+      { value: "business", label: "BUSINESS package (€350)" },
+      { value: "premium", label: "PREMIUM package (€550)" },
+      { value: "redesign", label: "Redesign of an existing site" },
+      { value: "unsure", label: "Not sure yet" },
     ],
     send: "Send message",
     sending: "Sending…",
     successTitle: "Message received.",
-    successBody: "Thanks for reaching out. You will hear back within one business day.",
+    successBody: "Thanks for reaching out. We'll get back to you as soon as possible.",
     genericError: "Something went wrong. Please try again.",
     networkError: "Something went wrong. Please check your connection and try again.",
     invalid: "Please fill in the required fields and use a valid email address.",
   },
 
   footer: {
-    blurb: "Independent creative studio for AI commercials, video production and digital work.",
+    blurb: "Independent studio building modern, clear and responsive websites for businesses.",
     links: [
-      { to: "/#work", label: "Work" },
-      { to: "/#services", label: "Capabilities" },
+      { to: "/#digital", label: "Work" },
+      { to: "/#services", label: "Services" },
       { to: "/#process", label: "Process" },
-      { to: "/#digital", label: "Digital" },
       { to: "/#pricing", label: "Pricing" },
       { to: "/#contact", label: "Contact" },
     ],

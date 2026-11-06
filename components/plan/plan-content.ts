@@ -48,4 +48,4 @@ export const CONTACT_COPY = {
 };
 
 /** The two contact-form options that fit a website inquiry; both are on /api/contact's allowlist. */
-export const FORM_TYPES = ["Website", "Not sure yet"];
+export const FORM_TYPES = ["start", "business", "premium", "redesign", "unsure"];

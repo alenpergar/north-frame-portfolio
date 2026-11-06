@@ -64,12 +64,34 @@ export type Dict = {
     vivelle: { title: string; description: string; action: string; alt: string };
   };
 
-  /** Starting prices. Factual only: three entries, no tiers, no claims. */
+  /**
+   * Website packages. Cumulative: each tier lists only what it adds on top of
+   * the one before it, so the upgrade path reads in one pass. Factual only.
+   */
   pricing: {
     eyebrow: string;
     title: string;
     description: string;
-    items: { name: string; price: string; description: string }[];
+    items: {
+      name: string;
+      price: string;
+      description: string;
+      /** Page count, the clearest difference between tiers. */
+      pages: string;
+      /** Names the tier this one builds on. Absent on the first tier. */
+      inherits?: string;
+      /** Only what this tier adds. */
+      features: string[];
+      /** Subtle accent label on the tier most businesses choose. */
+      badge?: string;
+    }[];
+    /** Charged per additional language, not per page. */
+    languageAddon: {
+      title: string;
+      description: string;
+      priceNote: string;
+      examples: { combination: string; price: string }[];
+    };
     ctaLead: string;
     ctaLabel: string;
   };

@@ -25,10 +25,9 @@ type Copy = {
   zilavecBody: string;
   zilavecMeta: string;
   conceptsTitle: string;
-  webServices: { title: string; body: string }[];
   servicesTitle: string;
   /** Under "web design and development" in the pricing table. */
-  webIncluded: { title: string; items: string[]; payment: string; cta: string };
+  webIncluded: { title: string; payment: string; cta: string };
   processTitle: string;
   processBody: string;
   process: { title: string; body: string }[];
@@ -53,32 +52,9 @@ export const SELL_COPY: Record<Locale, Copy> = {
       "Krovstvo, kleparstvo in izdelava montažnih hiš, dejavni od leta 2008. Stran vodi dve ločeni storitveni liniji in štiri modele hiš do ene same, jasne poti do povpraševanja, za stranke po Sloveniji in Avstriji.",
     zilavecMeta: "Krovske in kleparske storitve, Robert Žilavec s.p., Gornja Radgona",
     conceptsTitle: "Samoiniciativno delo, izdelano po istem merilu.",
-    webServices: [
-      {
-        title: "Spletno oblikovanje",
-        body: "Celovite spletne strani po meri, zasnovane za jasnost, hitrost in vrhunski prvi vtis, narejene tako, da zdržijo resničen promet, ne le posnetek za portfelj.",
-      },
-      {
-        title: "Pristajalne strani",
-        body: "Osredotočene enostranske predstavitve z visoko konverzijo za lansiranja, kampanje in ponudbe, zgrajene okoli enega cilja, ene zgodbe in jasne poti do dejanja.",
-      },
-    ],
     servicesTitle: "Storitve",
     webIncluded: {
       title: "Kaj je vključeno",
-      items: [
-        "Pogovor o vašem podjetju, strankah in ciljih strani",
-        "Struktura strani in načrt vsebine (do 5 podstrani)",
-        "Unikatno oblikovanje, brez predlog",
-        "Pomoč pri besedilih, ki jasno predstavijo vašo ponudbo",
-        "Prilagoditev za telefone in tablice",
-        "Osnovna optimizacija za Google (naslovi, opisi, hitrost)",
-        "Kontaktni obrazec in povezave do družbenih omrežij",
-        "Pomoč pri domeni, gostovanju in objavi",
-        "Piškotki in osnovna skladnost z GDPR",
-        "2 kroga popravkov pred objavo",
-        "30 dni brezplačne podpore po objavi",
-      ],
       payment: "Enkratno plačilo, brez mesečne naročnine.",
       cta: "Pošljite povpraševanje",
     },
@@ -96,10 +72,9 @@ export const SELL_COPY: Record<Locale, Copy> = {
     ],
     contactTitle: "Ustvarimo nekaj vrhunskega.",
     contactBody:
-      "Povejte nam o svojem projektu in odgovorili bomo v enem delovnem dnevu. Raje po e-pošti? Pišite nam neposredno spodaj.",
+      "Povejte nam o svojem projektu in odgovorili bomo v najkrajšem možnem času. Raje po e-pošti? Pišite nam neposredno spodaj.",
     nav: [
       { id: SECTION.web, label: "Delo" },
-      { id: SECTION.films, label: "Reklame" },
       { id: SECTION.services, label: "Storitve" },
       { id: SECTION.process, label: "Proces" },
       { id: SECTION.pricing, label: "Cenik" },
@@ -122,32 +97,9 @@ export const SELL_COPY: Record<Locale, Copy> = {
       "A roofing, tinsmithing, and prefab-home builder trading since 2008. The site carries two distinct service lines and four house models through to a single, clear inquiry path, for customers across Slovenia and Austria.",
     zilavecMeta: "Krovske in kleparske storitve, Robert Žilavec s.p., Gornja Radgona, Slovenia",
     conceptsTitle: "Self-initiated work, built to the same standard.",
-    webServices: [
-      {
-        title: "Web Design",
-        body: "Full-scale marketing and brand websites engineered for clarity, speed, and a premium first impression, designed to hold up under real client traffic, not just a portfolio screenshot.",
-      },
-      {
-        title: "Landing Pages",
-        body: "Focused, high-conversion single pages for launches, campaigns, and offers, built around one goal, one story, and a clear path to action.",
-      },
-    ],
     servicesTitle: "Services",
     webIncluded: {
       title: "What’s included",
-      items: [
-        "A conversation about your business, your customers and the site’s goals",
-        "Site structure and content plan (up to 5 subpages)",
-        "Original design, no templates",
-        "Help with copy that presents your offer clearly",
-        "Adapted for phones and tablets",
-        "Basic Google optimization (titles, descriptions, speed)",
-        "Contact form and links to your social media",
-        "Help with the domain, hosting and launch",
-        "Cookie consent and basic GDPR compliance",
-        "2 rounds of revisions before launch",
-        "30 days of free support after launch",
-      ],
       payment: "One-time payment, no monthly subscription.",
       cta: "Send an inquiry",
     },
@@ -168,10 +120,9 @@ export const SELL_COPY: Record<Locale, Copy> = {
     ],
     contactTitle: "Let’s build something premium.",
     contactBody:
-      "Tell us about your project and we'll reply within one business day. Prefer email? Reach us directly below.",
+      "Tell us about your project and we'll get back to you as soon as possible. Prefer email? Reach us directly below.",
     nav: [
       { id: SECTION.web, label: "Work" },
-      { id: SECTION.films, label: "Commercials" },
       { id: SECTION.services, label: "Services" },
       { id: SECTION.process, label: "Process" },
       { id: SECTION.pricing, label: "Pricing" },
