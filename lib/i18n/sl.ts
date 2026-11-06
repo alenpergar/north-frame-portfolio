@@ -5,9 +5,8 @@ import type { Dict } from "./types";
 export const sl: Dict = {
   nav: {
     links: [
-      { to: "/#work", label: "Delo" },
+      { to: "/#digital", label: "Delo" },
       { to: "/#services", label: "Storitve" },
-      { to: "/#digital", label: "Digitalno" },
       { to: "/#pricing", label: "Cenik" },
       { to: "/#faq", label: "Vprašanja" },
       { to: "/#contact", label: "Kontakt" },
@@ -272,10 +271,9 @@ export const sl: Dict = {
   footer: {
     blurb: "Neodvisni studio za izdelavo modernih, preglednih in odzivnih spletnih strani za podjetja.",
     links: [
-      { to: "/#work", label: "Delo" },
+      { to: "/#digital", label: "Delo" },
       { to: "/#services", label: "Storitve" },
       { to: "/#process", label: "Proces" },
-      { to: "/#digital", label: "Digitalno" },
       { to: "/#pricing", label: "Cenik" },
       { to: "/#contact", label: "Kontakt" },
     ],

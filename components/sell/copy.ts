@@ -27,7 +27,7 @@ type Copy = {
   conceptsTitle: string;
   servicesTitle: string;
   /** Under "web design and development" in the pricing table. */
-  webIncluded: { title: string; items: string[]; payment: string; cta: string };
+  webIncluded: { title: string; payment: string; cta: string };
   processTitle: string;
   processBody: string;
   process: { title: string; body: string }[];
@@ -55,19 +55,6 @@ export const SELL_COPY: Record<Locale, Copy> = {
     servicesTitle: "Storitve",
     webIncluded: {
       title: "Kaj je vključeno",
-      items: [
-        "Pogovor o vašem podjetju, strankah in ciljih strani",
-        "Struktura strani in načrt vsebine (do 5 podstrani)",
-        "Unikatno oblikovanje, brez predlog",
-        "Besedila priskrbite sami; pisanje besedil je na voljo kot plačljiva storitev",
-        "Prilagoditev za telefone in tablice",
-        "Osnovna optimizacija za Google (naslovi, opisi, hitrost)",
-        "Kontaktni obrazec in povezave do družbenih omrežij",
-        "Domena in gostovanje sta vaša in ju plačate ponudniku; pomoč pri prvi povezavi je vključena",
-        "Osnovno obvestilo o piškotkih in tehnična priprava",
-        "2 kroga popravkov pred objavo",
-        "14 dni podpore po objavi (samo tehnične napake)",
-      ],
       payment: "Enkratno plačilo, brez mesečne naročnine.",
       cta: "Pošljite povpraševanje",
     },
@@ -113,19 +100,6 @@ export const SELL_COPY: Record<Locale, Copy> = {
     servicesTitle: "Services",
     webIncluded: {
       title: "What’s included",
-      items: [
-        "A conversation about your business, your customers and the site’s goals",
-        "Site structure and content plan (up to 5 subpages)",
-        "Original design, no templates",
-        "You provide the copy; copywriting is available as a paid service",
-        "Adapted for phones and tablets",
-        "Basic Google optimization (titles, descriptions, speed)",
-        "Contact form and links to your social media",
-        "You own the domain and hosting and pay the provider; help with the initial connection is included",
-        "Basic cookie notice and technical setup",
-        "2 rounds of revisions before launch",
-        "14 days of post-launch support (technical fixes only)",
-      ],
       payment: "One-time payment, no monthly subscription.",
       cta: "Send an inquiry",
     },

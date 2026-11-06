@@ -6,9 +6,8 @@ import type { Dict } from "./types";
 export const en: Dict = {
   nav: {
     links: [
-      { to: "/#work", label: "Work" },
-      { to: "/#services", label: "Capabilities" },
-      { to: "/#digital", label: "Digital" },
+      { to: "/#digital", label: "Work" },
+      { to: "/#services", label: "Services" },
       { to: "/#pricing", label: "Pricing" },
       { to: "/#faq", label: "FAQ" },
       { to: "/#contact", label: "Contact" },
@@ -171,10 +170,10 @@ export const en: Dict = {
         "The fee applies per additional language, not per page. An additional language means translating and laying out all the copy on the site in one more language version.",
       priceNote: "+ €50 per additional language",
       examples: [
-        { combination: "Slovenian only", price: "included" },
-        { combination: "Slovenian + English", price: "+ €50" },
-        { combination: "Slovenian + German", price: "+ €50" },
-        { combination: "Slovenian + English + German", price: "+ €100" },
+        { combination: "English only", price: "included" },
+        { combination: "English + Slovenian", price: "+ €50" },
+        { combination: "English + German", price: "+ €50" },
+        { combination: "English + Slovenian + German", price: "+ €100" },
       ],
     },
     ctaLead: "Have a project in mind?",
@@ -274,10 +273,9 @@ export const en: Dict = {
   footer: {
     blurb: "Independent studio building modern, clear and responsive websites for businesses.",
     links: [
-      { to: "/#work", label: "Work" },
-      { to: "/#services", label: "Capabilities" },
+      { to: "/#digital", label: "Work" },
+      { to: "/#services", label: "Services" },
       { to: "/#process", label: "Process" },
-      { to: "/#digital", label: "Digital" },
       { to: "/#pricing", label: "Pricing" },
       { to: "/#contact", label: "Contact" },
     ],
