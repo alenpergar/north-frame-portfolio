@@ -30,16 +30,17 @@ const otherOgLocale = (locale: Locale) => ogLocale[locale === "en" ? "sl" : "en"
 
 /**
  * Both locales describe the same pages, so every page advertises the other
- * language through `alternates.languages`. `x-default` points at English,
- * which is the site's default. Each caller sets its own locale's canonical;
- * `localePath` stays the single source of truth for every URL.
+ * language through `alternates.languages`. `x-default` points at Slovenian,
+ * which is the site's default and the language the bare domain serves. Each
+ * caller sets its own locale's canonical; `localePath` stays the single
+ * source of truth for every URL.
  */
 function alternates(path: string) {
   return {
     languages: {
       en: localePath("en", path),
       sl: localePath("sl", path),
-      "x-default": localePath("en", path),
+      "x-default": localePath("sl", path),
     },
   };
 }

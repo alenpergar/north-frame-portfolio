@@ -197,7 +197,7 @@ const EYEBROW = "mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink
 const NOTE = "text-[13px] leading-snug text-ink-muted";
 
 /**
- * `home`: the path this plan is served at as the homepage ("/", "/sl"). Links
+ * `home`: the path this plan is served at as the homepage ("/", "/en"). Links
  * to it, with or without a space's hash, move the camera instead of navigating.
  */
 export function PlanExperience({ copy, home = "/" }: { copy: PlanCopy; home?: string }) {

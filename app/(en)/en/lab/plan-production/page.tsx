@@ -8,7 +8,7 @@ import { CONCEPT_TEXT, FORM_TYPES } from "@/components/plan/plan-content";
 import { getDict, type Dict } from "@/lib/i18n";
 
 // THE PLAN in the production shell (layout, header, footer, form), built on
-// components/plan. A test route: not linked, not indexed, and / and /sl are
+// components/plan. A test route: not linked, not indexed, and / and /en are
 // untouched. Delete this folder to remove it.
 export const metadata: Metadata = {
   title: "THE PLAN (production test)",
@@ -20,7 +20,7 @@ const EMAIL = "hello@drypointcreative.com";
 export default function PlanProductionTest() {
   const dict = getDict("en");
   // Page-local, the global dictionary is untouched: header and footer link to
-  // the plan's spaces the way they will on the homepage ("/#work" works from
+  // the plan's spaces the way they will on the homepage ("/#digital" works from
   // every page), and the form offers only the options for a website inquiry.
   const spaces = SPACES.filter((sp) => sp.id !== "home").map((sp) => ({ to: `/#${sp.id}`, label: sp.label }));
   const planDict: Dict = {
