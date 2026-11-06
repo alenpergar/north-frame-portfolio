@@ -88,7 +88,7 @@ export const SELL_COPY: Record<Locale, Copy> = {
     newTab: "odpre se v novem zavihku",
     drawingTitle:
       "Struktura spletne strani Hiše Žilavec, narisana kot tloris: vsaka sekcija je prostor, vse poti vodijo do obrazca za povpraševanje.",
-    language: { href: "/", label: "EN", name: "English" },
+    language: { href: "/en", label: "EN", name: "English" },
   },
   en: {
     heroBody: "Every project starts from a blank plate, never a template.",
@@ -136,6 +136,6 @@ export const SELL_COPY: Record<Locale, Copy> = {
     newTab: "opens in a new tab",
     drawingTitle:
       "The structure of the Hiše Žilavec website drawn as a floor plan: every section is a room, and every route leads to the inquiry form.",
-    language: { href: "/sl", label: "SL", name: "Slovenščina" },
+    language: { href: "/", label: "SL", name: "Slovenščina" },
   },
 };

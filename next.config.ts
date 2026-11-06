@@ -12,6 +12,19 @@ if (process.env.VERCEL && !process.env.NEXT_PUBLIC_MEDIA_BASE_URL) {
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Slovenian moved from /sl to the bare paths when it became the default
+  // language. Everything that was published under /sl keeps its ranking by
+  // redirecting permanently to its new home: /sl -> /, /sl/privacy ->
+  // /privacy, and so on. Nothing is served under /sl any more, so the
+  // catch-all cannot loop. 301 rather than Next's default 308 (`permanent:
+  // true`): search engines treat the two the same, and 301 is the status the
+  // move was specified in.
+  async redirects() {
+    return [
+      { source: "/sl", destination: "/", statusCode: 301 },
+      { source: "/sl/:path*", destination: "/:path*", statusCode: 301 },
+    ];
+  },
   async rewrites() {
     return [
       { source: "/aurelia", destination: "/aurelia/aurelia.html" },
