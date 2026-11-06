@@ -46,7 +46,7 @@ export default function PlanProductionTest() {
               vivelle: dict.digital.vivelle.description,
               ...CONCEPT_TEXT,
             },
-            pricing: ["Web Design & Development", "Custom Projects"].map((n) => ({ name: price(n).name, price: price(n).price })),
+            pricing: ["BUSINESS", "PREMIUM"].map((n) => ({ name: price(n).name, price: price(n).price })),
             email: EMAIL,
             privacy: { label: dict.privacy.title, href: "/privacy" },
             form: planDict,

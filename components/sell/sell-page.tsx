@@ -8,10 +8,8 @@ import { PlanDrawing } from "@/components/sell/plan-drawing";
 import { MobileMenu } from "@/components/sell/mobile-menu";
 import { DrawWhenSeen } from "@/components/sell/draw-when-seen";
 import { Loader } from "@/components/sell/loader";
-import { FilmFrame } from "@/components/video/film-frame";
 import { PlaybackProvider } from "@/components/video/playback-provider";
 import { FilmPlayerProvider } from "@/components/video/film-player-provider";
-import { campaigns, formatDuration, type Campaign } from "@/lib/media";
 import { getDict, localePath, type Dict, type Locale } from "@/lib/i18n";
 import { SECTION, SELL_COPY } from "@/components/sell/copy";
 import "@/components/sell/sell.css";
@@ -57,21 +55,6 @@ function keepHyphenated(text: string) {
   );
 }
 
-/** Name, status and length under a film, then its one line. */
-function FilmCaption({ campaign, dict, line }: { campaign: Campaign; dict: Dict; line?: string }) {
-  return (
-    <div className="mt-4">
-      <p className="flex items-baseline justify-between gap-4 text-[15px]">
-        <span className="font-medium text-[var(--fg)]">{campaign.name}</span>
-        <span className="text-[var(--muted)]">
-          {dict.status[campaign.status]}, {formatDuration(campaign.duration)}
-        </span>
-      </p>
-      {line && <p className="mt-1.5 max-w-[46ch] text-[15px] leading-[1.6] text-[var(--muted)]">{line}</p>}
-    </div>
-  );
-}
-
 /**
  * The homepage, in both languages: what the studio sells (AI commercials and
  * websites), the proof for each, prices and the inquiry form, on one page.
@@ -83,16 +66,12 @@ export function SellPage({ locale }: { locale: Locale }) {
   const HOME = localePath(locale, "/");
   const ZILAVEC = localePath(locale, "/work/hise-zilavec");
   const challenge = (i: number) => dict.caseStudy.challenge[i]!;
-  // Same order in both dictionaries: pricing [commercials, web, custom],
-  // capabilities [commercials, video production, advertising, web].
-  const ads = dict.pricing.items[0]!;
-  const web = dict.pricing.items[1]!;
-  const services = [
-    ...dict.capabilities.items.slice(0, 2).map((i) => ({ title: i.title, body: i.description })),
-    ...COPY.webServices,
-  ];
-  const { pulse, redbull, proda, matcha } = campaigns;
-  const t = dict.commercials;
+  // The hero lists the packages by name; prices are shown once, in pricing.
+  const packages = dict.pricing.items;
+  // One entry per service line, matching the three packages. Previously this
+  // also spread COPY.webServices, which made sense when capabilities led with
+  // commercials; now that all three are web, that spread duplicated them.
+  const services = dict.capabilities.items.map((i) => ({ title: i.title, body: i.description }));
   const NAV = COPY.nav.map((n) => ({ href: `#${n.id}`, label: n.label }));
   const links = [...NAV, { href: `#${SECTION.contact}`, label: COPY.contactLabel }];
   // Page-local dictionary: the footer links point at this page and its blurb
@@ -158,7 +137,7 @@ export function SellPage({ locale }: { locale: Locale }) {
             <section className="container-px mx-auto max-w-content pb-20 pt-16 md:pb-28 md:pt-24">
               <h1 className="text-[clamp(2.6rem,6.2vw,5.75rem)] font-medium leading-[1] tracking-[-0.04em]">
                 <span className="block [text-wrap:balance]">{keepHyphenated(dict.hero.title[0] ?? "")}</span>
-                <span className="block [text-wrap:balance]">{keepHyphenated(dict.digital.description)}</span>
+                <span className="block [text-wrap:balance]">{keepHyphenated(dict.hero.title[1] ?? "")}</span>
               </h1>
               <div className="mt-12 grid grid-cols-1 gap-12 md:mt-16 lg:grid-cols-12 lg:items-end lg:gap-10">
                 <div className="lg:col-span-5">
@@ -170,19 +149,17 @@ export function SellPage({ locale }: { locale: Locale }) {
                   </a>
                 </div>
                 <ul className="border-b border-[var(--rule)] lg:col-span-6 lg:col-start-7">
-                  {[
-                    { href: `#${SECTION.films}`, item: ads },
-                    { href: `#${SECTION.web}`, item: web },
-                  ].map(({ href, item }) => (
-                    <li key={href}>
+                  {packages.map((item) => (
+                    <li key={item.name}>
                       <a
-                        href={href}
+                        href={`#${SECTION.pricing}`}
                         className="group flex min-h-[64px] items-baseline justify-between gap-6 border-t border-[var(--rule)] py-5"
                       >
-                        {/* Names only: prices are shown once, in the pricing section. */}
+                        {/* Names and page counts; prices are shown once, in pricing. */}
                         <span className="text-[20px] font-medium tracking-[-0.015em] transition-colors group-hover:text-[var(--accent)] md:text-[24px]">
                           {item.name}
                         </span>
+                        <span className="shrink-0 text-[15px] text-[var(--muted)]">{item.pages}</span>
                       </a>
                     </li>
                   ))}
@@ -275,40 +252,11 @@ export function SellPage({ locale }: { locale: Locale }) {
               </div>
             </section>
 
-            {/* Films: Red Bull leads, then the landscape spot and the social pair. */}
-            <section id={SECTION.films} className="border-t border-[var(--rule)] py-20 md:py-28">
-              <div className="container-px mx-auto max-w-content">
-                <h2 className={h2}>{t.title}</h2>
-                <div className="mt-12 md:mt-14">
-                  <FilmFrame campaign={redbull} dict={pageDict} sizes="(min-width: 1360px) 1232px, 92vw" />
-                  <FilmCaption campaign={redbull} dict={pageDict} />
-                </div>
-
-                <div className="mt-20 grid grid-cols-1 gap-x-6 gap-y-16 md:mt-24 lg:grid-cols-12">
-                  <div className="lg:col-span-6">
-                    <FilmFrame campaign={pulse} dict={pageDict} sizes="(min-width: 1360px) 610px, (min-width: 1024px) 46vw, 92vw" />
-                    <FilmCaption campaign={pulse} dict={pageDict} />
-                  </div>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:gap-x-6 lg:col-span-6">
-                    <h3 className="col-span-2 text-[24px] font-medium tracking-[-0.02em] md:text-[28px]">{t.feedTitle}</h3>
-                    <div>
-                      <FilmFrame campaign={proda} dict={pageDict} sizes="(min-width: 1024px) 24vw, 46vw" />
-                      <FilmCaption campaign={proda} dict={pageDict} line={t.lines.proda} />
-                    </div>
-                    <div>
-                      <FilmFrame campaign={matcha} dict={pageDict} sizes="(min-width: 1024px) 24vw, 46vw" />
-                      <FilmCaption campaign={matcha} dict={pageDict} line={t.lines.matcha} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
             {/* Services */}
             <section id={SECTION.services} className="border-t border-[var(--rule)] bg-[var(--bg-2)] py-20 md:py-28">
               <div className="container-px mx-auto grid max-w-content grid-cols-1 gap-12 md:grid-cols-12">
-                <h2 className={`${h2} md:col-span-4`}>{COPY.servicesTitle}</h2>
-                <div className="grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 md:col-span-8">
+                <h2 className={`${h2} md:col-span-4 lg:col-span-3`}>{COPY.servicesTitle}</h2>
+                <div className="grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 md:col-span-8 lg:col-span-9 lg:grid-cols-3 lg:gap-x-8">
                   {services.map((s) => (
                     <div key={s.title} className="border-t-2 border-[var(--fg)] pt-6">
                       <h3 className="text-[22px] font-medium tracking-[-0.02em]">{s.title}</h3>
@@ -357,32 +305,72 @@ export function SellPage({ locale }: { locale: Locale }) {
                         key={item.name}
                         className={`grid grid-cols-1 gap-2 p-6 sm:grid-cols-[1fr_auto] sm:gap-x-8 sm:p-8 ${i ? "border-t border-[var(--rule)]" : ""}`}
                       >
-                        <dt className="text-[20px] font-medium tracking-[-0.015em]">{item.name}</dt>
+                        <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[20px] font-medium tracking-[-0.015em]">
+                          {item.name}
+                          {/* The tier most businesses choose, marked without
+                              breaking the stacked list into cards. */}
+                          {item.badge && (
+                            <span className="rounded-full border border-[var(--accent)] px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--accent)]">
+                              {item.badge}
+                            </span>
+                          )}
+                        </dt>
                         <dd className="text-[28px] font-medium tracking-[-0.025em] text-[var(--accent)] sm:row-span-2 sm:text-right">
                           {item.price}
+                          {/* Page count sits with the price: the clearest
+                              difference between the tiers. */}
+                          <span className="mt-1 block text-[15px] font-normal tracking-normal text-[var(--muted)]">
+                            {item.pages}
+                          </span>
                         </dd>
                         <dd className="text-[15px] leading-[1.6] text-[var(--muted)]">{item.description}</dd>
-                        {/* Web design and development: what the starting price covers. */}
-                        {i === 1 && (
-                          <dd className="mt-4 border-t border-[var(--rule)] pt-6 sm:col-span-2">
-                            <h3 className="text-[17px] font-medium tracking-[-0.01em]">{COPY.webIncluded.title}</h3>
-                            <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 xl:grid-cols-2">
-                              {COPY.webIncluded.items.map((line) => (
-                                <li key={line} className="flex gap-3 text-[15px] leading-[1.5] text-[var(--fg)]">
-                                  <CheckMark />
-                                  <span>{line}</span>
-                                </li>
-                              ))}
-                            </ul>
+                        <dd className="mt-4 border-t border-[var(--rule)] pt-6 sm:col-span-2">
+                          <h3 className="text-[17px] font-medium tracking-[-0.01em]">
+                            {item.inherits ?? COPY.webIncluded.title}
+                          </h3>
+                          <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 xl:grid-cols-2">
+                            {item.features.map((line) => (
+                              <li key={line} className="flex gap-3 text-[15px] leading-[1.5] text-[var(--fg)]">
+                                <CheckMark />
+                                <span>{line}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          {/* Payment terms belong to the entry tier only. */}
+                          {i === 0 && (
                             <p className="mt-6 text-[15px] text-[var(--muted)]">{COPY.webIncluded.payment}</p>
-                            <a href={`#${SECTION.contact}`} className={`${btnAccent} mt-6`}>
-                              {COPY.webIncluded.cta}
-                            </a>
-                          </dd>
-                        )}
+                          )}
+                          <a href={`#${SECTION.contact}`} className={`${btnAccent} mt-6`}>
+                            {COPY.webIncluded.cta}
+                          </a>
+                        </dd>
                       </div>
                     ))}
                   </dl>
+
+                  {/* Charged per additional language, not per page. */}
+                  <div className="mt-8 border border-[var(--rule)] p-6 sm:p-8">
+                    <h3 className="text-[17px] font-medium tracking-[-0.01em]">
+                      {dict.pricing.languageAddon.title}
+                    </h3>
+                    <p className={`${body} mt-3 max-w-[52ch]`}>
+                      {dict.pricing.languageAddon.description}
+                    </p>
+                    <p className="mt-4 inline-flex rounded-full border border-[var(--accent)] px-4 py-1.5 text-[15px] font-medium text-[var(--accent)]">
+                      {dict.pricing.languageAddon.priceNote}
+                    </p>
+                    <dl className="mt-6 border-t border-[var(--rule)]">
+                      {dict.pricing.languageAddon.examples.map((example) => (
+                        <div
+                          key={example.combination}
+                          className="flex items-baseline justify-between gap-6 border-b border-[var(--rule)] py-3"
+                        >
+                          <dt className="text-[15px] text-[var(--fg)]">{example.combination}</dt>
+                          <dd className="shrink-0 text-[15px] text-[var(--muted)]">{example.price}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
                   <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                     <a href={`#${SECTION.contact}`} className={btnAccent}>
                       {dict.pricing.ctaLabel}

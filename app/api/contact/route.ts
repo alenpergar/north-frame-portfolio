@@ -6,7 +6,18 @@ export const runtime = "nodejs";
 const TO_EMAIL = "hello@drypointcreative.com";
 const FROM_EMAIL = "DRYPOINT <hello@drypointcreative.com>";
 
-const PROJECT_TYPES = ["AI Commercial", "Video Production", "Website", "Not sure yet"];
+// Stable, locale-independent keys: the form submits these, never the
+// translated label, so a submission validates the same way in either language.
+// Must stay in step with `contact.projectTypes` in lib/i18n/{sl,en}.ts.
+const PROJECT_TYPES = ["start", "business", "premium", "redesign", "unsure"];
+
+const PROJECT_TYPE_LABELS: Record<string, string> = {
+  start: "START package (€200)",
+  business: "BUSINESS package (€350)",
+  premium: "PREMIUM package (€550)",
+  redesign: "Redesign of an existing site",
+  unsure: "Not sure yet",
+};
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -99,6 +110,8 @@ export async function POST(request: Request) {
   }
 
   const { name, email, projectType, message } = result.data;
+  // The form submits a key; the notification shows a readable label.
+  const projectTypeLabel = PROJECT_TYPE_LABELS[projectType] ?? projectType;
 
   try {
     const resend = new Resend(apiKey);
@@ -106,13 +119,13 @@ export async function POST(request: Request) {
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: email,
-      subject: `New inquiry from ${name} — ${projectType}`,
-      text: `Name: ${name}\nEmail: ${email}\nProject type: ${projectType}\n\nMessage:\n${message}`,
+      subject: `New inquiry from ${name} — ${projectTypeLabel}`,
+      text: `Name: ${name}\nEmail: ${email}\nProject type: ${projectTypeLabel}\n\nMessage:\n${message}`,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6;">
           <p><strong>Name:</strong> ${escapeHtml(name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-          <p><strong>Project type:</strong> ${escapeHtml(projectType)}</p>
+          <p><strong>Project type:</strong> ${escapeHtml(projectTypeLabel)}</p>
           <p><strong>Message:</strong></p>
           <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
         </div>

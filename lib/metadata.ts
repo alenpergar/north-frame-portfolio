@@ -5,23 +5,23 @@ import { getDict, localePath, ogLocale, type Locale } from "@/lib/i18n";
 export const SITE = "https://www.drypointcreative.com";
 
 // Site-level copy lives here rather than in the page dictionary: it describes
-// the document, not anything rendered on screen. Positioning (2026-09): AI
-// commercials and video production first, premium web design and development
-// second. Titles are the ones the owner specified.
+// the document, not anything rendered on screen. Positioning (2026-11): web
+// design and development only — AI commercials and video production were
+// discontinued. Titles are the ones the owner specified.
 const site: Record<Locale, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "AI Commercials & Premium Websites — DRYPOINT",
+    title: "Web Design & Development for Businesses — DRYPOINT",
     description:
-      "DRYPOINT is an independent creative studio for AI commercials, video production and premium web design and development, based in Slovenia.",
+      "DRYPOINT is an independent studio building modern, clear and responsive websites for businesses, based in Slovenia. Packages from €200.",
     ogDescription:
-      "AI commercials, video production and premium websites from an independent creative studio.",
+      "Modern, clear and responsive websites for businesses. Packages from €200.",
   },
   sl: {
-    title: "AI oglasi in vrhunske spletne strani — DRYPOINT",
+    title: "Izdelava spletnih strani za podjetja — DRYPOINT",
     description:
-      "DRYPOINT je neodvisen kreativni studio za AI oglase, video produkcijo ter oblikovanje in izdelavo vrhunskih spletnih strani, s sedežem v Sloveniji.",
+      "DRYPOINT je neodvisen studio za izdelavo modernih, preglednih in odzivnih spletnih strani za podjetja, s sedežem v Sloveniji. Paketi od 200 €.",
     ogDescription:
-      "AI oglasi, video produkcija in vrhunske spletne strani neodvisnega kreativnega studia.",
+      "Moderne, pregledne in odzivne spletne strani za podjetja. Paketi od 200 €.",
   },
 };
 
