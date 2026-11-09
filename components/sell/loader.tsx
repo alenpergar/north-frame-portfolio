@@ -2,23 +2,65 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-// Once per full page load: a client-side return to this page (from the case
-// study, say) does not replay it, a reload does.
+// Within one page load: a client-side return to this page (from the case
+// study, say) does not replay it. Across loads, SESSION_KEY below decides.
 let played = false;
 
-const MIN_MS = 1900; // the last letter has landed by then
+/** Once per browser session: a reload or a new tab in the same session does
+ *  not replay the intro. Versioned so a future change can start clean. */
+export const SESSION_KEY = "drypoint:intro:v1";
+
+/**
+ * Runs before the overlay paints, so a visitor who has already seen the
+ * intro this session never catches a frame of it. Inlined by SellPage ahead
+ * of <Loader>; the matching rule is html[data-intro="done"] in sell.css.
+ * Wrapped in try/catch because sessionStorage throws in some privacy modes.
+ */
+export const INTRO_FLAG_SCRIPT = `try{if(sessionStorage.getItem(${JSON.stringify(
+  SESSION_KEY
+)}))document.documentElement.dataset.intro="done"}catch(e){}`;
+
+function alreadyPlayed() {
+  try {
+    return sessionStorage.getItem(SESSION_KEY) !== null;
+  } catch {
+    // Privacy mode, or storage disabled: fall back to once per page load.
+    return false;
+  }
+}
+
+function remember() {
+  try {
+    sessionStorage.setItem(SESSION_KEY, "1");
+  } catch {
+    /* Nothing to do: `played` still covers this page load. */
+  }
+}
+
+const MIN_MS = 1400; // the glitch sequence has resolved by then
 const MIN_MS_REDUCED = 500;
 const MAX_MS = 6000; // never hold the page longer than this
 
-// A slight, fixed tilt per letter as it falls; all of them land straight.
-const TILT = [-7, 5, -4, 8, -6, 3, -8, 6];
+// A fixed horizontal kick per letter as it resolves, never random: the
+// server and the client have to render the same thing, and a set pattern
+// reads as deliberate rather than noisy.
+const SHIFT = [-6, 4, -3, 7, -5, 3, -7, 5];
+
+// Two offset colour ghosts under the real row. Painted first so the clean
+// wordmark always sits on top.
+const LAYERS = ["a", "b", "main"] as const;
 
 /**
- * The opening: the wordmark's letters fall into place while a counter shows
- * how far the page has actually loaded (document, fonts, window load), then
- * the screen lifts away. Purely visual (aria-hidden); the page underneath is
- * in the DOM the whole time. Without JavaScript it never shows (noscript
- * style), and a CSS failsafe clears it even if this script were to fail.
+ * The opening: the wordmark resolves out of a short, controlled glitch —
+ * letters clip in a beat apart, three snapped horizontal displacements, two
+ * offset colour ghosts that are gone before the end — while a counter shows
+ * how far the page has actually loaded (document, fonts, window load). Then
+ * the screen lifts away. The last frame is the clean wordmark.
+ *
+ * Purely visual (aria-hidden); the page underneath is in the DOM the whole
+ * time, so nothing about the intro delays or blocks it. Without JavaScript
+ * it never shows (noscript style), and a CSS failsafe clears it even if this
+ * script were to fail.
  */
 export function Loader({ word, label }: { word: string; label: string }) {
   const [phase, setPhase] = useState<"run" | "exit" | "done">(() => (played ? "done" : "run"));
@@ -27,11 +69,19 @@ export function Loader({ word, label }: { word: string; label: string }) {
 
   useEffect(() => {
     if (phase !== "run") return;
+    // Seen this session already: clear it before anything is locked or
+    // timed. The inline script has kept it off screen; this unmounts it.
+    if (alreadyPlayed()) {
+      played = true;
+      setPhase("done");
+      return;
+    }
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Reduced motion: no falling letters, no wait. (CSS already hides the
-    // screen for these visitors; this also releases the page at once.)
+    // Reduced motion: no glitch, no wait. (CSS already hides the screen for
+    // these visitors; this also releases the page at once.)
     if (reduce) {
       played = true;
+      remember();
       setPhase("done");
       return;
     }
@@ -100,6 +150,7 @@ export function Loader({ word, label }: { word: string; label: string }) {
     if (phase !== "exit") return;
     const id = window.setTimeout(() => {
       played = true;
+      remember();
       setPhase("done");
     }, 900);
     return () => clearTimeout(id);
@@ -114,9 +165,16 @@ export function Loader({ word, label }: { word: string; label: string }) {
       </noscript>
       <div className="sell-loader" data-phase={phase} aria-hidden="true">
         <p className="sell-loader-word">
-          {Array.from(word).map((ch, i) => (
-            <span key={i} style={{ "--i": i, "--r": `${TILT[i % TILT.length]}deg` } as CSSProperties}>
-              {ch}
+          {LAYERS.map((layer) => (
+            <span key={layer} className="sell-loader-row" data-layer={layer}>
+              {Array.from(word).map((ch, i) => (
+                <span
+                  key={i}
+                  style={{ "--i": i, "--dx": `${SHIFT[i % SHIFT.length]}px` } as CSSProperties}
+                >
+                  {ch}
+                </span>
+              ))}
             </span>
           ))}
         </p>
