@@ -13,10 +13,14 @@ export default function EnLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
+    // suppressHydrationWarning: the pre-paint intro script sets data-intro on
+    // <html> before React hydrates (see components/sell/loader.tsx), which React
+    // would otherwise report as an attribute mismatch on a return visit.
     <html
       lang={htmlLang.en}
       data-scroll-behavior="smooth"
       className={fontVariables}
+      suppressHydrationWarning
     >
       <body className="font-sans">{children}</body>
     </html>
