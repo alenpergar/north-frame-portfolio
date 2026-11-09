@@ -7,7 +7,7 @@ import { Logo } from "@/components/ui/logo";
 import { PlanDrawing } from "@/components/sell/plan-drawing";
 import { MobileMenu } from "@/components/sell/mobile-menu";
 import { DrawWhenSeen } from "@/components/sell/draw-when-seen";
-import { Loader } from "@/components/sell/loader";
+import { INTRO_FLAG_SCRIPT, Loader } from "@/components/sell/loader";
 import { PlaybackProvider } from "@/components/video/playback-provider";
 import { getDict, localePath, type Dict, type Locale } from "@/lib/i18n";
 import { SECTION, SELL_COPY } from "@/components/sell/copy";
@@ -84,6 +84,9 @@ export function SellPage({ locale }: { locale: Locale }) {
     <PlaybackProvider>
       <StructuredData />
       <div className="sell">
+        {/* Runs during parse, before the overlay below paints, so a visitor
+            who already saw the intro this session gets no flash of it. */}
+        <script dangerouslySetInnerHTML={{ __html: INTRO_FLAG_SCRIPT }} />
         <Loader word="DRYPOINT" label={COPY.loading} />
         <a
           href="#content"
