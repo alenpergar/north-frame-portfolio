@@ -37,14 +37,14 @@ function remember() {
   }
 }
 
-const MIN_MS = 1400; // the glitch sequence has resolved by then
+const MIN_MS = 2000; // the glitch sequence has resolved and settled by then
 const MIN_MS_REDUCED = 500;
 const MAX_MS = 6000; // never hold the page longer than this
 
 // A fixed horizontal kick per letter as it resolves, never random: the
 // server and the client have to render the same thing, and a set pattern
 // reads as deliberate rather than noisy.
-const SHIFT = [-6, 4, -3, 7, -5, 3, -7, 5];
+const SHIFT = [-13, 9, -7, 14, -11, 7, -15, 10];
 
 // Two offset colour ghosts under the real row. Painted first so the clean
 // wordmark always sits on top.

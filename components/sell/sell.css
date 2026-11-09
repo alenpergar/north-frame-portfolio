@@ -121,6 +121,10 @@
 }
 
 .sell-loader-row {
+  /* Burst amplitude. The displacements below are in px, so on a narrow
+     screen the same 12px reads about three times as far across a much
+     shorter word; this scales them back so the effect lands the same. */
+  --kick: 1;
   grid-area: 1 / 1;
   display: flex;
   gap: 0.22em;
@@ -137,23 +141,24 @@
   display: inline-block;
 }
 
+
 /* Letters resolve out of a clipped band, a beat apart. Deterministic offsets
    (--dx, set per letter in the markup), never random: the server and the
    client have to agree, and a fixed pattern reads as deliberate. */
 .sell-loader-row[data-layer="main"] span {
-  animation: sell-glitch-in 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: calc(var(--i) * 26ms);
+  animation: sell-glitch-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 24ms);
 }
 
 @keyframes sell-glitch-in {
   0% {
     opacity: 0;
-    transform: translateX(var(--dx)) scaleY(0.84);
-    clip-path: inset(44% 0 44% 0);
+    transform: translateX(calc(var(--dx) * var(--kick))) scaleY(0.72);
+    clip-path: inset(48% 0 48% 0);
   }
   45% {
     opacity: 1;
-    transform: translateX(calc(var(--dx) * -0.3)) scaleY(1.05);
+    transform: translateX(calc(var(--dx) * -0.4 * var(--kick))) scaleY(1.08);
     clip-path: inset(0 0 0 0);
   }
   100% {
@@ -163,48 +168,70 @@
   }
 }
 
-/* Three short horizontal displacements, then still. steps(1, end) makes each
-   one snap rather than slide — the difference between a digital fault and a
-   wobble. */
+/* Three bursts of horizontal displacement over 2000ms, then still. The first
+   lands right after the letters arrive and is by far the strongest — that is
+   the one a visitor catches out of the corner of an eye. The second and third
+   are each roughly half the amplitude of the one before, so the word reads as
+   settling rather than repeating. steps(1, end) makes every move snap instead
+   of slide: the difference between a digital fault and a wobble.
+
+   Everything stops by 72% (1440ms), leaving 560ms of a perfectly still
+   wordmark before the screen lifts away. */
 .sell-loader-row[data-layer="main"] {
-  animation: sell-glitch-shift 1400ms steps(1, end) both;
+  animation: sell-glitch-shift 2000ms steps(1, end) both;
 }
 
 @keyframes sell-glitch-shift {
   0%,
-  37% {
+  26% {
     transform: translateX(0);
   }
-  39% {
-    transform: translateX(-4px);
+  /* Burst one: the loud one. */
+  27% {
+    transform: translateX(calc(-12px * var(--kick)));
   }
-  42% {
-    transform: translateX(3px);
+  30% {
+    transform: translateX(calc(9px * var(--kick)));
   }
-  44% {
+  33% {
+    transform: translateX(calc(-6px * var(--kick)));
+  }
+  36% {
+    transform: translateX(calc(4px * var(--kick)));
+  }
+  38% {
     transform: translateX(0);
+  }
+  /* Burst two: about half as far. */
+  52% {
+    transform: translateX(calc(6px * var(--kick)));
+  }
+  54% {
+    transform: translateX(calc(-4px * var(--kick)));
   }
   56% {
-    transform: translateX(3px);
+    transform: translateX(calc(2px * var(--kick)));
   }
   58% {
-    transform: translateX(-2px);
-  }
-  60% {
     transform: translateX(0);
   }
-  71% {
-    transform: translateX(-2px);
+  /* Burst three: barely there, the last of it. */
+  68% {
+    transform: translateX(calc(-3px * var(--kick)));
   }
-  73%,
+  70% {
+    transform: translateX(calc(2px * var(--kick)));
+  }
+  72%,
   100% {
     transform: translateX(0);
   }
 }
 
-/* The ghosts: one copper, one off-white, offset a couple of pixels either
-   way and sliced to a band. Both are gone before the sequence ends, so the
-   last thing on screen is the clean wordmark. */
+/* The ghosts: one copper, one off-white, offset either way and sliced to a
+   band so each burst reads as a displaced slice of the word rather than a
+   coloured shadow. Both are strongest in burst one and gone by 72%, so the
+   last 560ms on screen is the clean wordmark alone. */
 .sell-loader-row[data-layer="a"],
 .sell-loader-row[data-layer="b"] {
   pointer-events: none;
@@ -212,54 +239,74 @@
 
 .sell-loader-row[data-layer="a"] {
   color: var(--accent);
-  animation: sell-glitch-a 1400ms steps(1, end) both;
+  animation: sell-glitch-a 2000ms steps(1, end) both;
 }
 
 .sell-loader-row[data-layer="b"] {
   color: var(--fg);
-  animation: sell-glitch-b 1400ms steps(1, end) both;
+  animation: sell-glitch-b 2000ms steps(1, end) both;
 }
 
 @keyframes sell-glitch-a {
   0%,
-  22% {
+  17% {
     opacity: 0;
     transform: translateX(0);
     clip-path: inset(0 0 100% 0);
   }
-  24% {
+  /* A single wide slice while the letters are still arriving: the first hint
+     that something is happening. */
+  18% {
     opacity: 0.5;
-    transform: translateX(-5px);
-    clip-path: inset(14% 0 61% 0);
+    transform: translateX(calc(-7px * var(--kick)));
+    clip-path: inset(22% 0 48% 0);
   }
+  21% {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+  /* Burst one, three slices in a row at full strength. */
   27% {
+    opacity: 0.85;
+    transform: translateX(calc(-12px * var(--kick)));
+    clip-path: inset(8% 0 44% 0);
+  }
+  31% {
+    opacity: 0.8;
+    transform: translateX(calc(10px * var(--kick)));
+    clip-path: inset(52% 0 12% 0);
+  }
+  35% {
+    opacity: 0.7;
+    transform: translateX(calc(-8px * var(--kick)));
+    clip-path: inset(30% 0 34% 0);
+  }
+  38% {
     opacity: 0;
     clip-path: inset(0 0 100% 0);
   }
-  39% {
-    opacity: 0.55;
-    transform: translateX(-4px);
-    clip-path: inset(56% 0 18% 0);
+  /* Burst two. */
+  52% {
+    opacity: 0.45;
+    transform: translateX(calc(-6px * var(--kick)));
+    clip-path: inset(46% 0 26% 0);
   }
-  43% {
+  55% {
+    opacity: 0.32;
+    transform: translateX(calc(4px * var(--kick)));
+    clip-path: inset(16% 0 58% 0);
+  }
+  58% {
     opacity: 0;
     clip-path: inset(0 0 100% 0);
   }
-  57% {
-    opacity: 0.4;
-    transform: translateX(-3px);
-    clip-path: inset(30% 0 44% 0);
+  /* Burst three. */
+  68% {
+    opacity: 0.2;
+    transform: translateX(calc(-3px * var(--kick)));
+    clip-path: inset(36% 0 48% 0);
   }
-  60% {
-    opacity: 0;
-    clip-path: inset(0 0 100% 0);
-  }
-  71% {
-    opacity: 0.25;
-    transform: translateX(-2px);
-    clip-path: inset(8% 0 72% 0);
-  }
-  74%,
+  72%,
   100% {
     opacity: 0;
     transform: translateX(0);
@@ -269,48 +316,70 @@
 
 @keyframes sell-glitch-b {
   0%,
-  22% {
+  17% {
     opacity: 0;
     transform: translateX(0);
     clip-path: inset(0 0 100% 0);
   }
-  24% {
-    opacity: 0.35;
-    transform: translateX(4px);
-    clip-path: inset(62% 0 14% 0);
+  18% {
+    opacity: 0.4;
+    transform: translateX(calc(6px * var(--kick)));
+    clip-path: inset(58% 0 16% 0);
+  }
+  21% {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
   }
   27% {
+    opacity: 0.7;
+    transform: translateX(calc(10px * var(--kick)));
+    clip-path: inset(50% 0 14% 0);
+  }
+  31% {
+    opacity: 0.65;
+    transform: translateX(calc(-8px * var(--kick)));
+    clip-path: inset(10% 0 50% 0);
+  }
+  35% {
+    opacity: 0.55;
+    transform: translateX(calc(7px * var(--kick)));
+    clip-path: inset(34% 0 32% 0);
+  }
+  38% {
     opacity: 0;
     clip-path: inset(0 0 100% 0);
   }
-  39% {
-    opacity: 0.4;
-    transform: translateX(3px);
-    clip-path: inset(20% 0 55% 0);
+  52% {
+    opacity: 0.35;
+    transform: translateX(calc(5px * var(--kick)));
+    clip-path: inset(20% 0 54% 0);
   }
-  43% {
+  55% {
+    opacity: 0.24;
+    transform: translateX(calc(-4px * var(--kick)));
+    clip-path: inset(52% 0 22% 0);
+  }
+  58% {
     opacity: 0;
     clip-path: inset(0 0 100% 0);
   }
-  57% {
-    opacity: 0.28;
-    transform: translateX(3px);
-    clip-path: inset(48% 0 28% 0);
+  68% {
+    opacity: 0.15;
+    transform: translateX(calc(2px * var(--kick)));
+    clip-path: inset(62% 0 20% 0);
   }
-  60% {
-    opacity: 0;
-    clip-path: inset(0 0 100% 0);
-  }
-  71% {
-    opacity: 0.18;
-    transform: translateX(2px);
-    clip-path: inset(66% 0 16% 0);
-  }
-  74%,
+  72%,
   100% {
     opacity: 0;
     transform: translateX(0);
     clip-path: inset(0 0 100% 0);
+  }
+}
+
+
+@media (max-width: 640px) {
+  .sell-loader-row {
+    --kick: 0.55;
   }
 }
 
